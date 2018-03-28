@@ -50,6 +50,11 @@ angular.module("greenams",[
         checkLoginStatus : checkLoginStatus
     }
 }])
+
+.controller("Login Controller", ["$scope", "facebook", function($scope, facebook){
+    $scope.FBLogin = facebook.checkLoginStatus()
+}])
+
 .run(["$rootScope", "$window","$location", function($rootScope, $window, $location){
     $window.fbAsyncInit = function(){
             FB.init({ 
@@ -80,7 +85,3 @@ angular.module("greenams",[
     
       }(document));
 }])
-.controller("Login Controller", ["$scope", "facebook", function($scope, facebook){
-    $scope.FBLogin = facebook.checkLoginStatus()
-}])
-
