@@ -11,6 +11,10 @@ angular.module("greenams",[
             templateUrl: "intro/intro.html",
             controller : "IntroController"
         })
+        .otherwise({
+            templateUrl :"login/login.html",
+            controller : "LoginController"
+        })
     $locationProvider.html5Mode(true);
 })
 .factory("facebook", ["$http","$location","$window", function($http, $location, $window){
