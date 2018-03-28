@@ -3,7 +3,7 @@ var mApp = angular.module("greenams",[
 ]);
 
 mApp.config(["$routeProvider", "$locationProvider", function($routeProvider, $locationProvider){
-    $locationProvider.html5Mode(true);
+  
     $routeProvider
         .when("/login",{
             templateUrl :"login/login.html",
@@ -13,8 +13,8 @@ mApp.config(["$routeProvider", "$locationProvider", function($routeProvider, $lo
             templateUrl: "intro/intro.html",
             controller : "IntroController"
         })
-        
-}]);
+    $locationProvider.html5Mode(true);
+}])
 
 mApp.factory("facebook", ["$http","$location","$window", function($http, $location, $window){
     //declare useful function
