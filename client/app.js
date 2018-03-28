@@ -1,8 +1,7 @@
-var mApp = angular.module("greenams",[
+angular.module("greenams",[
     "ngRoute"
-]);
-
-mApp.config(["$routeProvider", "$locationProvider", function($routeProvider, $locationProvider){
+])
+.config(["$routeProvider", "$locationProvider", function($routeProvider, $locationProvider){
   
     $routeProvider
         .when("/login",{
@@ -15,8 +14,7 @@ mApp.config(["$routeProvider", "$locationProvider", function($routeProvider, $lo
         })
     $locationProvider.html5Mode(true);
 }])
-
-mApp.factory("facebook", ["$http","$location","$window", function($http, $location, $window){
+.factory("facebook", ["$http","$location","$window", function($http, $location, $window){
     //declare useful function
     checkLoginStatus = function(){
         FB.getLoginStatus(function(response){
@@ -52,9 +50,8 @@ mApp.factory("facebook", ["$http","$location","$window", function($http, $locati
     return {
         checkLoginStatus : checkLoginStatus
     }
-}]);
-
-mApp.run(["$rootScope", "$window","$location", function($rootScope, $window, $location){
+}])
+.run(["$rootScope", "$window","$location", function($rootScope, $window, $location){
     $window.fbAsyncInit = function(){
             FB.init({ 
               appId: '790223617837082',
@@ -83,9 +80,8 @@ mApp.run(["$rootScope", "$window","$location", function($rootScope, $window, $lo
         ref.parentNode.insertBefore(js, ref);
     
       }(document));
-}]);
-//controller
-mApp.controller("Login Controller", ["$scope", "facebook", function($scope, facebook){
+}])
+.controller("Login Controller", ["$scope", "facebook", function($scope, facebook){
     $scope.FBLogin = facebook.checkLoginStatus()
 }])
 
