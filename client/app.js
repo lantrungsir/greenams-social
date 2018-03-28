@@ -1,7 +1,7 @@
 angular.module("greenams",[
     "ngRoute"
 ])
-.config(["$routeProvider", "$locationProvider", function($routeProvider, $locationProvider){
+.config(function($routeProvider, $locationProvider){
     $routeProvider
         .when("/login",{
             templateUrl :"login/login.html",
@@ -12,7 +12,7 @@ angular.module("greenams",[
             controller : "IntroController"
         })
     $locationProvider.html5Mode(true);
-}])
+})
 .factory("facebook", ["$http","$location","$window", function($http, $location, $window){
     //declare useful function
     checkLoginStatus = function(){
