@@ -2,7 +2,6 @@ angular.module("greenams",[
     "ngRoute"
 ])
 .config(["$routeProvider", "$locationProvider", function($routeProvider, $locationProvider){
-  
     $routeProvider
         .when("/login",{
             templateUrl :"login/login.html",
