@@ -18,7 +18,7 @@ export class UserService {
     return new Promise((resolve, reject) => {
       FB.login(result => {
         if (result.authResponse) {
-          return this.http.post(`auth/facebook`, {access_token: result.authResponse.accessToken})
+          return this.http.post(`auth/facebook`, {user_token: result.authResponse.accessToken})
               .toPromise()
               .then(response => {
                 var token = response.headers.get('x-auth-token');
