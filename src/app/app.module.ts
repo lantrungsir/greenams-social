@@ -7,7 +7,7 @@ import { LoginComponent } from './login/login.component';
 import {Http} from "@angular/http"
 import {AuthHttp, AuthConfig} from "angular2-jwt"
 import { AppRouteModule } from './app.route/app.route.module';
-import { HttpModule } from '@angular/http/src/http_module';
+import { HttpModule } from '@angular/http';
 export function getAuthHttp(http: Http) {
   return new AuthHttp(new AuthConfig({
     headerName: 'x-auth-token',
