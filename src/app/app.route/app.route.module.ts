@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import {RouterModule, Route} from "@angular/router";
+import {RouterModule, Routes} from "@angular/router";
 import {LoginComponent} from  "../login/login.component";
 import { AuthGuard } from '../auth.guard';
-const appRoute : Route[] = [
+const appRoute : Routes = [
   {
     path: '/login',
     component : LoginComponent,
