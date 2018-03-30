@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import {Router} from '@angular/router';
-import { ViewChild } from '@angular/core/src/metadata/di';
+import { ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +9,7 @@ import { ViewChild } from '@angular/core/src/metadata/di';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  
+
 @ViewChild("navIcon") nav;
   constructor(private userService : UserService, private route: Router) { }
 
