@@ -1,58 +1,57 @@
-var request = require("request");
-var db = require("./data.js")
+var db = require("../admin/db.js")
+
 module.exports = {
     firstStepLogin : function(req, res, next){
         var token = req.body.user_token;
         request({
-            uri :"https://graph.facebook.com/me?fields=name,picture.type(normal)&redirect=false",
+            uri :"https://graph.facebook.com/me?fields=name,picture.type(normal)",
             qs:{
-                access_token : token
+                access_token: token
             },
-            method :"GET",
+            method : "POST",
             json: true
-        }, function(error, response, body){
-            if(error){
-                console.log(error);
-                return;
+        }, function(err, response, body){
+            if(err){
+                console.log(err);
+                req.err = err;
+                next()
             }
             else{
                 if(response.error){
                     console.log(response.error);
-                    return
+                    req.err = response.error;
+                    next();
                 }
                 else{
-                    console.log(body);
-                    //save in database
                     var user = {
-                        "id" : body.id
+                        "profile_pic" : "",
+                        "name": ""
                     }
-                    user.data = {
-                        "profile_pic" : body.picture.data.url,
-                        "name" : body.name
-                    }
-                    
-                    db.saveUserAfterLogin(user.id, user.data)
-                    req.auth = {
-                        id: body.id
-                    };
-                   
+                    user["profile_pic"] = body.picture.data.url;
+                    user["name"] = body.name;
+                    db.saveData(body.id, user);
+                    req.user = body.id;
+                    next()
                 }
             }
-            next();
         })
     },
-    middleStepLogin: function(req,res, next){
-        if(!req.auth){
-            res.status(403).send("User not authenticated");
+    secondStepLogin: function(req, res, next){
+        if((!req.user) && req.err){
+            res.status(401).send("User not authenticated");
         }
         else{
-            next();
+            req.auth = {
+                id : req.user
+            }
+            next()
         }
     },
-
-    getUserData: function(req,res,next){
-        var id = req.body.id;
-        var data = db.queryUser(id)
-        res.status(200).send(data)
+    getUserFromDatabase: function(req, res){
+        var id = req.body.user_id;
+        var keys = req.body.keys;
+        var user = db.getData("users/"+ id, keys);
+        res.json(user)
     }
 }
+

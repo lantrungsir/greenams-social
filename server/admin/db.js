@@ -1,0 +1,24 @@
+var db = require("./admin.js").database();
+
+module.exports = {
+    saveData: function(path, data){
+        db.ref(path).set(data);
+    },
+    pushData: function(path, data){
+        var newRef = db.ref(data).push();
+        newRef.set(data);
+    },
+    getData: function(path, keys){
+        var result = null;
+        db.ref(path).once("value", function(snapshot){
+            snapshot.forEach(function(data){
+                for(var i = 0 ;i < keys.length; i++){
+                    if(data.key === keys[i]){
+                        result[data.key] = data.val();
+                    }
+                }
+            })
+        })
+        return result;
+    }
+}

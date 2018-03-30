@@ -1,12 +1,14 @@
 var express = require("express");
-var app  = express();
-var Route = require("./server/config/route.js");
-var Middleware = require("./server/config/middleware.js");
-//config
-Route(app);
-Middleware(app, express);
-//run
-app.set('port',process.env.PORT|| 1692 )
+var app = express();
+
+var config = require("./server/config.js");
+
+config.Middleware(app, express);
+config.Route(app)
+
+app.set('port', process.env.PORT || 6520);
+
 app.listen(app.get('port'), function(){
-    console.log("we are on again, GART6520 on" + app.get('port'));
+    console.log("we are on " + app.get('port') + " again, GART" )
 })
+console.log("test")
