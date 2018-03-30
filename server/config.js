@@ -9,7 +9,7 @@ module.exports = {
     Middleware : function(app, express){
         app.use(bodyParser.json())
         app.use(bodyParser.urlencoded({extended: true}))
-       
+        app.disable('etag');
         var corsOption = {
             origin: true,
             methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
