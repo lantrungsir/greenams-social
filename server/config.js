@@ -19,7 +19,7 @@ module.exports = {
         app.use(cors(corsOption));
     },
     Route : function(app){
-        app.post("auth/facebook", FBStragety.firstStepLogin, FBStragety.secondStepLogin, TokenManagement.generateToken, TokenManagement.sendToken)
-        app.get("auth/me", TokenManagement.authenticateRequest, FBStragety.getUserFromDatabase);
+        app.post("/auth/facebook", FBStragety.firstStepLogin, FBStragety.secondStepLogin, TokenManagement.generateToken, TokenManagement.sendToken)
+        app.get("/auth/me", TokenManagement.authenticateRequest, FBStragety.getUserFromDatabase);
     }
 }
