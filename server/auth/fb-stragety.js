@@ -1,5 +1,5 @@
 var db = require("../admin/db.js")
-
+var request = require("request")
 module.exports = {
     firstStepLogin : function(req, res, next){
         var token = req.body.user_token;
