@@ -13,12 +13,12 @@ export class AuthGuard implements CanActivate {
   }
   checkLogin():Promise<boolean>{
     return new Promise((resolve,reject)=>{
-        this.userService.isLoggedIn().then(()=>{
-          resolve(true);
+        this.userService.isLoggedIn().then((bool)=>{
+          resolve(<boolean>bool);
         })
         .catch((bool)=>{
           this.router.navigate(["/login"]);
-          reject(false);
+          reject(<boolean>bool);
         })
         
     })
