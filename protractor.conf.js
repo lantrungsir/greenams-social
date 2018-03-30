@@ -12,7 +12,7 @@ exports.config = {
     'browserName': 'chrome'
   },
   directConnect: true,
-  baseUrl: '',
+  baseUrl: 'https://greeenams-social.herokuapp.com',
   framework: 'jasmine',
   jasmineNodeOpts: {
     showColors: true,

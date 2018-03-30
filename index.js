@@ -5,7 +5,7 @@ var config = require("./server/config.js");
 
 config.Middleware(app, express);
 config.Route(app)
-
+app.use(express.static(__dirname + "/dist/"))
 app.set('port', process.env.PORT || 6520);
 
 app.listen(app.get('port'), function(){

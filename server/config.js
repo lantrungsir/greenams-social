@@ -9,6 +9,7 @@ module.exports = {
     Middleware : function(app, express){
         app.use(bodyParser.json())
         app.use(bodyParser.urlencoded({extended: true}))
+       
         var corsOption = {
             origin: true,
             methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
