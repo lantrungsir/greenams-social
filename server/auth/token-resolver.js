@@ -1,7 +1,7 @@
 var jwt = require("jsonwebtoken")
 const secret = "greenams6520"
 function createToken(auth){
-    jwt.sign({
+    return jwt.sign({
         id: auth.id
     }, secret,{
         expiresIn: 86400
