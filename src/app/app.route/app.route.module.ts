@@ -7,7 +7,8 @@ const appRoute : Routes = [
     path: 'login',
     component : LoginComponent,
     canActivate: [AuthGuard]
-  }
+  },
+  {path: '', redirectTo: "login", pathMatch :"full"}
 ]
 @NgModule({
   imports: [
