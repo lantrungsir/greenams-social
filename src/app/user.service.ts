@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {AuthHttp} from "angular2-jwt"
+import {RequestOptions} from "@angular/http"
 declare const FB: any
 @Injectable()
 export class UserService {
@@ -22,8 +23,10 @@ export class UserService {
               .toPromise()
               .then(response => {
                 var token = response.headers.get('x-auth-token');
+                var id = response.json()["auth"].id;
                 if (token) {
                   localStorage.setItem('auth_token', token);
+                  localStorage.setItem('current_id', id )
                 }
                 resolve(response.json());
               })
@@ -46,7 +49,7 @@ export class UserService {
 
   getCurrentUser() {
     return new Promise((resolve, reject) => {
-      return this.http.get(`/auth/me`).toPromise().then(response => {
+      return this.http.get(`/auth/me`, new RequestOptions({body : {user_id : localStorage.getItem('id')}})).toPromise().then(response => {
         resolve(response.json());
       }).catch(() => reject());
     });

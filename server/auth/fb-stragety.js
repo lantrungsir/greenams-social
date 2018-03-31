@@ -47,6 +47,7 @@ module.exports = {
             next()
         }
     },
+    
     getUserFromDatabase: function(req, res){
         var id = req.body.user_id;
         var keys = req.body.keys;
