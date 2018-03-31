@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import {Router} from '@angular/router';
 import { ViewChild } from '@angular/core';
-
+import * as $ from "jquery"
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -33,4 +33,8 @@ export class LoginComponent implements OnInit {
   closeNav(){
     this.nav.nativeElement.style.display = "none";
   }
+  onMouseOver(event):void{
+    console.log(event);
+  }
+  
 }
