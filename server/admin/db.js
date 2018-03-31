@@ -1,3 +1,5 @@
+import { reject } from "q";
+
 var db = require("./admin.js").database();
 
 module.exports = {
@@ -9,20 +11,25 @@ module.exports = {
         newRef.set(data);
     },
     getData: function(path, keys){
-        var result ={};
-        db.ref(path).once("value", function(snapshot){
-            snapshot.forEach(function(data){
-                for(var i = 0 ;i < keys.length; i++){
-                    if(data.key === keys[i]){
-                        Object.defineProperty(result, data.key, {
-                            value : data.val(),
-                            writable: true,
-                            configurable: true
-                        })
+        return Promise((resolve, reject)=>{
+            var result ={};
+            db.ref(path).once("value", function(snapshot){
+                snapshot.forEach(function(data){
+                    for(var i = 0 ;i < keys.length; i++){
+                        if(data.key === keys[i]){
+                            Object.defineProperty(result, data.key, {
+                                value : data.val(),
+                                writable: true,
+                                configurable: true
+                            })
+                        }
                     }
+                })
+                resolve(result);
+                if(result !== {}){
+                    reject();
                 }
             })
-            return result;
         })
     }
 }

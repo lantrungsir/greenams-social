@@ -52,9 +52,14 @@ module.exports = {
         var id = req.query.id;
         var keys = req.query.keys.split(",");
         console.log(keys);
-        var user = db.getData("users/"+ id, keys);
-        console.log(user)
-        res.status(200).send(JSON.stringify(user));
+        db.getData("users/"+id, keys).then((user)=>{
+            console.log(user)
+            res.status(200).send(JSON.stringify(user));
+        })
+        .catch(()=>{
+            res.status(401).send("Not funny");
+        })
+        
     }
 }
 
