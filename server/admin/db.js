@@ -1,4 +1,3 @@
-
 var db = require("./admin.js").database();
 
 module.exports = {
