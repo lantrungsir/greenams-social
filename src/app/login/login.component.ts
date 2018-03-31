@@ -34,9 +34,8 @@ export class LoginComponent implements OnInit {
     this.nav.nativeElement.style.display = "none";
   }
   onMouseOver(event):void{
-    var feature = event.srcElement.attributes;
-    console.log(feature["id"].nodeValue);
-    $("#"+feature+"-feature").slideToggle("fast");
+    var feature = event.srcElement.attributes["id"].nodeValue;
+    $("#"+feature.toString()+ "-feature").slideToggle("fast");
   }
   
 }
