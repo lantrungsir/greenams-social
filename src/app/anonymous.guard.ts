@@ -8,8 +8,8 @@ export class AnonymousGuard implements CanActivate {
   constructor(private router :Router, private userService : UserService){}
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-      return true;
+    state: RouterStateSnapshot): Promise<boolean> {
+      return this.checkLogin();
   }
   checkLogin(): Promise<boolean> {
     return this.userService.isNotLoggedIn();
