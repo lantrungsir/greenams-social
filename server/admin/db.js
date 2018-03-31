@@ -23,10 +23,13 @@ module.exports = {
                         }
                     }
                 })
-                resolve(result);
                 if(result !== {}){
                     reject();
                 }
+                else{
+                    resolve(result);
+                }
+
             })
         })
     }
