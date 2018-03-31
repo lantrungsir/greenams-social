@@ -38,17 +38,29 @@
     <!-- Grid for photos -->
     <div class="w3-row-padding" style="margin:0 -16px" #featuresgrid>
       <div class="w3-half">
-        <img src="https://img.eztalks.com/how-to/group-chat.jpg" style="width:100%" id = "chat" >
-        <img src="http://www.placonference.org/wp-content/uploads/2017/04/groups.png" style="width:100%" (mouseover)= "onMouseOver($event)" id= "group">
-        <div style = "color: green" id = "group-feature" hidden>
+        <img src="https://img.eztalks.com/how-to/group-chat.jpg" style="width:100%" id = "chat" (mouseover)= "onMouseOver($event)" >
+        <div style = "background-color: green; color: black" id = "chat-feature" hidden>
           <h4>GreenAms Messenger</h4>
           <span>Dịch vụ nhắn tin cho các thành viên</span>
+        </div>
+        <img src="https://www.placonference.org/wp-content/uploads/2017/04/groups.png" style="width:100%" (mouseover)= "onMouseOver($event)" id= "group">
+        <div style = "background-color: green; color: black" id = "group-feature" hidden>
+          <h4>GreenAms Group</h4>
+          <span>Nơi chia sẻ, trao đổi của các thành viên</span>
         </div>
       </div>
 
       <div class="w3-half">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsJM3Ubu-cbieNdP3MhUjpBHFNhQp-867QCbzZYRvdUdJcUutN" style="width:100%" id = "schedule">
-        <img src="https://scontent.fsgn2-1.fna.fbcdn.net/v/t1.0-9/27654771_108673209955540_6107803346678425081_n.jpg?_nc_cat=0&oh=bc3e6c9dbee57e2a33d0b12482299c2c&oe=5B6795DA" style="width:100%">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsJM3Ubu-cbieNdP3MhUjpBHFNhQp-867QCbzZYRvdUdJcUutN" style="width:100%" id = "schedule" (mouseover)= "onMouseOver($event)" >
+        <div style = "background-color: green; color: black" id = "schedule-feature" hidden>
+          <h4>GreenAms Schedule</h4>
+          <span>Lịch họp, lịch đi chơi, nhắc nhở...</span>
+        </div>
+        <img src="https://scontent.fsgn2-1.fna.fbcdn.net/v/t1.0-9/27654771_108673209955540_6107803346678425081_n.jpg?_nc_cat=0&oh=bc3e6c9dbee57e2a33d0b12482299c2c&oe=5B6795DA" style="width:100%" id ="admin" (mouseover)= "onMouseOver($event)" >
+        <div style = "background-color: green; color: black" id = "admin-feature" hidden>
+          <h4>Admin Botty Green</h4>
+          <span>Đặt lịch hẹn, trò chuyện, horoscope, nhắc nhở share bài, chống thanh trừng trong group</span>
+        </div>
 
       </div>
     <!-- End photo grid -->
