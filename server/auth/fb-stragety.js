@@ -49,10 +49,11 @@ module.exports = {
     },
     
     getUserFromDatabase: function(req, res){
-        var id = req.body.user_id;
-        var keys = req.body.keys;
+        var id = req.query.id;
+        var keys = req.query.keys;
+        console.log(keys);
         var user = db.getData("users/"+ id, keys);
-        res.json(user)
+        res.status(200).send(JSON.stringify(user));
     }
 }
 
