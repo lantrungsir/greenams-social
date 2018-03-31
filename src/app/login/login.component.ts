@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   }
   fbLogin(){
     this.userService.fbLogin().then((user)=>{
-      localStorage.setItem('id', user['id']);
+      console.log(user);
       console.log("successful login");
       this.route.navigate(["/dashboard"]);
     })

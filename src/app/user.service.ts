@@ -24,7 +24,6 @@ export class UserService {
               .then(response => {
                 var token = response.headers.get('x-auth-token');
                 if (token) {
-                  console.log(token);
                   localStorage.setItem('auth_token', token);
                 }
                 resolve(response.json());
