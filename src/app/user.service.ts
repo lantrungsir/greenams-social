@@ -40,7 +40,7 @@ export class UserService {
     localStorage.removeItem('id')
   }
 
-  isLoggedIn() {
+  isLoggedIn(): Promise<boolean> {
     return new Promise((resolve, reject) => {
       this.getCurrentUser().then(user => resolve(true)).catch(() => reject(false));
     });
@@ -51,6 +51,11 @@ export class UserService {
       return this.http.get(`/auth/me`, new RequestOptions({body : {user_id : localStorage.getItem('id')}})).toPromise().then(response => {
         resolve(response.json());
       }).catch(() => reject());
+    });
+  }
+  isNotLoggedIn(): Promise<boolean>{
+    return new Promise((resolve, reject) => {
+      this.getCurrentUser().then(user => reject(false)).catch(() => resolve(true));
     });
   }
 }
