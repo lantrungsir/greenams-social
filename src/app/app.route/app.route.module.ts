@@ -19,7 +19,8 @@ const appRoute : Routes = [
   ],
   declarations: [],
   providers: [
-    AuthGuard
+    AuthGuard,
+    AnonymousGuard
   ],
   exports:[
     RouterModule
