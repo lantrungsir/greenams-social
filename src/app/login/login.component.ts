@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
   }
   onMouseOver(event):void{
     var feature = event.srcElement.attributes;
-    console.log(feature);
+    console.log(feature[0].nodeValue);
 
   }
   
