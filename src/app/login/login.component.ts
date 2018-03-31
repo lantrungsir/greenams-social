@@ -16,7 +16,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
   fbLogin(){
-    this.userService.fbLogin().then(()=>{
+    this.userService.fbLogin().then((user)=>{
+      localStorage.setItem('id', user['id']);
       console.log("successful login");
       this.route.navigate(["/dashboard"]);
     })

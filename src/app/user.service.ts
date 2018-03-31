@@ -18,16 +18,14 @@ export class UserService {
   fbLogin(){
     return new Promise((resolve, reject) => {
       FB.login(result => {
-        if (result.status === "connected") {
+        if (result.authResponse.userID) {
           return this.http.post(`auth/facebook`, {user_token: result.authResponse.accessToken})
               .toPromise()
               .then(response => {
                 var token = response.headers.get('x-auth-token');
-                var id = response.json().auth.id;
                 if (token) {
-                  console.log(token)
+                  console.log(token);
                   localStorage.setItem('auth_token', token);
-                  localStorage.setItem('id', id );
                 }
                 resolve(response.json());
               })
