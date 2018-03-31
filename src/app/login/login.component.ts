@@ -34,7 +34,9 @@ export class LoginComponent implements OnInit {
     this.nav.nativeElement.style.display = "none";
   }
   onMouseOver(event):void{
-    console.log(event);
+    var feature = event.srcElement.attributes;
+    console.log(feature);
+
   }
   
 }
