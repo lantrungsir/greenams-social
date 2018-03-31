@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
   onMouseOver(event):void{
     var feature = event.srcElement.attributes;
     console.log(feature["id"].nodeValue);
-
+    $("#"+feature+"-feature").slideToggle("fast");
   }
   
 }
