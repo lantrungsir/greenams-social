@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import {AuthHttp} from "angular2-jwt"
+import { AuthHttp } from "angular2-jwt"
 import {RequestOptions} from "@angular/http"
+import { Router } from '@angular/router';
 declare const FB: any
 @Injectable()
 export class UserService {
 
-  constructor(private http : AuthHttp) {
+  constructor(private http : AuthHttp, private router : Router) {
     FB.init({
       appId      : '790223617837082',
       status     : false, // the SDK will attempt to get info about the current user immediately after init
@@ -42,7 +43,7 @@ export class UserService {
 
   isLoggedIn(): Promise<boolean> {
     return new Promise((resolve, reject) => {
-      this.getCurrentUser().then(user => resolve(true)).catch(() => reject(false));
+      this.getCurrentUser().then(user => resolve(true)).catch(() => {this.router.navigate(["/login"]);reject(false)});
     });
   }
 
@@ -63,7 +64,11 @@ export class UserService {
   }
   isNotLoggedIn(): Promise<boolean>{
     return new Promise((resolve, reject) => {
-      this.getCurrentUser().then(user => reject(false)).catch(() => resolve(true));
+      this.getCurrentUser().then(user => {
+        this.router.navigate(['/dashboard']);
+        reject(false);
+      }
+      ).catch(() => resolve(true));
     });
   }
 }
