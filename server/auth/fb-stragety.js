@@ -29,7 +29,7 @@ module.exports = {
                     }
                     user["profile_pic"] = body.picture.data.url;
                     user["name"] = body.name;
-                    db.saveData(body.id, user);
+                    db.saveData("users/"+ body.id, user);
                     req.user = body.id;
                     next()
                 }
@@ -53,6 +53,7 @@ module.exports = {
         var keys = req.query.keys.split(",");
         console.log(keys);
         var user = db.getData("users/"+ id, keys);
+        console.log(user)
         res.status(200).send(JSON.stringify(user));
     }
 }

@@ -43,7 +43,7 @@ export class UserService {
 
   isLoggedIn(): Promise<boolean> {
     return new Promise((resolve, reject) => {
-      this.getCurrentUser().then(user => resolve(true)).catch(() => {this.router.navigate(["/login"]);reject(false)});
+      this.getCurrentUser().then(user => {if(user === null){this.router.navigate(["/login"]);reject(false)}else{resolve(true)}}).catch(() => {this.router.navigate(["/login"]);reject(false)});
     });
   }
 
@@ -59,8 +59,13 @@ export class UserService {
   isNotLoggedIn(): Promise<boolean>{
     return new Promise((resolve, reject) => {
       this.getCurrentUser().then(user => {
-        this.router.navigate(['/dashboard']);
-        reject(false);
+        if(user === null){
+          resolve(true)
+        }
+        else{
+          this.router.navigate(['/dashboard']);
+          reject(false);
+        }
       }
       ).catch(() => resolve(true));
     });
