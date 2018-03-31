@@ -9,7 +9,7 @@ module.exports = {
         newRef.set(data);
     },
     getData: function(path, keys){
-        var result;
+        var result ={};
         db.ref(path).once("value", function(snapshot){
             snapshot.forEach(function(data){
                 for(var i = 0 ;i < keys.length; i++){
