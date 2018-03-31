@@ -1,4 +1,3 @@
-import { reject } from "q";
 
 var db = require("./admin.js").database();
 
