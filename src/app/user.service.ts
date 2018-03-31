@@ -18,15 +18,16 @@ export class UserService {
   fbLogin(){
     return new Promise((resolve, reject) => {
       FB.login(result => {
-        if (result.authResponse) {
+        if (result.status === "connected") {
           return this.http.post(`auth/facebook`, {user_token: result.authResponse.accessToken})
               .toPromise()
               .then(response => {
                 var token = response.headers.get('x-auth-token');
-                var id = response.json()["auth"].id;
+                var id = response.json().auth.id;
                 if (token) {
+                  console.log(token)
                   localStorage.setItem('auth_token', token);
-                  localStorage.setItem('current_id', id )
+                  localStorage.setItem('id', id );
                 }
                 resolve(response.json());
               })
@@ -39,6 +40,7 @@ export class UserService {
   }
   logout() {
     localStorage.removeItem('auth_token');
+    localStorage.removeItem('id')
   }
 
   isLoggedIn() {
