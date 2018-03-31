@@ -22,7 +22,7 @@ module.exports = {
                     }
                 }
             })
+            return result;
         })
-        return result;
     }
 }
