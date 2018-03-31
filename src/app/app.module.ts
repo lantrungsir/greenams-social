@@ -8,6 +8,7 @@ import {Http} from "@angular/http"
 import {AuthHttp, AuthConfig} from "angular2-jwt"
 import { AppRouteModule } from './app.route/app.route.module';
 import { HttpModule } from '@angular/http';
+import { DashboardComponent } from './dashboard/dashboard.component';
 export function getAuthHttp(http: Http) {
   return new AuthHttp(new AuthConfig({
     headerName: 'x-auth-token',
@@ -21,7 +22,8 @@ export function getAuthHttp(http: Http) {
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

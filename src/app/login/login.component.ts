@@ -10,7 +10,6 @@ import * as $ from "jquery"
 })
 export class LoginComponent implements OnInit {
 
-@ViewChild("navIcon") nav;
   constructor(private userService : UserService, private route: Router) { }
 
 
@@ -25,13 +24,6 @@ export class LoginComponent implements OnInit {
       console.log("could not login");
       this.route.navigate(["/login"])
     })
-  }
-  openNav(){
-    this.nav.nativeElement.style.width = "60%";
-    this.nav.nativeElement.style.display = "block";
-  }
-  closeNav(){
-    this.nav.nativeElement.style.display = "none";
   }
   onMouseOver(event):void{
     var feature = event.srcElement.attributes["id"].nodeValue;
