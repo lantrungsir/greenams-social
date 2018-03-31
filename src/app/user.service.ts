@@ -50,7 +50,7 @@ export class UserService {
     return new Promise((resolve, reject) => {
       return this.http.get(`/auth/me`, 
         new RequestOptions({
-          body : {
+          body: {
             user_id : localStorage.getItem('id'),
             keys :  ["profile_pic, name"]
           }
