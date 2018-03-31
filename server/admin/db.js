@@ -9,7 +9,7 @@ module.exports = {
         newRef.set(data);
     },
     getData: async function(path, keys){
-        return Promise((resolve, reject)=>{
+        return new Promise((resolve, reject)=>{
             var result ={};
             db.ref(path).once("value", function(snapshot){
                 snapshot.forEach(function(data){
