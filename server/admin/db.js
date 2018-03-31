@@ -8,7 +8,7 @@ module.exports = {
         var newRef = db.ref(data).push();
         newRef.set(data);
     },
-    getData: function(path, keys){
+    getData: async function(path, keys){
         return Promise((resolve, reject)=>{
             var result ={};
             db.ref(path).once("value", function(snapshot){
