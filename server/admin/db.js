@@ -8,28 +8,10 @@ module.exports = {
         var newRef = db.ref(data).push();
         newRef.set(data);
     },
-    getData: async function(path, keys){
+    getData: async function(path){
         return new Promise((resolve, reject)=>{
-            var result ={};
             db.ref(path).once("value", function(snapshot){
-                snapshot.forEach(function(data){
-                    for(var i = 0 ;i < keys.length; i++){
-                        if(data.key === keys[i]){
-                            Object.defineProperty(result, data.key, {
-                                value : data.val(),
-                                writable: true,
-                                configurable: true
-                            })
-                        }
-                    }
-                })
-                if(result !== {}){
-                    reject();
-                }
-                else{
-                    resolve(result);
-                }
-
+                resolve(snapshot.val())
             })
         })
     }
