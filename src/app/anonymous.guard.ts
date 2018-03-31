@@ -13,5 +13,5 @@ export class AnonymousGuard implements CanActivate {
   }
   checkLogin(): Promise<boolean> {
     return this.userService.isNotLoggedIn();
-}
+    }
 }

@@ -48,7 +48,15 @@ export class UserService {
 
   getCurrentUser() {
     return new Promise((resolve, reject) => {
-      return this.http.get(`/auth/me`, new RequestOptions({body : {user_id : localStorage.getItem('id')}})).toPromise().then(response => {
+      return this.http.get(`/auth/me`, 
+        new RequestOptions({
+          body : {
+            user_id : localStorage.getItem('id'),
+            keys :  ["profile_pic, name"]
+          }
+        })
+      ).toPromise().then(response => {
+        console.log(response);
         resolve(response.json());
       }).catch(() => reject());
     });
