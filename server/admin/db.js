@@ -5,7 +5,7 @@ module.exports = {
         db.ref(path).set(data);
     },
     pushData: function(path, data){
-        var newRef = db.ref(data).push();
+        var newRef = db.ref(path).push();
         newRef.set(data);
     },
     getData: async function(path){
