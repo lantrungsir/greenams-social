@@ -76,6 +76,7 @@ export class DashboardComponent implements OnInit {
         value : this.CurrentUser.profile_pic,
         configurable: true
       })
+      this.addPost(newPost)
     })
   }
 }
