@@ -25,7 +25,7 @@ export class DashboardComponent implements OnInit {
       this.userService.logout();
       this.router.navigate(["/login"])
     })
-    
+
    }
 
   ngOnInit() {
@@ -66,11 +66,12 @@ export class DashboardComponent implements OnInit {
       value : $("#newpost").text(),
       configurable: true
     })
+    this.addPost(newPost)
     this.http.post("api/posts", {
       new_post : newPost
     }).toPromise().then((res)=>{
       console.log(res.text());
-      this.addPost(newPost)
+      
     })
   }
 }
