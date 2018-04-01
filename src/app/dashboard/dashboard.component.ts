@@ -67,7 +67,7 @@ export class DashboardComponent implements OnInit {
       configurable: true
     })
     Object.defineProperty(newPost, "time", {
-      value : new Date().toDateString(),
+      value : new Date().toLocaleDateString(),
       configurable: true
     })
     this.addPost(newPost)
