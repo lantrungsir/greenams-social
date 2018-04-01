@@ -50,7 +50,7 @@ export class DashboardComponent implements OnInit {
    })
   }
   addPost(post){
-    this.posts.splice(0, post);
+    this.posts.splice(0,0, post);
   }
   openNav(){
     var x = this.nav.nativeElement;
