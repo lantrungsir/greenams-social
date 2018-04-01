@@ -2,9 +2,6 @@ var express = require("express");
 var app = express();
 
 var config = require("./server/config.js");
-
-var realtime = require("./server/realtime/socket.js")
-var sock = require("socket.io");
 var database = require("./server/admin/db.js");
 var db = require("./server/admin/admin.js").db;
 
