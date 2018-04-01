@@ -3,7 +3,7 @@ var app = express();
 
 var config = require("./server/config.js");
 var database = require("./server/admin/db.js");
-var db = require("./server/admin/admin.js").db;
+var db = require("./server/admin/admin.js").database()
 
 config.Middleware(app, express);
 config.Route(app)
