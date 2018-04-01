@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { AuthHttp } from 'angular2-jwt';
 import { ViewChild } from '@angular/core';
 import * as $ from "jquery"
-import * as io from "socket.io-client"
+import io from "socket.io-client"
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -82,6 +82,7 @@ export class DashboardComponent implements OnInit {
       value : new Date().toLocaleDateString(),
       configurable: true
     })
+    this.addPost(newPost)
     this.http.post("api/posts", {
       new_post : newPost
     }).toPromise().then((res)=>{
