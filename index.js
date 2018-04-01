@@ -15,9 +15,9 @@ var http = require("http").createServer(app)
 var io = require("socket.io")(http)
 //get socket io
 io.on("connection", function(socket){
-    console.log("user connected " +socket)
+    console.log("user connected " +socket);
     socket.on("post-on", function(data){
-        database.saveData("users/"+data.uid, socket.id);
+        database.saveData("users/"+data.uid +"/realtime", socket.id);
         socket.broadcast.emit("online", {uid : data.uid})
     })
     socket.on("disconnect", function(){
