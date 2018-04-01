@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthHttp } from 'angular2-jwt';
 import { ViewChild } from '@angular/core';
 import * as $ from "jquery"
+import * as io from "socket.io-client"
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -11,6 +12,7 @@ import * as $ from "jquery"
 })
 export class DashboardComponent implements OnInit {
   @ViewChild("navDemo") nav ;
+  private socket;
   CurrentUser : any
   posts = []
   constructor(private userService : UserService, private router: Router, private http :AuthHttp) {
@@ -26,6 +28,15 @@ export class DashboardComponent implements OnInit {
       this.router.navigate(["/login"])
     })
 
+    this.socket = io("https://greenams-social.herokuapp.com");
+    this.socket.emit("post-on", {uid : localStorage.getItem('id')})
+    this.socket.on("online", function(data){
+      //add to array
+
+    })
+    this.socket.on("new-post",function(data){
+      this.addPost(data.post);
+    })
    }
 
   ngOnInit() {
@@ -39,7 +50,7 @@ export class DashboardComponent implements OnInit {
    })
   }
   addPost(post){
-    this.posts.push(post);
+    this.posts.splice(0, post);
   }
   openNav(){
     var x = this.nav.nativeElement;
@@ -75,7 +86,7 @@ export class DashboardComponent implements OnInit {
       new_post : newPost
     }).toPromise().then((res)=>{
       console.log(res.text());
-      
+      this.socket.emit("new-post", {post: newPost})
     })
   }
 }
