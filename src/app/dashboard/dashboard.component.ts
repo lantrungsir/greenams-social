@@ -17,16 +17,15 @@ export class DashboardComponent implements OnInit {
 
     this.userService.getCurrentUser().then((user)=>{
       this.CurrentUser = user
+      this.getPost()
+      .then((postsData)=>{
+        this.posts = postsData;
+      })
     }).catch(()=>{
       this.userService.logout();
       this.router.navigate(["/login"])
     })
-
-    this.getPost()
-    .then((postsData)=>{
-      this.posts = postsData;
-    })
-
+    
    }
 
   ngOnInit() {
@@ -57,7 +56,10 @@ export class DashboardComponent implements OnInit {
       "message" : ""
     }
     Object.defineProperty(newPost, "author", {
-      value : localStorage.getItem('id'),
+      value : {
+        name : this.CurrentUser.name,
+        profile_pic : this.CurrentUser.profile_pic
+      },
       configurable: true
     });
     Object.defineProperty(newPost, "message", {
@@ -68,22 +70,6 @@ export class DashboardComponent implements OnInit {
       new_post : newPost
     }).toPromise().then((res)=>{
       console.log(res.text());
-      newPost.author = null;
-      Object.defineProperty(newPost, "author", {
-        value: {
-          name :"",
-          profile_pic :""
-        },
-        configurable: true
-      })
-      Object.defineProperty(newPost.author, "name", {
-        value : this.CurrentUser.name,
-        configurable: true,
-      })
-      Object.defineProperty(newPost.author,"profile_pic", {
-        value : this.CurrentUser.profile_pic,
-        configurable: true
-      })
       this.addPost(newPost)
     })
   }

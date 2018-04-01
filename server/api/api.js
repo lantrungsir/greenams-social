@@ -24,10 +24,7 @@ module.exports ={
                             }
                             data[key].images =  purifiedImageData;
                             data[key].links =  purifiedLinkData;
-                            db.getData("users/", data[key].author).then((authorVal)=>{
-                                data[key].author = authorVal;
-                                resolve(data[key])
-                            })
+                            resolve(data[key])
                         }).then((post)=>{
                             purifiedPostData.push(post);
                         })
