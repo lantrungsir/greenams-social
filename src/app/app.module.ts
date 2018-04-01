@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {UserService} from "./user.service"
-import {UpcomingToLatestPipe} from "./pipes/app.sortbydate.pipes"
+
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -26,8 +26,7 @@ export function getAuthHttp(http: Http) {
     AppComponent,
     LoginComponent,
     DashboardComponent,
-    GrouppostComponent,
-    UpcomingToLatestPipe
+    GrouppostComponent
   ],
   imports: [
     BrowserModule,

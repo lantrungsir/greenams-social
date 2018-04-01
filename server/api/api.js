@@ -2,7 +2,7 @@ var db = require("../admin/db.js")
 
 module.exports ={
     getPost: function(req, res){
-        db.getData("posts/content").then(function(data){
+        db.getPost().then(function(data){
             //get author :
             new Promise((resolve, reject)=>{
                 var purifiedPostData = [];
@@ -32,7 +32,11 @@ module.exports ={
                 }
                 resolve(purifiedPostData);
             }).then((posts)=>{
-                console.log(posts);
+                for(var i = 0 ;i< posts.length ;i++){
+                   var tmp = posts[i];
+                   posts[i] = posts[posts.length-1-i];
+                   posts[posts.length-i-1] = tmp; 
+                }
                 res.status(200).send(JSON.stringify(posts)); 
             })
         })

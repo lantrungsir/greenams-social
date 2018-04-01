@@ -27,5 +27,12 @@ module.exports = {
                 db.ref("posts/content/"+ snapshot.key +"/id").set(value);
             })
         })
+    },
+    getPost: async function(){
+        return new Promise((resolve, reject)=>{
+            db.ref("post/content").orderByChild("id").once("value", function(snapshot){
+                resolve(snapshot.val())
+            })
+        })
     }
 }
