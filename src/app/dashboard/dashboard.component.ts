@@ -62,7 +62,7 @@ export class DashboardComponent implements OnInit {
       configurable: true
     })
     this.addPost(newPost);
-    this.http.post("/api/posts", {
+    this.http.post("api/posts", {
       new_post : newPost
     }).toPromise().then((res)=>{
       console.log(res.text());

@@ -4,9 +4,12 @@ module.exports = {
     saveData: function(path, data){
         db.ref(path).set(data);
     },
-    pushData: function(path, data){
-        var newRef = db.ref(path).push();
-        newRef.set(data);
+    pushData: async function(path, data){
+        return new Promise((resolve, reject)=>{
+            var newRef = db.ref(path).push();
+            newRef.set(data);
+            resolve();
+        })
     },
     getData: async function(path){
         return new Promise((resolve, reject)=>{
