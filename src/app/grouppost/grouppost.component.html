@@ -7,7 +7,7 @@
   <!-- list of links-->
 
   <!--list of images -->
-    <div class="w3-row-padding" style="margin:0 -16px" *ngIf = "post.images">
+    <div class="w3-row-padding" style="margin:0 -16px" *ngIf = "post.images !==null ">
       <div class="w3-content w3-display-container">
         <img *ngFor="let image of post.images" class="mySlides" src="{{image}}" style="width:100%" >
       
