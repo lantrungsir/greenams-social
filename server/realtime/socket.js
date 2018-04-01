@@ -3,7 +3,7 @@ var database = require("../admin/db.js");
 var db= require("../admin/admin.js").db
 module.exports ={
     config : function(app, http){
-        var https = http.server(app);
+        var https = http.Server(app);
         var io = sock(https);
         io.on("connection", function(socket){
             socket.on("post-on", function(data){
