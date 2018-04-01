@@ -5,6 +5,7 @@ var cors =  require("cors")
 //route func
 var FBStragety = require("./auth/fb-stragety.js");
 var TokenManagement = require("./auth/token-resolver.js");
+var ApiResolve = require("./api/api.js")
 module.exports = {
     Middleware : function(app, express){
         app.use(bodyParser.json())
@@ -21,5 +22,8 @@ module.exports = {
     Route : function(app){
         app.post("/auth/facebook", FBStragety.firstStepLogin, FBStragety.secondStepLogin, TokenManagement.generateToken, TokenManagement.sendToken)
         app.get("/auth/me", TokenManagement.authenticateRequest, FBStragety.getUserFromDatabase);
+        app.route("/api/posts")
+            .get(TokenManagement.authenticateRequest, ApiResolve.getPost)
+            .post(TokenManagement.authenticateRequest, ApiResolve.setNewPost)
     }
 }
