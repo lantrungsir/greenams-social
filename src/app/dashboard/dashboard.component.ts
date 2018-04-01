@@ -68,6 +68,14 @@ export class DashboardComponent implements OnInit {
       new_post : newPost
     }).toPromise().then((res)=>{
       console.log(res.text());
+      delete newPost.author;
+      Object.defineProperty(newPost, "author", {
+        value: {
+          name :"",
+          profile_pic :""
+        },
+        configurable: true
+      })
       Object.defineProperty(newPost.author, "name", {
         value : this.CurrentUser.name,
         configurable: true,
