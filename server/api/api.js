@@ -28,6 +28,7 @@ module.exports ={
                     purifiedPostData.push(data[key]);
                 }
             }
+        console.log(purifiedPostData)
         res.status(200).send(JSON.stringify(purifiedPostData));    
         })
     },
