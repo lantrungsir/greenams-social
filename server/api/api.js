@@ -37,6 +37,7 @@ module.exports ={
                    posts[i] = posts[posts.length-1-i];
                    posts[posts.length-i-1] = tmp; 
                 }
+                console.log(posts)
                 res.status(200).send(JSON.stringify(posts)); 
             })
         })
