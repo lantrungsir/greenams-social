@@ -66,6 +66,10 @@ export class DashboardComponent implements OnInit {
       value : $("#newpost").text(),
       configurable: true
     })
+    Object.defineProperty(newPost, "time", {
+      value : new Date(),
+      configurable: true
+    })
     this.addPost(newPost)
     this.http.post("api/posts", {
       new_post : newPost

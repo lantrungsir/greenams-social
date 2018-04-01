@@ -81,7 +81,7 @@
       </div>
       <div >
         <app-grouppost
-          *ngFor= "let post of posts" 
+          *ngFor= "let post of posts | upcomingToLatest :'time' " 
           [post]= "post"
         ></app-grouppost>
 

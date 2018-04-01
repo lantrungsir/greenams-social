@@ -7,7 +7,6 @@ export class UpcomingToLatestPipe implements PipeTransform{
   transform(array: any, fieldName: any): any {
     if (array) {
       let now: Date = new Date();
-
       array.sort((a: any, b: any) => {
         let date1: Date = new Date(a.object[fieldName]);
         let date2: Date = new Date(b.object[fieldName]);
