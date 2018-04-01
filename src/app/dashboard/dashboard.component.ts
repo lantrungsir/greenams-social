@@ -12,7 +12,7 @@ import * as $ from "jquery"
 export class DashboardComponent implements OnInit {
   @ViewChild("navDemo") nav ;
   CurrentUser : any
-  posts: any
+  posts = []
   constructor(private userService : UserService, private router: Router, private http :AuthHttp) {
 
     this.userService.getCurrentUser().then((user)=>{
