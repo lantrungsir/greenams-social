@@ -7,9 +7,9 @@
   <!-- list of links-->
 
   <!--list of images -->
-    <div class="w3-row-padding" style="margin:0 -16px" *ngIf = "{{post.images !== null}}">
+    <div class="w3-row-padding" style="margin:0 -16px" *ngIf = "post.images !== null">
       <div class="w3-content w3-display-container">
-        <img *ngFor="let image in post.images" class="mySlides" src="{{image}}" style="width:100%" >
+        <img *ngFor="let image of post.images" class="mySlides" src="{{image}}" style="width:100%" >
       
         <button class="w3-button w3-black w3-display-left" (click)="plusDivs(-1)" >&#10094;</button>
         <button class="w3-button w3-black w3-display-right" (click)="plusDivs(1)">&#10095;</button>
