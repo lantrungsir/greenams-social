@@ -34,7 +34,7 @@ module.exports ={
             }).then((posts)=>{
                 var superPosts = [];
                 for(var i = posts.length-1 ;i > -1 ;i--){
-                  supoerPosts.push(posts[i]);
+                  superPosts.push(posts[i]);
                 }
                 console.log(superPosts)
                 res.status(200).send(JSON.stringify(superPosts)); 
