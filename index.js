@@ -38,5 +38,4 @@ io.on("connection", function(socket){
 http.listen(app.get('port'), function(){
     console.log("we are on " + app.get('port') + " again, GART" )
 })
-realtime.config(app, require("http"));
 console.log("test")
