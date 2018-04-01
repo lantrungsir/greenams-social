@@ -13,7 +13,7 @@ export class GrouppostComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    if(this.post.images! == null){
+    if(this.post.images !== null){
       this.isImage = true
     }
     else{
