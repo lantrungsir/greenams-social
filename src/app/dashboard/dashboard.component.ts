@@ -53,7 +53,8 @@ export class DashboardComponent implements OnInit {
   setNewPost(){
     var newPost ={
       "author" : "",
-      "message" : ""
+      "message" : "",
+      "time" :""
     }
     Object.defineProperty(newPost, "author", {
       value : {
@@ -70,7 +71,6 @@ export class DashboardComponent implements OnInit {
       value : new Date().toLocaleDateString(),
       configurable: true
     })
-    this.addPost(newPost)
     this.http.post("api/posts", {
       new_post : newPost
     }).toPromise().then((res)=>{
