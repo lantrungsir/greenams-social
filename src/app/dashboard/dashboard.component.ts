@@ -34,8 +34,8 @@ export class DashboardComponent implements OnInit {
       //add to array
 
     })
-    this.socket.on("new-post",function(data){
-      this.addPost(data.post);
+    this.socket.on("new-post",(data)=>{
+      this.addPost(data.post)
     })
    }
 
