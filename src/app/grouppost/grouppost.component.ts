@@ -23,7 +23,10 @@ export class GrouppostComponent implements OnInit {
   if (n < 1) {this.slideIndex = x.length}
   x.each(function(index){
     $(this).hide();
+    if(index === this.slideIndex-1){
+      $(this).show(500)
+    }
   })
-  x[this.slideIndex-1].show(500) 
+
   }
 }
