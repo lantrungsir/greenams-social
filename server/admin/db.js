@@ -17,5 +17,15 @@ module.exports = {
                 resolve(snapshot.val())
             })
         })
+    },
+    postsListener : function(){
+        db.ref("posts/num").set(0)
+        db.ref("posts/content").on("child_added", function(snapshot, prevKey){
+            db.ref("posts/num").once("value", function(snap){
+                var value = snap.val() + 1;
+                db.ref("posts/num").set(value);
+                db.ref("posts/content/"+ snapshot.key() +"/id").set(value);
+            })
+        })
     }
 }

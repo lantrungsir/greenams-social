@@ -2,7 +2,7 @@ var db = require("../admin/db.js")
 
 module.exports ={
     getPost: function(req, res){
-        db.getData("posts").then(function(data){
+        db.getData("posts/content").then(function(data){
             //get author :
             new Promise((resolve, reject)=>{
                 var purifiedPostData = [];
@@ -40,7 +40,7 @@ module.exports ={
     setNewPost: function(req, res){
         var newPost = req.body.new_post
         console.log(newPost.time);
-        db.pushData("posts", newPost).then(()=>{
+        db.pushData("posts/content", newPost).then(()=>{
             res.status(200).send("OKAY");
         })
     }
