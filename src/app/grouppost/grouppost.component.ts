@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from "jquery"
+import { Input } from '@angular/core';
 @Component({
   selector: 'app-grouppost',
   templateUrl: './grouppost.component.html',
   styleUrls: ['./grouppost.component.css']
 })
 export class GrouppostComponent implements OnInit {
+  @Input() post :any
   slideIndex: number = 1;
   constructor() { }
 
