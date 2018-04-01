@@ -57,7 +57,7 @@ export class DashboardComponent implements OnInit {
       value : localStorage.getItem('id'),
       configurable: true
     });
-    Object.defineProperty(newPost, "content", {
+    Object.defineProperty(newPost, "message", {
       value : $("#newpost").text(),
       configurable: true
     })
