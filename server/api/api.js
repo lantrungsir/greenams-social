@@ -32,13 +32,12 @@ module.exports ={
                 }
                 resolve(purifiedPostData);
             }).then((posts)=>{
-                for(var i = 0 ;i< posts.length ;i++){
-                   var tmp = posts[i];
-                   posts[i] = posts[posts.length-1-i];
-                   posts[posts.length-i-1] = tmp; 
+                var superPosts = [];
+                for(var i = posts.length-1 ;i > -1 ;i--){
+                  supoerPosts.push(posts[i]);
                 }
-                console.log(posts)
-                res.status(200).send(JSON.stringify(posts)); 
+                console.log(superPosts)
+                res.status(200).send(JSON.stringify(superPosts)); 
             })
         })
     },
