@@ -64,11 +64,18 @@ export class DashboardComponent implements OnInit {
       value : $("#newpost").text(),
       configurable: true
     })
-    this.addPost(newPost);
     this.http.post("api/posts", {
       new_post : newPost
     }).toPromise().then((res)=>{
       console.log(res.text());
+      Object.defineProperty(newPost.author, "name", {
+        value : this.CurrentUser.name,
+        configurable: true,
+      })
+      Object.defineProperty(newPost.author,"profile_pic", {
+        value : this.CurrentUser.profile_pic,
+        configurable: true
+      })
     })
   }
 }

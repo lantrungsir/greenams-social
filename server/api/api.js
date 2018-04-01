@@ -32,7 +32,7 @@ module.exports ={
         })
     },
     setNewPost: function(req, res){
-        console.log(req.body)
+        var newPost = req.body.new_post
         db.pushData("posts", newPost).then(()=>{
             res.status(200).send("OKAY");
         })
