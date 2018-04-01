@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { AuthHttp } from 'angular2-jwt';
 import { ViewChild } from '@angular/core';
 import * as $ from "jquery"
-import io from "socket.io-client"
+import * as io from "socket.io-client"
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -28,7 +28,7 @@ export class DashboardComponent implements OnInit {
       this.router.navigate(["/login"])
     })
 
-    this.socket = io("https://greenams-social.herokuapp.com");
+    this.socket = io();
     this.socket.emit("post-on", {uid : localStorage.getItem('id')})
     this.socket.on("online", function(data){
       //add to array

@@ -6,6 +6,7 @@ module.exports ={
         var https = http.createServer(app);
         var io = sock(https);
         io.on("connection", function(socket){
+            console.log("user connected " +socket)
             socket.on("post-on", function(data){
                 database.saveData("users/"+data.uid, socket.id);
                 socket.broadcast.emit("online", {uid : data.uid})
