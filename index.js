@@ -7,7 +7,8 @@ var db = require("./server/admin/admin.js").database()
 
 config.Middleware(app, express);
 config.Route(app)
-app.disable('etag')
+app.disable('etag');
+
 database.postsListener();
 app.use(express.static(__dirname + "/dist/"))
 app.set('port', process.env.PORT || 6520);
@@ -36,7 +37,7 @@ io.on("connection", function(socket){
     })
 })
 
-http.listen(app.get('port'), function(){
+app.listen(app.get('port'), function(){
     console.log("we are on " + app.get('port') + " again, GART" )
 })
 console.log("test")
