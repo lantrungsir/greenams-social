@@ -52,7 +52,7 @@ export class DashboardComponent implements OnInit {
   }
 
   setNewPost(){
-    var newPost = {};
+    var newPost :any
     Object.defineProperty(newPost, "author", {
       value : localStorage.getItem('id'),
       configurable: true
