@@ -30,7 +30,7 @@ module.exports = {
     },
     getPost: async function(){
         return new Promise((resolve, reject)=>{
-            db.ref("post/content").orderByChild("id").once("value", function(snapshot){
+            db.ref("posts/content").orderByChild("id").once("value", function(snapshot){
                 resolve(snapshot.val())
             })
         })
