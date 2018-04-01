@@ -1,2 +1,12 @@
 @import url('https://www.w3schools.com/lib/w3-theme-blue-grey.css');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
