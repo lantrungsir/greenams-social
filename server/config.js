@@ -25,8 +25,8 @@ module.exports = {
         app.route("/api/posts")
             .get(TokenManagement.authenticateRequest, ApiResolve.getPost)
             .post(TokenManagement.authenticateRequest, ApiResolve.setNewPost)
-        app.post("api/upload",multer({
+        app.post("/api/upload", multer({
             storage : multer.memoryStorage
         }).array("uploads"), TokenManagement.authenticateRequest, ApiResolve.filesUploadHandle)
-    }
+    } 
 }
