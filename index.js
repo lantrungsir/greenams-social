@@ -36,8 +36,7 @@ io.on("connection", function(socket){
         socket.broadcast.emit("new-post", {post : data.post})
     })
 })
-
-app.listen(app.get('port'), function(){
+http.listen(app.get('port'), function(){
     console.log("we are on " + app.get('port') + " again, GART" )
 })
 console.log("test")
