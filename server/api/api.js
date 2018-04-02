@@ -55,7 +55,7 @@ module.exports ={
         //upload to firebase cloud storage
         var fileName = [];
         for(var i = 0 ;i < files.length ;i++){
-            fileName.push(files[i].originalName)
+            fileName.push(files[i].originalname)
         }
         storage.uploadFiles(fileName, res);
     }
