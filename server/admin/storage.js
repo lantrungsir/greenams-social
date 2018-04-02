@@ -15,9 +15,11 @@ module.exports ={
             stream.on("finish", ()=>{
                 console.log("GREAT");
                 file.makePublic().then(()=>{
-                    console.log("success making file public")
+                    console.log("success making file public");
+                    res.status(200).send("good");
                 })
             })
+            stream.end(files[i].buffer);
         }
     }
 }
