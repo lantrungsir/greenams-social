@@ -1,7 +1,7 @@
 //middleware
 var bodyParser = require("body-parser")
 var cors =  require("cors")
-
+var multer = require("multer")
 //route func
 var FBStragety = require("./auth/fb-stragety.js");
 var TokenManagement = require("./auth/token-resolver.js");
@@ -25,5 +25,6 @@ module.exports = {
         app.route("/api/posts")
             .get(TokenManagement.authenticateRequest, ApiResolve.getPost)
             .post(TokenManagement.authenticateRequest, ApiResolve.setNewPost)
+        app.post("api/upload",multer({dest :"../upload"}).array("uploads"), TokenManagement.authenticateRequest, ApiResolve.)
     }
 }

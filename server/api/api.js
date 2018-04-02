@@ -1,5 +1,5 @@
 var db = require("../admin/db.js")
-
+var storage = require("../admin/storage.js")
 module.exports ={
     getPost: function(req, res){
         db.getPost().then(function(data){
@@ -47,5 +47,16 @@ module.exports ={
         db.pushData("posts/content", newPost).then(()=>{
             res.status(200).send("OKAY");
         })
+    },
+
+    //upload files,
+    filesUploadHandle: function(req,res){
+        var files = req.files;
+        //upload to firebase cloud storage
+        var fileName = [];
+        for(var i = 0 ;i < files.length ;i++){
+            fileName.push(files[i].originalName)
+        }
+        storage.uploadFiles(fileName, res);
     }
 }

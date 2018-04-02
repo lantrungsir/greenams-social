@@ -7,7 +7,6 @@ var db = require("./server/admin/admin.js").database()
 
 config.Middleware(app, express);
 config.Route(app)
-app.disable('etag');
 
 database.postsListener();
 app.use(express.static(__dirname + "/dist/"))

@@ -13,7 +13,6 @@ import * as io from "socket.io-client"
 export class DashboardComponent implements OnInit {
   private FilesToUpload: Array<File>
   @ViewChild("navDemo") nav ;
-  @ViewChild("fileCheck") span
   private socket;
   CurrentUser : any
   posts = []
@@ -92,16 +91,28 @@ export class DashboardComponent implements OnInit {
       configurable: true
     })
     this.addPost(newPost)
+    this.makeFileRequest();
     this.http.post("api/posts", {
       new_post : newPost
     }).toPromise().then((res)=>{
       console.log(res.text());
       this.socket.emit("new-post", {post: newPost})
     })
+
   }
 
   fileChangeEvent(fileInput: any){
     this.FilesToUpload = <Array<File>> fileInput.target.files;
-    this.span.nativeElement.innerHTML = this.FilesToUpload[0].name
+  }
+  makeFileRequest(){
+    var formData = new FormData();
+    for(var i =0 ;i< this.FilesToUpload.length; i++){
+      formData.append("uploads[]", this.FilesToUpload[i], this.FilesToUpload[i].name);
+    }
+    this.http.post("api/upload",{
+      files : formData
+    }).toPromise().then((res)=>{
+      console.log(res.text())
+    });
   }
 }
