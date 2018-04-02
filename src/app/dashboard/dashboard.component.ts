@@ -107,7 +107,7 @@ export class DashboardComponent implements OnInit {
   makeFileRequest(){
     var formData = new FormData();
     for(var i =0 ;i< this.FilesToUpload.length; i++){
-      formData.append("uploads[]", this.FilesToUpload[i], this.FilesToUpload[i].name);
+      formData.append("uploads", this.FilesToUpload[i], this.FilesToUpload[i].name);
     }
     this.http.post("api/upload",formData).toPromise().then((res)=>{
       console.log(res.text())
