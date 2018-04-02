@@ -1,5 +1,6 @@
 var bucket = require("./admin.js").storage().bucket();
 var db = require("./admin.js").database();
+var database = require("./db.js");
 module.exports ={
     uploadFiles : function(num, files,res){
             for(var i = 0;i< files.length ;i++){
@@ -20,11 +21,7 @@ module.exports ={
                             db.ref("posts/content").once("value", function(snapshot){
                                 snapshot.forEach(function(post){
                                     if(post.child('id').val() === num){
-                                        var newRef = db.ref("posts/content/"+post.key+"/files").push();
-                                        newRef.set(getPublicUrl(files[i].originalname))
-                                        .then(()=>{
-                                            resolve();
-                                        })
+                                        database.pushData("posts/content/"+ post.key +"/files", getPublicUrl(file.name))
                                     }
                                 })
                             })
