@@ -119,9 +119,10 @@ export class DashboardComponent implements OnInit {
     var i =0;
     for(i = 0;i<this.FilesToUpload.length; i++){
       if(this.FilesToUpload[i] === name){
+        this.FilesToUpload.splice(i,1);
         break;
       }
     }
-    var removed = this.FilesToUpload.slice(i,i+1)
+    
   }
 }
