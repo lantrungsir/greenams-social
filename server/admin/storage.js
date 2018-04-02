@@ -20,7 +20,8 @@ module.exports ={
                             db.ref("posts/content").once("value", function(snapshot){
                                 snapshot.forEach(function(post){
                                     if(post.child('id').val() === num){
-                                        db.ref("posts/content/"+post.key+"/files").push().set(getPublicUrl(files[i].originalname))
+                                        var newRef = db.ref("posts/content/"+post.key+"/files").push()
+                                        newRef.set(getPublicUrl(files[i].originalname))
                                         .then(()=>{
                                             resolve();
                                         })
