@@ -74,7 +74,7 @@
               <p contenteditable="true" class="w3-border w3-padding" id= "newpost">Put the content here. Every one could see it ...</p>
               <br>
               <ul class="w3-ul w3-center">
-               <li *ngFor = "let file of FilesToUpload">{{file.name}} <span (click) ="unSelectFile(file.name)" class="w3-button w3-display-right">&times;</span></li>
+                <li *ngFor = "let file of FilesToUpload">{{file.name}}<span (click) ="unSelectFile(file.name)" class="w3-button">&times;</span></li>
               </ul>
               <br>
               <br>

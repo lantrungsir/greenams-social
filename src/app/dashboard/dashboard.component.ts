@@ -121,6 +121,6 @@ export class DashboardComponent implements OnInit {
         break;
       }
     }
-    this.FilesToUpload.splice(i,1);
+    var removed = this.FilesToUpload.splice(i,1);
   }
 }
