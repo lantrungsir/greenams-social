@@ -110,8 +110,9 @@ export class DashboardComponent implements OnInit {
       formData.append("uploads", this.FilesToUpload[i], this.FilesToUpload[i].name);
     }
     this.http.post("api/upload",formData).toPromise().then((res)=>{
-      console.log(res.text())
+      console.log(res.text());
     });
+    this.FilesToUpload = null;
   }
 
   unSelectFile(name): void {
@@ -121,6 +122,6 @@ export class DashboardComponent implements OnInit {
         break;
       }
     }
-    var removed = this.FilesToUpload.splice(i,1);
+    var removed = this.FilesToUpload.slice(i,i+1)
   }
 }
