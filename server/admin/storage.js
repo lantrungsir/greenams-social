@@ -17,7 +17,7 @@ module.exports ={
                     console.log("GREAT");
                     file.makePublic().then(()=>{
                         new Promise((resolve,reject)=>{
-                            db.query("posts/content").once("value", function(snapshot){
+                            db.ref("posts/content").once("value", function(snapshot){
                                 snapshot.forEach(function(post){
                                     if(post.child('id').val() === num){
                                         db.ref("posts/content/"+post.key+"/files").push().set(getPublicUrl(files[i].originalname))
