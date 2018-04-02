@@ -11,7 +11,9 @@ import * as io from "socket.io-client"
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  private FilesToUpload: Array<File>
   @ViewChild("navDemo") nav ;
+  @ViewChild("fileCheck") span
   private socket;
   CurrentUser : any
   posts = []
@@ -42,6 +44,8 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     
   }
+
+
   getPost(): Promise<any>{
    return new Promise((resolve, reject)=>{
         this.http.get("api/posts").toPromise().then((res)=>{
@@ -94,5 +98,10 @@ export class DashboardComponent implements OnInit {
       console.log(res.text());
       this.socket.emit("new-post", {post: newPost})
     })
+  }
+
+  fileChangeEvent(fileInput: any){
+    this.FilesToUpload = <Array<File>> fileInput.target.files;
+    this.span.nativeElement.innerHTML = this.FilesToUpload[0].name
   }
 }

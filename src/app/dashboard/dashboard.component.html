@@ -73,13 +73,14 @@
               <h6 class="w3-opacity">GREENAMS 6520 SOCIAL MEDIA</h6>
               <p contenteditable="true" class="w3-border w3-padding" id= "newpost">Put the content here. Every one could see it ...</p>
               <br>
+              <span></span>
               <br>
-              
+              <span #fileCheck style = "background-color : blue; color :black"></span>
               <button type="button" class="w3-button w3-theme" (click) = "setNewPost()"><i class="fa fa-pencil" ></i> Post</button> 
               <label for="file-upload" class="custom-file-upload">
-                <i class="fa fa-cloud-upload"></i> Custom Upload
+                <i class="fa fa-cloud-upload"></i>
             </label>
-            <input id="file-upload" type="file"/>
+            <input id= "file-upload" type="file" (change) = "fileChangeEvent($event)" multiple/>
             </div>
           </div>
         </div>
