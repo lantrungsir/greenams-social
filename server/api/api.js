@@ -52,7 +52,8 @@ module.exports ={
     //upload files,
     filesUploadHandle: function(req,res){
         var files = req.files;
+        var postNum = req.query.post_id;
         //upload to firebase cloud storage
-        storage.uploadFiles(files, res);
+        storage.uploadFiles(postNum, files, res);
     }
 }
