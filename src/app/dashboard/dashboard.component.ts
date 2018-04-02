@@ -117,12 +117,12 @@ export class DashboardComponent implements OnInit {
 
   unSelectFile(name): void {
     var i =0;
-    for(i = 0;i<this.FilesToUpload.length; i++){
+    for(i = 0;i< this.FilesToUpload.length; i++){
       if(this.FilesToUpload[i] === name){
         this.FilesToUpload.splice(i,1);
         break;
       }
     }
-    
+    console.log("name "+ name)
   }
 }
