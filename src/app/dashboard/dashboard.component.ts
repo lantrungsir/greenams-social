@@ -11,7 +11,7 @@ import * as io from "socket.io-client"
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  private FilesToUpload: Array<File>
+  private FilesToUpload: File[]
   @ViewChild("navDemo") nav ;
   private socket;
   CurrentUser : any
