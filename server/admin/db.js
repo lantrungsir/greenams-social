@@ -13,7 +13,7 @@ module.exports = {
     },
     getData: async function(path){
         return new Promise((resolve, reject)=>{
-            db.ref(path).once("value", function(snapshot){
+            db.ref("path").orderByChild("id").once("value", function(snapshot){
                 resolve(snapshot.val())
             })
         })
@@ -30,9 +30,28 @@ module.exports = {
     },
     getPost: async function(){
         return new Promise((resolve, reject)=>{
-            db.ref("posts/content").orderByChild("id").once("value", function(snapshot){
-                resolve(snapshot.val())
+            db.ref("posts/content").once("value", function(snapshot){
+                var data = snapshot.val();
+                new Promise((agree, disagree)=>{
+                    snapshot.forEach(function(post){
+                        new Promise((approve, disapprove)=>{
+                            db.ref("users/"+ post.child("author").val()).once("value", function(author){
+                                approve(author.val())
+                            })
+                        }).then((authorval)=>{
+                            data[post.key] = authorval;
+                            db.ref("posts/num").once("value", function(number){
+                                if(post.child("id").val() === number.val()){
+                                    agree();
+                                }
+                            })
+                        })
+                    })
+                }).then(()=>{
+                    resolve(data);
+                })
             })
         })
+       
     }
 }

@@ -3,12 +3,10 @@ var db = require("../admin/db.js")
 module.exports ={
     getPost: function(req, res){
         db.getPost().then(function(data){
-            //get author :
             new Promise((resolve, reject)=>{
                 var purifiedPostData = [];
                 for(key in data){
                     if(data.hasOwnProperty(key)){
-                        new Promise((resolve, reject)=>{
                             var purifiedImageData = []
                             for(imageKey in data[key].images){
                                 if(data[key].images.hasOwnProperty(imageKey)){
@@ -24,10 +22,7 @@ module.exports ={
                             }
                             data[key].images =  purifiedImageData;
                             data[key].links =  purifiedLinkData;
-                            resolve(data[key])
-                        }).then((post)=>{
-                            purifiedPostData.push(post);
-                        })
+                            purifiedPostData.push(data[key]);      
                     }
                 }
                 resolve(purifiedPostData);
@@ -43,7 +38,12 @@ module.exports ={
     },
     setNewPost: function(req, res){
         var newPost = req.body.new_post
-        console.log(newPost.time);
+        var author = newPost.author.id;
+        Object.defineProperty(newPost, "author", {
+            value :author,
+            configurable: true,
+            writable: true
+        })
         db.pushData("posts/content", newPost).then(()=>{
             res.status(200).send("OKAY");
         })

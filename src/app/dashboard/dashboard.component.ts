@@ -63,14 +63,19 @@ export class DashboardComponent implements OnInit {
 
   setNewPost(){
     var newPost ={
-      "author" : "",
+      "author" : {
+        name :"",
+        profile_pic:"",
+        id:""
+      },
       "message" : "",
       "time" :""
     }
     Object.defineProperty(newPost, "author", {
       value : {
         name : this.CurrentUser.name,
-        profile_pic : this.CurrentUser.profile_pic
+        profile_pic : this.CurrentUser.profile_pic,
+        id : localStorage.getItem('id')
       },
       configurable: true
     });
