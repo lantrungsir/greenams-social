@@ -25,6 +25,6 @@ module.exports = {
         app.route("/api/posts")
             .get(TokenManagement.authenticateRequest, ApiResolve.getPost)
             .post(TokenManagement.authenticateRequest, ApiResolve.setNewPost)
-        app.post("api/upload",multer({dest :"/upload"}).array("uploads"), TokenManagement.authenticateRequest, ApiResolve.filesUploadHandle)
+        app.post("api/upload",multer({dest :"../upload/"}).array("uploads"), TokenManagement.authenticateRequest, ApiResolve.filesUploadHandle)
     }
 }
