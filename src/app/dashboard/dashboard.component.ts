@@ -98,12 +98,12 @@ export class DashboardComponent implements OnInit {
       console.log(res.text());
       this.socket.emit("new-post", {post: newPost})
     })
-
   }
 
   fileChangeEvent(fileInput: any){
     this.FilesToUpload = <Array<File>> fileInput.target.files;
   }
+
   makeFileRequest(){
     var formData = new FormData();
     for(var i =0 ;i< this.FilesToUpload.length; i++){
@@ -112,5 +112,15 @@ export class DashboardComponent implements OnInit {
     this.http.post("api/upload",formData).toPromise().then((res)=>{
       console.log(res.text())
     });
+  }
+
+  unSelectFile(name): void {
+    var i =0;
+    for(i = 0;i<this.FilesToUpload.length; i++){
+      if(this.FilesToUpload[i] === name){
+        break;
+      }
+    }
+    this.FilesToUpload.splice(i,1);
   }
 }
