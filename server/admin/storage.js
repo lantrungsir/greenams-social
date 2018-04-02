@@ -22,12 +22,15 @@ module.exports ={
                                 snapshot.forEach(function(post){
                                     if(post.child('id').val() === num){
                                         database.pushData("posts/content/"+ post.key +"/files", getPublicUrl(file.name))
+                                        resolve();
                                     }
                                 })
                             })
-                        }).then(()=>{
+                        })
+                        .then(()=>{
                             console.log("success making file public");
-                        }).catch((err)=>{
+                        })
+                        .catch((err)=>{
                             console.log("fail")
                         })
                     })
