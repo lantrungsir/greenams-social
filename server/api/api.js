@@ -53,10 +53,6 @@ module.exports ={
     filesUploadHandle: function(req,res){
         var files = req.files;
         //upload to firebase cloud storage
-        var fileName = [];
-        for(var i = 0 ;i < files.length ;i++){
-            fileName.push(files[i].originalname)
-        }
-        storage.uploadFiles(fileName, res);
+        storage.uploadFiles(files, res);
     }
 }
