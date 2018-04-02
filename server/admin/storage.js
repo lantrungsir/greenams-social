@@ -20,7 +20,7 @@ module.exports ={
                             db.ref("posts/content").once("value", function(snapshot){
                                 snapshot.forEach(function(post){
                                     if(post.child('id').val() === num){
-                                        var newRef = db.ref("posts/content/"+post.key+"/files").push()
+                                        var newRef = db.ref("posts/content/"+post.key+"/files").push();
                                         newRef.set(getPublicUrl(files[i].originalname))
                                         .then(()=>{
                                             resolve();
@@ -30,6 +30,8 @@ module.exports ={
                             })
                         }).then(()=>{
                             console.log("success making file public");
+                        }).catch((err)=>{
+                            console.log("fail")
                         })
                     })
                 })
