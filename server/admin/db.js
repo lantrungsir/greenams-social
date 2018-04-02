@@ -13,7 +13,7 @@ module.exports = {
     },
     getData: async function(path){
         return new Promise((resolve, reject)=>{
-            db.ref("path").orderByChild("id").once("value", function(snapshot){
+            db.ref(path).once("value", function(snapshot){
                 resolve(snapshot.val())
             })
         })
@@ -30,7 +30,7 @@ module.exports = {
     },
     getPost: async function(){
         return new Promise((resolve, reject)=>{
-            db.ref("posts/content").once("value", function(snapshot){
+            db.ref("posts/content").orderByChild('id').once("value", function(snapshot){
                 var data = snapshot.val();
                 new Promise((agree, disagree)=>{
                     snapshot.forEach(function(post){
