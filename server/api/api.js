@@ -43,8 +43,9 @@ module.exports ={
         })
         database.ref("posts/num").once("value", function(snapshot){
             var num = snapshot.val()+1;
-            db.saveData("posts/content/"+ num,  newPost);
+            db.saveData("posts/content/"+ num, newPost)
         })
+        res.status(200).send("OKAY")
     },
 
     //upload files,
