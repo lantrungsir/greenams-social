@@ -17,12 +17,13 @@ module.exports ={
                     })
                     stream.on("finish", ()=>{
                         console.log("GREAT");
+                        var name = files[i].originalname;
                         file.makePublic().then(()=>{
                             new Promise((resolve,reject)=>{
                                 db.ref("posts/content").once("value", function(snapshot){
                                     snapshot.forEach(function(post){
                                         if(post.key.toString() === num){
-                                            database.pushData("posts/content/"+ post.key +"/files", getPublicUrl(files[i].originalname))
+                                            database.pushData("posts/content/"+ post.key +"/files", getPublicUrl(name))
                                             resolve();
                                         }
                                     })
@@ -30,7 +31,6 @@ module.exports ={
                             })
                             .then(()=>{
                                 console.log("success making file public");
-                                console.log(getPublicUrl(file.name))
                                 if(i === files.length-1){
                                     agree();
                                 }
