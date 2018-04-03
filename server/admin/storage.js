@@ -4,7 +4,7 @@ var database = require("./db.js");
 module.exports ={
     uploadFiles : function(num, files,res){
         new Promise((agree, disagree)=>{
-            for(var i = 0;i< files.length ;i++){
+            for(var i = 0;i < files.length ;i++){
                     var file = bucket.file(files[i].originalname);
                     var stream = file.createWriteStream({
                         metadata:{
@@ -31,6 +31,9 @@ module.exports ={
                             .then(()=>{
                                 console.log("success making file public");
                                 console.log(getPublicUrl(file.name))
+                                if(i === files.length-1){
+                                    agree()
+                                }
                             })
                             .catch((err)=>{
                                 console.log("fail "+err);
