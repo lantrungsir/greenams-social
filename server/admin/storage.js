@@ -6,7 +6,7 @@ module.exports ={
         var bucketFile =new Array(files.length)
         new Promise((agree, disagree)=>{
             for(var i = 0;i < files.length ;i++){
-                    var bucketFile = bucket.file(files[i].originalname);
+                    bucketFile[i] = bucket.file(files[i].originalname);
                     var stream = file.createWriteStream({
                         metadata:{
                             contentType : files[i].mimetype
@@ -24,8 +24,8 @@ module.exports ={
                             new Promise((resolve,reject)=>{
                                 db.ref("posts/content").once("value", function(snapshot){
                                     snapshot.forEach(function(post){
-                                        if(post.key.toString() === num){
-                                            database.pushData("posts/content/"+ post.key +"/files", getPublicUrl(bucketFile))
+                                        if(post.key.toString() === num.toString()){
+                                            database.pushData("posts/content/"+ post.key +"/files", getPublicUrl(bucketFile[i].name))
                                             resolve();
                                         }
                                     })
