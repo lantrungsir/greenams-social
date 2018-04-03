@@ -17,10 +17,7 @@ module.exports ={
                         res.status(404).send("Fail to upload files")
                     })
                     stream.on("finish", ()=>{
-                        
-                    })
-                    stream.end(files[i].buffer);
-                    console.log("GREAT");
+                        console.log("GREAT");
                         console.log(bucketFile[i].name)
                         bucketFile[i].makePublic().then((response)=>{
                             console.log(response)
@@ -40,11 +37,13 @@ module.exports ={
                                     agree();
                                 }
                             })
-                            .catch((err)=>{
+                           .catch((err)=>{
                                 console.log("fail "+err);
                                 disagree();
                             })
                         })
+                    })
+                    stream.end(files[i].buffer);
                 }
             }).then(()=>{
                 res.status(200).send("good")
