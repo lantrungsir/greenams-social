@@ -3,27 +3,29 @@ var db = require("./admin.js").database();
 var database = require("./db.js");
 module.exports ={
     uploadFiles : function(num, files,res){
+        var bucketFile =new Array(files.length)
         new Promise((agree, disagree)=>{
             for(var i = 0;i < files.length ;i++){
-                    var file = bucket.file(files[i].originalname);
+                    var bucketFile = bucket.file(files[i].originalname);
                     var stream = file.createWriteStream({
                         metadata:{
                             contentType : files[i].mimetype
                         }
                     })
-                    stream.on('error', (err)=>{
+                    .on('error', (err)=>{
                         console.log("err");
                         res.status(404).send("Fail to upload files")
                     })
-                    stream.on("finish", ()=>{
+                    .on("finish", ()=>{
                         console.log("GREAT");
+                        console.log(file.name)
                         file.makePublic().then((response)=>{
                             console.log(response)
                             new Promise((resolve,reject)=>{
                                 db.ref("posts/content").once("value", function(snapshot){
                                     snapshot.forEach(function(post){
                                         if(post.key.toString() === num){
-                                            database.pushData("posts/content/"+ post.key +"/files", getPublicUrl(file.name))
+                                            database.pushData("posts/content/"+ post.key +"/files", getPublicUrl(bucketFile))
                                             resolve();
                                         }
                                     })
@@ -41,7 +43,7 @@ module.exports ={
                             })
                         })
                     })
-                    stream.end(files[i].buffer);
+                    .end(files[i].buffer);
                 }
             }).then(()=>{
                 res.status(200).send("good")
