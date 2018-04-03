@@ -7,19 +7,22 @@ module.exports ={
         new Promise((agree, disagree)=>{
             for(var i = 0;i < files.length ;i++){
                     bucketFile[i] = bucket.file(files[i].originalname);
-                    var stream = file.createWriteStream({
+                    var stream = bucketFile[i].createWriteStream({
                         metadata:{
                             contentType : files[i].mimetype
                         }
                     })
-                    .on('error', (err)=>{
+                    stream.on('error', (err)=>{
                         console.log("err");
                         res.status(404).send("Fail to upload files")
                     })
-                    .on("finish", ()=>{
-                        console.log("GREAT");
-                        console.log(file.name)
-                        file.makePublic().then((response)=>{
+                    stream.on("finish", ()=>{
+                        
+                    })
+                    stream.end(files[i].buffer);
+                    console.log("GREAT");
+                        console.log(bucketFile[i].name)
+                        bucketFile[i].makePublic().then((response)=>{
                             console.log(response)
                             new Promise((resolve,reject)=>{
                                 db.ref("posts/content").once("value", function(snapshot){
@@ -42,8 +45,6 @@ module.exports ={
                                 disagree();
                             })
                         })
-                    })
-                    .end(files[i].buffer);
                 }
             }).then(()=>{
                 res.status(200).send("good")
