@@ -4,7 +4,6 @@ var database = require("../admin/admin.js").database();
 module.exports ={
     getPost: function(req, res){
         db.getPost().then(function(data){
-            new Promise((resolve, reject)=>{
                 var purifiedPostData = [];
                 for(key in data){
                     if(data.hasOwnProperty(key)){
@@ -26,16 +25,13 @@ module.exports ={
                             purifiedPostData.push(data[key]);      
                     }
                 }
-                resolve(purifiedPostData);
-            }).then((posts)=>{
                 var superPosts = [];
-                for(var i = posts.length-1 ;i > -1 ;i--){
-                  superPosts.push(posts[i]);
+                for(var i = purifiedPostData.length-1 ;i > -1 ;i--){
+                  superPosts.push(purifiedPostData[i]);
                 }
                 console.log(superPosts)
                 res.status(200).send(JSON.stringify(superPosts)); 
             })
-        })
     },
     setNewPost: function(req, res){
         var newPost = req.body.new_post
