@@ -15,8 +15,8 @@ module.exports ={
                     })
                     stream.on("finish", ()=>{
                         console.log("GREAT");
-                        console.log(file.name)
-                        db.saveData("posts/contents/"+num+"/files", getPublicUrl(file.name))
+                        console.log(stream)
+                        db.pushData("posts/content/"+num+"/files", getPublicUrl(file.name))
                     })
                     stream.end(files[i].buffer);
                 }
