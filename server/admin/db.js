@@ -40,7 +40,7 @@ module.exports = {
                         }).then((authorval)=>{
                             data[post.key].author = authorval;
                             db.ref("posts/num").once("value", function(number){
-                                if(post.child("id").val() === number.val()){
+                                if(post.key === number.val() || number.val()=== 0){
                                     agree();
                                 }
                             })
