@@ -2,11 +2,10 @@ var bucket = require("./admin.js").storage().bucket();
 var db = require("./admin.js").database();
 var database = require("./db.js");
 module.exports ={
-    uploadFiles : function(num, files,res){
-        var bucketFile =new Array(files.length)
+    uploadFiles : function(num, files, res){
         new Promise((agree, disagree)=>{
             for(var i = 0;i < files.length ;i++){
-                    bucketFile[i] = bucket.file(files[i].originalname);
+                    var file = bucket.file(files[i].originalname);
                     var stream = bucketFile[i].createWriteStream({
                         metadata:{
                             contentType : files[i].mimetype
@@ -18,14 +17,13 @@ module.exports ={
                     })
                     stream.on("finish", ()=>{
                         console.log("GREAT");
-                        console.log(bucketFile[i].name)
-                        bucketFile[i].makePublic().then((response)=>{
+                        console.log(file.name)
                             console.log(response)
                             new Promise((resolve,reject)=>{
                                 db.ref("posts/content").once("value", function(snapshot){
                                     snapshot.forEach(function(post){
                                         if(post.key.toString() === num.toString()){
-                                            database.pushData("posts/content/"+ post.key +"/files", getPublicUrl(bucketFile[i].name))
+                                            database.pushData("posts/content/"+ post.key +"/files", getPublicUrl(file.name))
                                             resolve();
                                         }
                                     })
@@ -41,7 +39,7 @@ module.exports ={
                                 console.log("fail "+err);
                                 disagree();
                             })
-                        })
+                        
                     })
                     stream.end(files[i].buffer);
                 }
