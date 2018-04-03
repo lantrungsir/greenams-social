@@ -17,13 +17,13 @@ module.exports ={
                     })
                     stream.on("finish", ()=>{
                         console.log("GREAT");
-                        var name = files[i].originalname;
-                        file.makePublic().then(()=>{
+                        file.makePublic().then((response)=>{
+                            console.log(response)
                             new Promise((resolve,reject)=>{
                                 db.ref("posts/content").once("value", function(snapshot){
                                     snapshot.forEach(function(post){
                                         if(post.key.toString() === num){
-                                            database.pushData("posts/content/"+ post.key +"/files", getPublicUrl(name))
+                                            database.pushData("posts/content/"+ post.key +"/files", getPublicUrl(file.name))
                                             resolve();
                                         }
                                     })
