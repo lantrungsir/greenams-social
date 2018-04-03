@@ -1,5 +1,6 @@
 var db = require("../admin/db.js")
 var storage = require("../admin/storage.js")
+var database = require("../admin/admin.js").database();
 module.exports ={
     getPost: function(req, res){
         db.getPost().then(function(data){
@@ -44,8 +45,9 @@ module.exports ={
             configurable: true,
             writable: true
         })
-        db.pushData("posts/content", newPost).then(()=>{
-            res.status(200).send("OKAY");
+        database.ref("posts/num").once("value", function(snapshot){
+            var num = snapshot.val()+1;
+            db.saveData("posts/content/"+ num,  newPost);
         })
     },
 
