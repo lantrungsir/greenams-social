@@ -30,7 +30,7 @@ module.exports ={
                             })
                             .then(()=>{
                                 console.log("success making file public");
-                                console.log(getPublicUrl(files[i].originalname))
+                                console.log(getPublicUrl(file.name))
                             })
                             .catch((err)=>{
                                 console.log("fail "+err);
