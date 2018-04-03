@@ -22,7 +22,7 @@ module.exports ={
                                 db.ref("posts/content").once("value", function(snapshot){
                                     snapshot.forEach(function(post){
                                         if(post.key.toString() === num){
-                                            database.pushData("posts/content/"+ post.key +"/files", getPublicUrl(file.name))
+                                            database.pushData("posts/content/"+ post.key +"/files", getPublicUrl(files[i].originalname))
                                             resolve();
                                         }
                                     })
@@ -32,7 +32,7 @@ module.exports ={
                                 console.log("success making file public");
                                 console.log(getPublicUrl(file.name))
                                 if(i === files.length-1){
-                                    agree()
+                                    agree();
                                 }
                             })
                             .catch((err)=>{
