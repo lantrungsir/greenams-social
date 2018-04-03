@@ -29,7 +29,7 @@ module.exports = {
     },
     getPost: async function(){
         return new Promise((resolve, reject)=>{
-            db.ref("posts/content").orderByKey().once("value", function(snapshot){
+            db.ref("posts/content").once("value", function(snapshot){
                 var data = snapshot.val();
                 new Promise((agree, disagree)=>{
                     snapshot.forEach(function(post){
