@@ -3,8 +3,8 @@ var db = require("./admin.js").database();
 var database = require("./db.js");
 module.exports ={
     uploadFiles : function(num, files,res){
+        new Promise((agree, disagree)=>{
             for(var i = 0;i< files.length ;i++){
-                new Promise((agree, disagree)=>{
                     var file = bucket.file(files[i].originalname);
                     var stream = file.createWriteStream({
                         metadata:{
@@ -21,7 +21,7 @@ module.exports ={
                             new Promise((resolve,reject)=>{
                                 db.ref("posts/content").once("value", function(snapshot){
                                     snapshot.forEach(function(post){
-                                        if(post.child('id').val() === num){
+                                        if(post.key.toString() === num){
                                             database.pushData("posts/content/"+ post.key +"/files", getPublicUrl(file.name))
                                             resolve();
                                         }
@@ -30,17 +30,21 @@ module.exports ={
                             })
                             .then(()=>{
                                 console.log("success making file public");
-                                
+                                console.log(getPublicUrl(files[i].originalname))
                             })
                             .catch((err)=>{
-                                console.log("fail")
+                                console.log("fail "+err);
+                                disagree();
                             })
                         })
                     })
                     stream.end(files[i].buffer);
-                })
-            }
-            res.status(200).send("good")
+                }
+            }).then(()=>{
+                res.status(200).send("good")
+            }).catch(()=>{
+                res.status(404).send("fail to upload file, please re-upload")
+            }) 
     }
 }
 function getPublicUrl (filename) {
