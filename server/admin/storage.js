@@ -4,7 +4,7 @@ module.exports ={
     uploadFiles : function(num, files, res){
             for(var i = 0;i < files.length ;i++){
                     var file = bucket.file(files[i].originalname);
-                    var stream = bucketFile[i].createWriteStream({
+                    var stream = file.createWriteStream({
                         metadata:{
                             contentType : files[i].mimetype
                         }
