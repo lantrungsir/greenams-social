@@ -18,11 +18,15 @@ module.exports ={
                     stream.on("finish", ()=>{
                         console.log("GREAT");
                         console.log(file.name)
-                        db.pushData("posts/content/"+num+"/files", getPublicUrl(file.name))
+                        var ext = getExtension(file.name)
+                        if(ext === "png" || ext === "jpg"|| ext === "bmp" || ext === "gif"){
+                            db.pushData("posts/content/"+num+"/images", getPublicUrl(file.name))
+                        }
+                        db.pushData("posts/content/"+num+"/links", getPublicUrl(file.name))
                         resolve(j);
                     })
                     stream.end(files[i].buffer);
-                }).then(()=>{
+                }).then((j)=>{
                     if(j === files.length-1){
                         res.status(200).send("good");
                     }
@@ -32,4 +36,8 @@ module.exports ={
 }
 function getPublicUrl (filename) {
     return `https://storage.googleapis.com/`+bucket.name+'/'+ filename;
-  }
+}
+function getExtension(filename){
+    var sep = filename.split(".");
+    return sep[sep.length-1];
+}
