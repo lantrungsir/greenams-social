@@ -118,7 +118,7 @@ export class DashboardComponent implements OnInit {
       console.log(res.text());
       this.makeFileRequest().then((data)=>{
         Object.defineProperty(newPost,"links", {
-          value: data.link,
+          value: data.links,
           configurable: true
         })
         Object.defineProperty(newPost, "images", {
