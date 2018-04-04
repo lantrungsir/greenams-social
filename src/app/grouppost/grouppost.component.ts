@@ -25,11 +25,13 @@ export class GrouppostComponent implements OnInit {
     this.showDivs(this.slideIndex);
   }
   plusDivs(n: number) {
-    this.showDivs(this.slideIndex += n);
+    this.slideIndex = this.slideIndex +n;
+    this.showDivs(this.slideIndex);
   }
 
   showDivs(n: number) {
-  var id = this.slideIndex-1
+  var id = this.slideIndex-1;
+  console.log(id)
   var x = $(".mySlides");
   if (n > x.length) {this.slideIndex = 1}    
   if (n < 1) {this.slideIndex = x.length}
