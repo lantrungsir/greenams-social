@@ -74,7 +74,7 @@ export class DashboardComponent implements OnInit {
   }
 
   setNewPost(){
-    $("#newpost").text("")
+    
     var newPost ={
       "author" : {
         name :"",
@@ -100,7 +100,7 @@ export class DashboardComponent implements OnInit {
       value : new Date().toLocaleDateString(),
       configurable: true
     })
-    
+    $("#newpost").text("")
     this.http.post("api/posts", {
       new_post : newPost
     }).toPromise().then((res)=>{
