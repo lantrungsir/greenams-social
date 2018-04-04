@@ -24,15 +24,17 @@ module.exports ={
                         console.log("GREAT");
                         console.log(file.name)
                         var ext = getExtension(file.name)
-                        if(ext === "png" || ext === "jpg"|| ext === "bmp" || ext === "gif"){
-                            result.images.push(getPublicUrl(file.name))
-                            db.pushData("posts/content/"+num+"/images", getPublicUrl(file.name))
-                        }
-                        else{
-                            result.links.push(getPublicUrl(file.name))
-                            db.pushData("posts/content/"+num+"/links", getPublicUrl(file.name))
-                        }
-                        resolve(j);
+                        file.makePublic().then(()=>{
+                            if(ext === "png" || ext === "jpg"|| ext === "bmp" || ext === "gif"){
+                                result.images.push(getPublicUrl(file.name))
+                                db.pushData("posts/content/"+num+"/images", getPublicUrl(file.name))
+                            }
+                            else{
+                                result.links.push(getPublicUrl(file.name))
+                                db.pushData("posts/content/"+num+"/links", getPublicUrl(file.name))
+                            }
+                            resolve(j);
+                        })
                     })
                     stream.end(files[i].buffer);
                 }).then((j)=>{
