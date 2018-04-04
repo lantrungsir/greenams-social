@@ -99,14 +99,24 @@ export class DashboardComponent implements OnInit {
       value : new Date().toLocaleDateString(),
       configurable: true
     })
-    this.addPost(newPost)
+    
     this.http.post("api/posts", {
       new_post : newPost
     }).toPromise().then((res)=>{
       console.log(res.text());
-      this.socket.emit("new-post", {post: newPost})
+      this.makeFileRequest().then((data)=>{
+        Object.defineProperty(newPost,"links", {
+          value: data.link,
+          configurable: true
+        })
+        Object.defineProperty(newPost, "images", {
+          value: data.images,
+          configurable: true
+        })
+        this.addPost(newPost)
+        this.socket.emit("new-post", {post: newPost})
+      })
     })
-    this.makeFileRequest();
   }
 
   fileChangeEvent(fileInput: any){
@@ -118,18 +128,13 @@ export class DashboardComponent implements OnInit {
     for(var i =0 ;i< this.FilesToUpload.length; i++){
       formData.append("uploads", this.FilesToUpload[i], this.FilesToUpload[i].name);
     }
-    this.http.post("api/upload?post_id="+this.posts.length, formData).toPromise().then((res)=>{
-      var id = res.json().id;
-      var post =res.json().data;
-      for(var i = 0;i < this.posts.length;i++){
-        if(i + parseInt(id)=== this.posts.length){
-          console.log(res.json());
-          this.posts[i].links = post.links;
-          this.posts[i].images = post.images;
-        }
-      }
-    });
-    this.FilesToUpload = null;
+    return new Promise<any>((resolve, reject)=>{
+      this.http.post("api/upload?post_id="+this.posts.length, formData).toPromise().then((res)=>{
+        this.FilesToUpload = null;
+        var id = res.json().id;
+        var post =res.json().data;
+        resolve(post);
+      });
+    })
   }
-
 }
