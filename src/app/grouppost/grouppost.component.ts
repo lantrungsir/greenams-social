@@ -9,6 +9,7 @@ import { Input } from '@angular/core';
 export class GrouppostComponent implements OnInit {
   isImage = false
   @Input() post :any
+  @Input() id : number
   slideIndex: number = 1;
   constructor() { }
 
