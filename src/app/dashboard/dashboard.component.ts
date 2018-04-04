@@ -123,6 +123,7 @@ export class DashboardComponent implements OnInit {
       var post =res.json().data;
       for(var i = 0;i < this.posts.length;i++){
         if(i + parseInt(id)=== this.posts.length){
+          console.log("hello");
           this.posts[i].links = post.links;
           this.posts[i].images = post.images;
         }
