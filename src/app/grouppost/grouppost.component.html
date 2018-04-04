@@ -8,7 +8,7 @@
   <div class="w3-content w3-display-container">
     <ul>
       <li *ngFor = "let link of post.links">
-          <a href = "{{link}}">LINK 1</a>
+          <a href = "{{link}}">Click here for more details</a>
       </li>
     </ul>
 
@@ -23,5 +23,18 @@
       </div>
     </div>
   <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
-  <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> 
+  <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button>
+  <div id = "likes">
+    <a href="#" class="w3-bar-item w3-button"><i class="fa fa-thumbs-up"></i>  {{post.likes.length}} lượt thích</a>
+  </div>
+  <div id = "comments" *ngIf = "post.comments.length > 0">
+    <!-- list of comments-->
+
+    <div class="w3-container w3-card w3-white w3-round w3-margin" *ngFor = "let comment of post.comments"><br>
+      <img src="{{comment.author.profile_pic}}" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:30px">
+      <h6>{{comment.author.name}}</h6><br>
+      <p>{{comment.message}}</p>
+      <br>
+      <hr class="w3-clear"> 
+    </div> 
 </div> 
