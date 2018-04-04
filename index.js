@@ -15,9 +15,6 @@ app.set('port', process.env.PORT || 6520);
 var http = require("http").createServer(app)
 var io = require("socket.io")(http)
 //get socket io
-module.exports = {
-    io : io
-}
 io.on("connection", function(socket){
     console.log("user connected " +socket);
     socket.on("post-on", function(data){

@@ -2,6 +2,11 @@ var bucket = require("./admin.js").storage().bucket();
 var db = require("./db.js");
 module.exports ={
     uploadFiles : function(num, files, res){
+        new Promise((agree, disagree)=>{
+            var result = {
+                images :[],
+                links :[]
+            }
             for(var i = 0;i < files.length ;i++){
                 new Promise((resolve,reject)=>{
                     var j =i;
@@ -20,18 +25,28 @@ module.exports ={
                         console.log(file.name)
                         var ext = getExtension(file.name)
                         if(ext === "png" || ext === "jpg"|| ext === "bmp" || ext === "gif"){
+                            result.images.push(getPublicUrl(file.name))
                             db.pushData("posts/content/"+num+"/images", getPublicUrl(file.name))
                         }
-                        db.pushData("posts/content/"+num+"/links", getPublicUrl(file.name))
+                        else{
+                            result.links.push(getPublicUrl(file.name))
+                            db.pushData("posts/content/"+num+"/links", getPublicUrl(file.name))
+                        }
                         resolve(j);
                     })
                     stream.end(files[i].buffer);
                 }).then((j)=>{
                     if(j === files.length-1){
-                        res.status(200).send();
+                        agree(result)
                     }
                 })
             }
+        }).then((data)=>{
+            res.status(200).send(JSON.stringify({
+                id: num,
+                data : data
+            }));
+        })  
     }
 }
 function getPublicUrl (filename) {

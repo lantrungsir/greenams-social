@@ -119,7 +119,14 @@ export class DashboardComponent implements OnInit {
       formData.append("uploads", this.FilesToUpload[i], this.FilesToUpload[i].name);
     }
     this.http.post("api/upload?post_id="+this.posts.length, formData).toPromise().then((res)=>{
-      console.log(res.text());
+      var id = res.json().id;
+      var post =res.json().data;
+      for(var i = 0;i < this.posts.length;i++){
+        if(i + parseInt(id)=== this.posts.length){
+          this.posts[i].links = post.links;
+          this.posts[i].images = post.images;
+        }
+      }
     });
     this.FilesToUpload = null;
   }
