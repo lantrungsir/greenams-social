@@ -29,12 +29,12 @@ export class GrouppostComponent implements OnInit {
   }
   showDivs(n: number) {
   var ourPostId = this.post.id
-  var x = $(".mySlides");
+  var x = $(".mySlides-"+ourPostId);
   if (n > x.length) {this.slideIndex = 1}    
   if (n < 1) {this.slideIndex = x.length}
   var id = this.slideIndex-1;
   console.log(id)
-    $(".mySlides-"+id).each(function(index){
+    $(".mySlides-"+ourPostId).each(function(index){
       if(index === id){
        $(this).show();
       }
