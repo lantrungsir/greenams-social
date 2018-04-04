@@ -42,7 +42,7 @@ module.exports ={
                         agree(result)
                     }
                     else{
-                        continue;
+                        
                     }
                 })
             }
