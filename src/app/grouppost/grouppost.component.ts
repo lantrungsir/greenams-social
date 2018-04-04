@@ -9,7 +9,6 @@ import { Input } from '@angular/core';
 export class GrouppostComponent implements OnInit {
   isImage = false
   @Input() post :any
-  @Input() id : number
   slideIndex: number = 1;
   constructor() {
 
@@ -29,13 +28,13 @@ export class GrouppostComponent implements OnInit {
     this.showDivs(this.slideIndex);
   }
   showDivs(n: number) {
-  
+  var ourPostId = this.post.id
   var x = $(".mySlides");
   if (n > x.length) {this.slideIndex = 1}    
   if (n < 1) {this.slideIndex = x.length}
   var id = this.slideIndex-1;
   console.log(id)
-    $(".mySlides").each(function(index){
+    $(".mySlides-"+id).each(function(index){
       if(index === id){
        $(this).show();
       }
