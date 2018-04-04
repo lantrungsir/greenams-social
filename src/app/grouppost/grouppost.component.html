@@ -5,7 +5,14 @@
   <hr class="w3-clear">
   <p>{{post.message}}</p>
   <!-- list of links-->
+  <div class="w3-content w3-display-container">
+    <ul>
+      <li *ngFor = "let link of post.links">
+          <a href = "{{link}}">LINK 1</a>
+      </li>
+    </ul>
 
+  </div>
   <!--list of images -->
     <div class="w3-row-padding" style="margin:0 -16px" *ngIf = "isImage">
       <div class="w3-content w3-display-container">
