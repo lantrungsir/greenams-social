@@ -26,7 +26,7 @@ module.exports = {
                 db.ref("posts/num").set(value);
             })
         })
-        db.ref("posts/content").on("child_added", function(snapshot){
+        db.ref("posts/content").on("child_changed", function(snapshot){
             var data = snapshot.val();
             //update links
             
