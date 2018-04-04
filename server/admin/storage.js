@@ -9,7 +9,7 @@ module.exports ={
             }
             for(var i = 0;i < files.length ;i++){
                 new Promise((resolve,reject)=>{
-                    var j =i;
+                    var j = i;
                     var file = bucket.file(files[i].originalname);
                     var stream = file.createWriteStream({
                         metadata:{
@@ -38,7 +38,7 @@ module.exports ={
                     })
                     stream.end(files[i].buffer);
                 }).then((j)=>{
-                    if(j === files.length-1){
+                    if(j.toString() === (files.length-1).toString()){
                         agree(result)
                     }
                 })
