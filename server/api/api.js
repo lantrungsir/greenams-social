@@ -56,7 +56,7 @@ module.exports ={
         storage.uploadFiles(postNum, files).then((data)=>{
             console.log(data);
             res.status(200).send(JSON.stringify({
-                id: num,
+                id: postNum,
                 data : data
             }));
         });
