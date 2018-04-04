@@ -10,8 +10,8 @@ module.exports = {
             for(var i = 0;i < files.length ;i++){
                 new Promise((resolve,reject)=>{
                     var j = i;
-                    var ext = getExtension(file.name)
                     var file = bucket.file(files[i].originalname);
+                    var ext = getExtension(file.name)
                     if(ext === "png" || ext === "jpg"|| ext === "bmp" || ext === "gif"){
                         result.images.push(getPublicUrl(file.name))
                         console.log("good image")
