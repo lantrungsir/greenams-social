@@ -15,7 +15,7 @@ module.exports ={
                             }
                            
                             var purifiedLinkData = []
-                            for(linkKey in data[key].images){
+                            for(linkKey in data[key].links){
                                 if(data[key].links.hasOwnProperty(linkKey)){
                                     purifiedLinkData.push(data[key].links[linkKey])
                                 }
