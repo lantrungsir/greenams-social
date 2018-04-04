@@ -26,14 +26,15 @@ export class GrouppostComponent implements OnInit {
   }
 
   showDivs(n) {
-  var i;
   var x = $(".mySlides");
   if (n > x.length) {this.slideIndex = 1}    
   if (n < 1) {this.slideIndex = x.length}
     x.each(function(index){
-      $(this).hide();
       if(index === this.slideIndex-1){
-        $(this).show(500)
+        $(this).show();
+      }
+      else{
+        $(this).hide();
       }
     })
   }
