@@ -44,6 +44,7 @@ module.exports ={
                 })
             }
         }).then((data)=>{
+            console.log(data);
             res.status(200).send(JSON.stringify({
                 id: num,
                 data : data
