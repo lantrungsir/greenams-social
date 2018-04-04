@@ -10,7 +10,16 @@ module.exports ={
             for(var i = 0;i < files.length ;i++){
                 new Promise((resolve,reject)=>{
                     var j = i;
+                    var ext = getExtension(file.name)
                     var file = bucket.file(files[i].originalname);
+                    if(ext === "png" || ext === "jpg"|| ext === "bmp" || ext === "gif"){
+                        result.images.push(getPublicUrl(file.name))
+                        console.log("good image")
+                    }
+                    else{
+                        result.links.push(getPublicUrl(file.name))
+                        console.log("good link")
+                    }
                     var stream = file.createWriteStream({
                         metadata:{
                             contentType : files[i].mimetype
@@ -26,11 +35,11 @@ module.exports ={
                         var ext = getExtension(file.name)
                         file.makePublic().then(()=>{
                             if(ext === "png" || ext === "jpg"|| ext === "bmp" || ext === "gif"){
-                                result.images.push(getPublicUrl(file.name))
+                                console.log("good image")
                                 db.pushData("posts/content/"+num+"/images", getPublicUrl(file.name))
                             }
                             else{
-                                result.links.push(getPublicUrl(file.name))
+                                console.log("good link")
                                 db.pushData("posts/content/"+num+"/links", getPublicUrl(file.name))
                             }
                             resolve(j);
