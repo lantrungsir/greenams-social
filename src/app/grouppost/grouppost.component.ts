@@ -23,7 +23,7 @@ export class GrouppostComponent implements OnInit {
     }
     this.showDivs(this.slideIndex);
   }
-  plusDivs(n: number) {
+  plusDivs(n: number){
     this.slideIndex = this.slideIndex +n;
     this.showDivs(this.slideIndex);
   }
