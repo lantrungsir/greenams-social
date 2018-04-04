@@ -23,6 +23,13 @@ export class DashboardComponent implements OnInit {
       this.getPost()
       .then((postsData)=>{
         this.posts = postsData;
+        for(var i = 0;i < this.posts.length ;i++){
+          Object.defineProperty(this.posts[i], "id", {
+            value : i,
+            configurable: true
+          })
+          console.log("good "+i);
+        }
       })
     }).catch(()=>{
       this.userService.logout();
@@ -37,15 +44,6 @@ export class DashboardComponent implements OnInit {
     })
     this.socket.on("new-post",(data)=>{
       this.addPost(data.post)
-    })
-    this.socket.on("update-post", function(data){
-      var id = data.id;
-      var post = data.data;
-      for(var i = 0; i< this.posts.length; i++){
-        if(i + parseInt(id.toString()) === this.posts.length){
-          this.posts[i] =  post;
-        }
-      }
     })
    }
 
@@ -62,6 +60,19 @@ export class DashboardComponent implements OnInit {
    })
   }
   addPost(post){
+    var newPost= post
+    Object.defineProperty(newPost, "id", {
+      value : 0,
+      configurable: true
+    })
+    console.log("good "+0);
+    for(var i = 0;i < this.posts.length ;i++){
+      Object.defineProperty(this.posts[i], "id", {
+        value : i+1,
+        configurable: true
+      })
+      console.log("good "+i);
+    }
     this.posts.splice(0,0, post);
   }
   openNav(){

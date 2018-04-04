@@ -28,7 +28,6 @@ export class GrouppostComponent implements OnInit {
     this.slideIndex = this.slideIndex +n;
     this.showDivs(this.slideIndex);
   }
-
   showDivs(n: number) {
   
   var x = $(".mySlides");
