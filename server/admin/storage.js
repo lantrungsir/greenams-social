@@ -1,7 +1,7 @@
 var bucket = require("./admin.js").storage().bucket();
 var db = require("./db.js");
 module.exports ={
-    uploadFiles : function(num, files, res){
+    uploadFiles : async function(num, files){
         new Promise((agree, disagree)=>{
             var result = {
                 images :[],
@@ -41,15 +41,12 @@ module.exports ={
                     if(j.toString() === (files.length-1).toString()){
                         agree(result)
                     }
+                    else{
+                        continue;
+                    }
                 })
             }
-        }).then((data)=>{
-            console.log(data);
-            res.status(200).send(JSON.stringify({
-                id: num,
-                data : data
-            }));
-        })  
+        })
     }
 }
 function getPublicUrl (filename) {

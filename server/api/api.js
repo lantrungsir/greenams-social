@@ -53,6 +53,12 @@ module.exports ={
         var files = req.files;
         var postNum = req.query.post_id;
         //upload to firebase cloud storage
-        storage.uploadFiles(postNum, files, res);
+        storage.uploadFiles(postNum, files).then((data)=>{
+            console.log(data);
+            res.status(200).send(JSON.stringify({
+                id: num,
+                data : data
+            }));
+        });
     }
 }
