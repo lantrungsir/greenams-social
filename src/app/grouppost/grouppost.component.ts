@@ -11,7 +11,9 @@ export class GrouppostComponent implements OnInit {
   @Input() post :any
   @Input() id : number
   slideIndex: number = 1;
-  constructor() { }
+  constructor() {
+
+   }
 
   ngOnInit() {
     if(this.post.images.length > 0){
@@ -27,15 +29,16 @@ export class GrouppostComponent implements OnInit {
   }
 
   showDivs(n: number) {
+  var id = this.slideIndex-1
   var x = $(".mySlides");
   if (n > x.length) {this.slideIndex = 1}    
   if (n < 1) {this.slideIndex = x.length}
     $(".mySlides").each(function(index){
-      if(index === this.slideIndex-1){
-        $(this).show();
+      if(index === id){
+       $(this).show();
       }
       else{
-        $(this).hide();
+       $(this).hide()
       }
     })
   }
