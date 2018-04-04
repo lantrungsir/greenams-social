@@ -33,8 +33,8 @@ export class GrouppostComponent implements OnInit {
   var id = this.slideIndex-1;
   console.log(id)
   var x = $(".mySlides");
-  if (n > x.length) {this.slideIndex = 1}    
-  if (n < 1) {this.slideIndex = x.length}
+  if (n > x.length) {id = 1}    
+  if (n < 1) {id = x.length}
     $(".mySlides").each(function(index){
       if(index === id){
        $(this).show();
