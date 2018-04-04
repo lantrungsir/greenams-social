@@ -4,20 +4,20 @@ var app = express();
 var config = require("./server/config.js");
 var database = require("./server/admin/db.js");
 var db = require("./server/admin/admin.js").database()
-module.exports = {
-    io : io
-}
+
 config.Middleware(app, express);
 config.Route(app)
 
-database.postsListener();
+
 app.use(express.static(__dirname + "/dist/"))
 app.set('port', process.env.PORT || 6520);
 
 var http = require("http").createServer(app)
 var io = require("socket.io")(http)
 //get socket io
-
+module.exports = {
+    io : io
+}
 io.on("connection", function(socket){
     console.log("user connected " +socket);
     socket.on("post-on", function(data){
@@ -38,6 +38,7 @@ io.on("connection", function(socket){
         socket.broadcast.emit("new-post", {post : data.post})
     })
 })
+database.postsListener();
 http.listen(app.get('port'), function(){
     console.log("we are on " + app.get('port') + " again, GART" )
 })
