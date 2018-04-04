@@ -2,7 +2,7 @@ var bucket = require("./admin.js").storage().bucket();
 var db = require("./db.js");
 module.exports ={
     uploadFiles : async function(num, files){
-        new Promise((agree, disagree)=>{
+        return new Promise((agree, disagree)=>{
             var result = {
                 images :[],
                 links :[]
