@@ -4,7 +4,9 @@ var app = express();
 var config = require("./server/config.js");
 var database = require("./server/admin/db.js");
 var db = require("./server/admin/admin.js").database()
-
+module.exports = {
+    io : io
+}
 config.Middleware(app, express);
 config.Route(app)
 
@@ -15,6 +17,7 @@ app.set('port', process.env.PORT || 6520);
 var http = require("http").createServer(app)
 var io = require("socket.io")(http)
 //get socket io
+
 io.on("connection", function(socket){
     console.log("user connected " +socket);
     socket.on("post-on", function(data){

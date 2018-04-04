@@ -1,5 +1,5 @@
 var db = require("./admin.js").database();
-
+var io = require("../../index.js").io;
 module.exports = {
     saveData: function(path, data){
         db.ref(path).set(data);
@@ -25,6 +25,37 @@ module.exports = {
                 var value = snap.val() + 1;
                 db.ref("posts/num").set(value);
             })
+        })
+        db.ref("posts/content").on("child_added", function(snapshot){
+            var data = snapshot.val();
+            //update links
+            
+            var links = [];
+            for(key in data.links){
+                if(data.links.hasOwnProperty(key)){
+                    links.push(data.links[key]);
+                }
+            }
+            Object.defineProperty(data, "links", {
+                value : links,
+                configurable : true,
+                writable : true
+            })
+
+            //update images
+            var images = [];
+            for(key in data.images){
+                if(data.images.hasOwnProperty(key)){
+                    links.push(data.images[key]);
+                }
+            }
+            Object.defineProperty(data, "images", {
+                value : images,
+                configurable : true,
+                writable : true
+            })
+            
+            io.emit("update-post", {id :snapshot.key, data: data})
         })
     },
     getPost: async function(){

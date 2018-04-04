@@ -38,6 +38,15 @@ export class DashboardComponent implements OnInit {
     this.socket.on("new-post",(data)=>{
       this.addPost(data.post)
     })
+    this.socket.on("update-post", function(data){
+      var id = data.id;
+      var post = data.data;
+      for(var i = 0; i< this.posts.length; i++){
+        if(i + parseInt(id.toString()) === this.posts.length){
+          this.posts[i] =  post;
+        }
+      }
+    })
    }
 
   ngOnInit() {

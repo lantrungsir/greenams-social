@@ -28,7 +28,7 @@ module.exports ={
                     stream.end(files[i].buffer);
                 }).then((j)=>{
                     if(j === files.length-1){
-                        res.status(200).send("good");
+                        res.status(200).send();
                     }
                 })
             }
