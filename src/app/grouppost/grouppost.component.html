@@ -24,10 +24,10 @@
     </div>
   <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
   <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button>
-  <div id = "likes">
+  <div id = "likes" *ngIf = "isLike">
     <a href="#" class="w3-bar-item w3-button"><i class="fa fa-thumbs-up"></i>  {{post.likes.length}} lượt thích</a>
   </div>
-  <div id = "comments" *ngIf = "post.comments.length > 0">
+  <div id = "comments" *ngIf = "isComment">
     <!-- list of comments-->
 
     <div class="w3-container w3-card w3-white w3-round w3-margin" *ngFor = "let comment of post.comments"><br>

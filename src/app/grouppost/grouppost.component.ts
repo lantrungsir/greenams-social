@@ -8,6 +8,8 @@ import { Input } from '@angular/core';
 })
 export class GrouppostComponent implements OnInit {
   isImage = false
+  isComment =false
+  isLike = false
   @Input() post :any
   slideIndex: number = 1;
   constructor() {
@@ -20,6 +22,20 @@ export class GrouppostComponent implements OnInit {
     }
     else{
       this.isImage = false;
+    }
+
+    if(this.post.likes.length > 0){
+      this.isLike = true
+    }
+    else{
+      this.isLike = false;
+    }
+    
+    if(this.post.images.length > 0){
+      this.isLike = true
+    }
+    else{
+      this.isLike = false;
     }
     this.showDivs(this.slideIndex);
   }
