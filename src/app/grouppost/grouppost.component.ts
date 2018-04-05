@@ -25,14 +25,14 @@ export class GrouppostComponent implements OnInit {
       $("#button-like").css("color" , "red");
       if(parseInt(thisId)+parseInt(data.post_id)-1 === parseInt(data.sum)){
         console.log(data.id)
-        this.post.likes.push(data.id)
+        this.addLike(data.id)
       }
     })
     this.socket.on("unlike", function(data){
       $("#button-like").css("color" , "black");
       if(parseInt(thisId)+parseInt(data.post_id)-1 === parseInt(data.sum)){
         console.log(data.id)
-        this.post.likes.splice(this.post.likes.indexOf(data.id))
+        this.deleteLike(this.getLikeOrd(data.id))
       }
     })
     this.socket.on("unlike")
@@ -80,6 +80,15 @@ export class GrouppostComponent implements OnInit {
   }
 
   //add likes
+  addLike(data){
+    this.post.likes.push(data)
+  }
+  deleteLike(i){
+    this.post.likes.splice(i,1)
+  }
+  getLikeOrd(data){
+    return this.post.likes.indexOf(data)
+  }
   toggleLike(){
     //physically change the element
     if(this.post.likes !== undefined){
