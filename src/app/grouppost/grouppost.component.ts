@@ -95,7 +95,6 @@ export class GrouppostComponent implements OnInit {
       else{
         $("#button-like").css("color" , "grey");
         this.post.likes.splice(this.post.likes.indexOf(localStorage.getItem('id')),1)
-        this.isLike = false
         this.socket.emit("unlike", {
           id : localStorage.getItem("id"),
           post_id : this.post.id
