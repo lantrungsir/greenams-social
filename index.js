@@ -1,5 +1,3 @@
-import { parse } from "url";
-
 var express = require("express");
 var app = express();
 
