@@ -64,7 +64,7 @@ export class GrouppostComponent implements OnInit {
   }
 
   //add likes
-  addLike(){
+  toggleLike(){
     //physically change the element
     if(this.post.likes.indexOf(localStorage.getItem('id'))!== -1){
       $("#button-like").css("background-color" , "green");
