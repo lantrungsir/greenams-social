@@ -22,14 +22,14 @@
         <button class="w3-button w3-black w3-display-right" (click)="plusDivs(1)">&#10095;</button>
       </div>
     </div>
-  <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
-  <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button>
+  <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom" (click) = "toggleLike()"><i class="fa fa-thumbs-up"></i>  Like</button> 
+  <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom" (click) =  "showCommentBox()"><i class="fa fa-comment"></i>  Comment</button>
   <div id = "likes" *ngIf = "isLike">
     <a href="#" class="w3-bar-item w3-button"><i class="fa fa-thumbs-up"></i>  {{post.likes.length}} lượt thích</a>
   </div>
+
   <div id = "comments" *ngIf = "isComment">
     <!-- list of comments-->
-
     <div class="w3-container w3-card w3-white w3-round w3-margin" *ngFor = "let comment of post.comments"><br>
       <img src="{{comment.author.profile_pic}}" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:30px">
       <h6>{{comment.author.name}}</h6><br>

@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { AuthHttp } from 'angular2-jwt';
 import { ViewChild } from '@angular/core';
 import * as $ from "jquery"
-import * as io from "socket.io-client"
+import { UpdateService } from '../update.service';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -16,7 +17,7 @@ export class DashboardComponent implements OnInit {
   private socket;
   CurrentUser : any
   posts = []
-  constructor(private userService : UserService, private router: Router, private http :AuthHttp) {
+  constructor(private userService : UserService, private router: Router, private http :AuthHttp, private ioService : UpdateService) {
 
     this.userService.getCurrentUser().then((user)=>{
       this.CurrentUser = user
@@ -36,7 +37,7 @@ export class DashboardComponent implements OnInit {
       this.router.navigate(["/login"])
     })
 
-    this.socket = io();
+    this.socket = ioService.socket;
     this.socket.emit("post-on", {uid : localStorage.getItem('id')})
     this.socket.on("online", function(data){
       //add to array

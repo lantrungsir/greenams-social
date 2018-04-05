@@ -34,6 +34,14 @@ io.on("connection", function(socket){
     socket.on("new-post", function(data){
         socket.broadcast.emit("new-post", {post : data.post})
     })
+    socket.on("like", function(data){
+        console.log(data.id +"likes")
+        database.saveData("posts/content/"+ data.post_id +"/likes/"+ data.id, true)
+    })
+    socket.on("unklike", function(data){
+        console.log(data.id +"unlikes")
+        database.saveData("posts/content/"+ data.post_id +"/likes/"+ data.id, null)
+    })
 })
 database.postsListener();
 http.listen(app.get('port'), function(){

@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {UserService} from "./user.service"
 
-
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import {Http} from "@angular/http"
@@ -11,6 +10,7 @@ import { AppRouteModule } from './app.route/app.route.module';
 import { HttpModule } from '@angular/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { GrouppostComponent } from './grouppost/grouppost.component';
+import { UpdateService } from './update.service';
 export function getAuthHttp(http: Http) {
   return new AuthHttp(new AuthConfig({
     headerName: 'x-auth-token',
@@ -38,7 +38,8 @@ export function getAuthHttp(http: Http) {
       provide: AuthHttp,
       useFactory: getAuthHttp,
       deps: [Http]
-    } 
+    },
+    UpdateService 
   ],
   bootstrap: [AppComponent]
 })
