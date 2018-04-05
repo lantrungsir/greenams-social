@@ -35,6 +35,7 @@ io.on("connection", function(socket){
         socket.broadcast.emit("new-post", {post : data.post})
     })
     socket.on("like", function(data){
+        console.log(data.post_id)
         console.log(data.id +"likes")
         db.ref("posts/num").once("value", function(num){
             var number = parseInt(num.val())
@@ -49,6 +50,7 @@ io.on("connection", function(socket){
         
     })
     socket.on("unlike", function(data){
+        console.log(data.post_id)
         console.log(data.id +"unlikes")
         db.ref("posts/num").once("value", function(num){
             var number = parseInt(num.val())

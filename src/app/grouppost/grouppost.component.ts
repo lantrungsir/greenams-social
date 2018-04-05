@@ -20,9 +20,10 @@ export class GrouppostComponent implements OnInit {
    }
 
   ngOnInit() {
+    
     this.socket.on("like", function(data){
       $("#button-like").css("color" , "red");
-      if(parseInt(this.post.id)+parseInt(data.post_id) === parseInt(data.sum)){
+      if(parseInt(this.post.id)+parseInt(data.post_id)-1 === parseInt(data.sum)){
         console.log(data.id)
         this.post.likes.push(data.id)
       }
