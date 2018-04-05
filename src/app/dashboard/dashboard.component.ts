@@ -117,18 +117,23 @@ export class DashboardComponent implements OnInit {
       new_post : newPost
     }).toPromise().then((res)=>{
       console.log(res.text());
-      this.makeFileRequest().then((data)=>{
-        Object.defineProperty(newPost,"links", {
-          value: data.links,
-          configurable: true
+      if(this.FilesToUpload.length !== 0){
+        this.makeFileRequest().then((data)=>{
+          Object.defineProperty(newPost,"links", {
+            value: data.links,
+            configurable: true
+          })
+          Object.defineProperty(newPost, "images", {
+            value: data.images,
+            configurable: true
+          })
+          this.addPost(newPost)
+          this.socket.emit("new-post", {post: newPost})
+          return;
         })
-        Object.defineProperty(newPost, "images", {
-          value: data.images,
-          configurable: true
-        })
-        this.addPost(newPost)
-        this.socket.emit("new-post", {post: newPost})
-      })
+      }
+      this.addPost(newPost)
+      this.socket.emit("new-post", {post: newPost})
     })
   }
 
