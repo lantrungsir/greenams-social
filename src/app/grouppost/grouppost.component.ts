@@ -67,6 +67,7 @@ export class GrouppostComponent implements OnInit {
   addLike(){
     //physically change the element
     if(this.post.likes.indexOf(localStorage.getItem('id'))!== -1){
+      $("#button-like").css("background-color" , "green");
       this.post.likes.push(localStorage.getItem('id'))
       this.socket.emit("like", {
         id : localStorage.getItem("id"),
@@ -74,6 +75,7 @@ export class GrouppostComponent implements OnInit {
       });
     }
     else{
+      $("#button-like").css("background-color" , "black");
       this.post.likes.splice(this.post.likes.indexOf(localStorage.getItem('id')),1)
       this.socket.emit("unlike", {
         id : localStorage.getItem("id"),
