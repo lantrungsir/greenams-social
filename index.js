@@ -1,3 +1,5 @@
+import { parse } from "url";
+
 var express = require("express");
 var app = express();
 
@@ -36,11 +38,30 @@ io.on("connection", function(socket){
     })
     socket.on("like", function(data){
         console.log(data.id +"likes")
-        database.saveData("posts/content/"+ data.post_id +"/likes/"+ data.id, true)
+        db.ref("posts/num").once("value", function(num){
+            var number = parseInt(num.val())
+            var realId = number - parseInt(data.post_id);
+            database.saveData("posts/content/"+ realId +"/likes/"+data.id , true)
+            socket.broadcast.emit("like", {
+                post_id : realId,
+                id : data.id,
+                sum : number
+            })
+        })
+        
     })
     socket.on("unlike", function(data){
         console.log(data.id +"unlikes")
-        database.saveData("posts/content/"+ data.post_id +"/likes/"+ data.id, null)
+        db.ref("posts/num").once("value", function(num){
+            var number = parseInt(num.val())
+            var realId = number - parseInt(data.post_id)+1;
+            database.saveData("posts/content/"+ realId +"/likes/"+data.id , null)
+            socket.broadcast.emit("unlike", {
+                post_id : realId,
+                id : data.id,
+                sum : number
+            })
+        })
     })
 })
 database.postsListener();

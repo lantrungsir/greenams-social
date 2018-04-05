@@ -20,6 +20,21 @@ export class GrouppostComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.socket.on("like", function(data){
+      $("#button-like").css("color" , "red");
+      if(parseInt(this.post.id)+parseInt(data.post_id) === parseInt(data.sum)){
+        console.log(data.id)
+        this.post.likes.push(data.id)
+      }
+    })
+    this.socket.on("unlike", function(data){
+      $("#button-like").css("color" , "black");
+      if(parseInt(this.post.id)+parseInt(data.post_id) === parseInt(data.sum)){
+        console.log(data.id)
+        this.post.likes.splice(this.post.likes.indexOf(data.id))
+      }
+    })
+    this.socket.on("unlike")
     if(this.post.images.length > 0){
       this.isImage = true
     }
