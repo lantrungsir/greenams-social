@@ -29,6 +29,7 @@ export class DashboardComponent implements OnInit {
             value : i+1,
             configurable: true
           })
+          console.log(this.posts[i].id)
         }
       })
     }).catch(()=>{
@@ -62,7 +63,7 @@ export class DashboardComponent implements OnInit {
   addPost(post){
     var newPost= post
     Object.defineProperty(newPost, "id", {
-      value : 0,
+      value : 1,
       configurable: true
     })
     console.log("good "+0);
@@ -71,7 +72,7 @@ export class DashboardComponent implements OnInit {
         value : i+2,
         configurable: true
       })
-
+      console.log(this.posts[i].id)
     }
     this.posts.splice(0,0, post);
   }
