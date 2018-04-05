@@ -39,7 +39,7 @@ io.on("connection", function(socket){
         console.log(data.id +"likes")
         db.ref("posts/num").once("value", function(num){
             var number = parseInt(num.val())
-            var realId = number - parseInt(data.post_id);
+            var realId = number - parseInt(data.post_id)+1;
             database.saveData("posts/content/"+ realId +"/likes/"+data.id , true)
             socket.broadcast.emit("like", {
                 post_id : realId,
