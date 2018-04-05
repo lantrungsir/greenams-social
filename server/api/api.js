@@ -23,7 +23,7 @@ module.exports ={
                             var purifidLikes = []
                             for(likeKey in data[key].likes){
                                 if(data[key].likes.hasOwnProperty(likeKey)){
-                                    purifiedLikes.push(data[key].likes[likeKey])
+                                    purifiedLikes.push(likeKey)
                                 }
                             }
                             data[key].likes = purifidLikes
