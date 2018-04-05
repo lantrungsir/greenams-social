@@ -35,7 +35,6 @@ export class GrouppostComponent implements OnInit {
         this.deleteLike(this.getLikeOrd(data.id))
       }
     })
-    this.socket.on("unlike")
     if(this.post.images.length > 0){
       this.isImage = true
     }
@@ -95,7 +94,7 @@ export class GrouppostComponent implements OnInit {
       if(this.post.likes.indexOf(localStorage.getItem('id')) === -1){
         $("#button-like").css("color" , "blue");
         this.isLike = true;
-        this.post.likes.push(localStorage.getItem('id'))
+        this.addLike(localStorage.getItem('id'))
         this.socket.emit("like", {
           id : localStorage.getItem("id"),
           post_id : this.post.id
@@ -103,7 +102,7 @@ export class GrouppostComponent implements OnInit {
       }
       else{
         $("#button-like").css("color" , "grey");
-        this.post.likes.splice(this.post.likes.indexOf(localStorage.getItem('id')),1)
+        this.deleteLike(this.getLikeOrd(localStorage.getItem('id')))
         this.socket.emit("unlike", {
           id : localStorage.getItem("id"),
           post_id : this.post.id
