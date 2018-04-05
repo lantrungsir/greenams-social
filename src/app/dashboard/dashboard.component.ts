@@ -37,7 +37,7 @@ export class DashboardComponent implements OnInit {
       this.router.navigate(["/login"])
     })
 
-    this.socket = ioService.socket;
+    this.socket = this.ioService.socket;
     this.socket.emit("post-on", {uid : localStorage.getItem('id')})
     this.socket.on("online", function(data){
       //add to array
