@@ -50,11 +50,11 @@ export class GrouppostComponent implements OnInit {
       this.isLike = false;
     }
     
-    if(this.post.images.length > 0){
-      this.isLike = true
+    if(this.post.comments.length > 0){
+      this.isComment = true
     }
     else{
-      this.isLike = false;
+      this.isComment = false;
     }
     this.showDivs(this.slideIndex);
   }
