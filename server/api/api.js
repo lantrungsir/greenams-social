@@ -20,13 +20,13 @@ module.exports ={
                                     purifiedLinkData.push(data[key].links[linkKey])
                                 }
                             }
-                            var purifidLikes = []
+                            var purifiedLikes = []
                             for(likeKey in data[key].likes){
                                 if(data[key].likes.hasOwnProperty(likeKey)){
                                     purifiedLikes.push(likeKey)
                                 }
                             }
-                            data[key].likes = purifidLikes
+                            data[key].likes = purifiedLikes
                             data[key].images =  purifiedImageData;
                             data[key].links =  purifiedLinkData;
                             purifiedPostData.push(data[key]);      

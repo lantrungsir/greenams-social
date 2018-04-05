@@ -132,8 +132,10 @@ export class DashboardComponent implements OnInit {
           return;
         })
       }
-      this.addPost(newPost)
-      this.socket.emit("new-post", {post: newPost})
+      else{
+        this.addPost(newPost)
+        this.socket.emit("new-post", {post: newPost})
+      }
     })
   }
 
