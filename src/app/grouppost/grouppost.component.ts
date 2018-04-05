@@ -82,7 +82,7 @@ export class GrouppostComponent implements OnInit {
   //add likes
   toggleLike(){
     //physically change the element
-    if(this.post.likes !== null){
+    if(this.post.likes !== undefined){
       if(this.post.likes.indexOf(localStorage.getItem('id')) === -1){
         $("#button-like").css("color" , "blue");
         this.isLike = true;
