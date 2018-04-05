@@ -3,7 +3,7 @@ import * as io from "socket.io-client"
 @Injectable()
 export class UpdateService {
   
-  constructor(public socket) { 
+  constructor(public socket: any) { 
     this.socket = io();
   }
 }

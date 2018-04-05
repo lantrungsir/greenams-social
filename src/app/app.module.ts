@@ -10,6 +10,7 @@ import { AppRouteModule } from './app.route/app.route.module';
 import { HttpModule } from '@angular/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { GrouppostComponent } from './grouppost/grouppost.component';
+
 import { UpdateService } from './update.service';
 export function getAuthHttp(http: Http) {
   return new AuthHttp(new AuthConfig({
