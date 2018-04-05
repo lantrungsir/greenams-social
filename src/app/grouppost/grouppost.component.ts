@@ -21,14 +21,14 @@ export class GrouppostComponent implements OnInit {
 
   ngOnInit() {
     var thisId = this.post.id
-    this.socket.on("like", function(data){
+    this.socket.on("like", (data)=>{
       $("#button-like").css("color" , "red");
       if(parseInt(thisId)+parseInt(data.post_id)-1 === parseInt(data.sum)){
         console.log(data.id)
         this.addLike(data.id)
       }
     })
-    this.socket.on("unlike", function(data){
+    this.socket.on("unlike", (data)=>{
       $("#button-like").css("color" , "black");
       if(parseInt(thisId)+parseInt(data.post_id)-1 === parseInt(data.sum)){
         console.log(data.id)
