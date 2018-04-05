@@ -66,22 +66,33 @@ export class GrouppostComponent implements OnInit {
   //add likes
   toggleLike(){
     //physically change the element
-    if(this.post.likes.indexOf(localStorage.getItem('id')) === -1){
-      $("#button-like").css("background-color" , "green");
-      this.post.likes.push(localStorage.getItem('id'))
-      this.socket.emit("like", {
-        id : localStorage.getItem("id"),
-        post_id : this.post.id
-      });
+    if(this.post.likes !== null){
+      if(this.post.likes.indexOf(localStorage.getItem('id')) === -1){
+        $("#button-like").css("color" , "blue");
+        this.post.likes.push(localStorage.getItem('id'))
+        this.socket.emit("like", {
+          id : localStorage.getItem("id"),
+          post_id : this.post.id
+        });
+      }
+      else{
+        $("#button-like").css("color" , "grey");
+        this.post.likes.splice(this.post.likes.indexOf(localStorage.getItem('id')),1)
+        this.socket.emit("unlike", {
+          id : localStorage.getItem("id"),
+          post_id : this.post.id
+        });
+      }
     }
     else{
-      $("#button-like").css("background-color" , "black");
-      this.post.likes.splice(this.post.likes.indexOf(localStorage.getItem('id')),1)
-      this.socket.emit("unlike", {
-        id : localStorage.getItem("id"),
-        post_id : this.post.id
-      });
+      $("#button-like").css("color" , "blue");
+        this.post.likes.push(localStorage.getItem('id'))
+        this.socket.emit("like", {
+          id : localStorage.getItem("id"),
+          post_id : this.post.id
+        });
     }
+    
   }
   //add comment
   showCommentBox(){
