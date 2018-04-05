@@ -66,7 +66,7 @@ export class GrouppostComponent implements OnInit {
   //add likes
   toggleLike(){
     //physically change the element
-    if(this.post.likes.indexOf(localStorage.getItem('id'))!== -1){
+    if(this.post.likes.indexOf(localStorage.getItem('id')) === -1){
       $("#button-like").css("background-color" , "green");
       this.post.likes.push(localStorage.getItem('id'))
       this.socket.emit("like", {
@@ -82,7 +82,7 @@ export class GrouppostComponent implements OnInit {
         post_id : this.post.id
       });
     }
-    }
+  }
   //add comment
   showCommentBox(){
     $("#comment-box").show(500);

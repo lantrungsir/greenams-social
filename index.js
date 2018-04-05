@@ -38,7 +38,7 @@ io.on("connection", function(socket){
         console.log(data.id +"likes")
         database.saveData("posts/content/"+ data.post_id +"/likes/"+ data.id, true)
     })
-    socket.on("unklike", function(data){
+    socket.on("unlike", function(data){
         console.log(data.id +"unlikes")
         database.saveData("posts/content/"+ data.post_id +"/likes/"+ data.id, null)
     })
