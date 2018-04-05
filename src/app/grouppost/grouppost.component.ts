@@ -85,6 +85,7 @@ export class GrouppostComponent implements OnInit {
     if(this.post.likes !== null){
       if(this.post.likes.indexOf(localStorage.getItem('id')) === -1){
         $("#button-like").css("color" , "blue");
+        this.isLike = true;
         this.post.likes.push(localStorage.getItem('id'))
         this.socket.emit("like", {
           id : localStorage.getItem("id"),
@@ -94,6 +95,7 @@ export class GrouppostComponent implements OnInit {
       else{
         $("#button-like").css("color" , "grey");
         this.post.likes.splice(this.post.likes.indexOf(localStorage.getItem('id')),1)
+        this.isLike = false
         this.socket.emit("unlike", {
           id : localStorage.getItem("id"),
           post_id : this.post.id
@@ -103,6 +105,7 @@ export class GrouppostComponent implements OnInit {
     else{
       $("#button-like").css("color" , "blue");
         this.post.likes.push(localStorage.getItem('id'))
+        this.isLike = true
         this.socket.emit("like", {
           id : localStorage.getItem("id"),
           post_id : this.post.id
