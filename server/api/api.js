@@ -27,7 +27,7 @@ module.exports ={
                                 }
                             }
                             var purifiedComments= []
-                            for(commentKey in data[key].comments){
+                            for(commentKey in data[key].comments["content"]){
                                 if(data[key].comments["content"].hasOwnProperty(commentKey)){
                                     purifiedComments.slice(0,0, data[key].comments["content"][commentKey]);
                                 }
