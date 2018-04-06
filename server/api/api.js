@@ -30,7 +30,7 @@ module.exports ={
                             for(commentKey in data[key].comments["content"]){
                                 if(data[key].comments["content"].hasOwnProperty(commentKey)){
                                     console.log(data[key].comments["content"][commentKey])
-                                    purifiedComments.slice(0,0, data[key].comments["content"][commentKey]);
+                                    purifiedComments.splice(0,0, data[key].comments["content"][commentKey]);
                                 }
                             }
                             data[key].likes = purifiedLikes
