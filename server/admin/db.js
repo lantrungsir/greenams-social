@@ -52,7 +52,7 @@ module.exports = {
                                             agr(comment_author.val()) 
                                         })
                                     }).then((commentAuthor)=>{
-                                        if(data[post.key].comments["content"][comment.key]=== undefined){
+                                        if(data[post.key].comments["content"][comment.key]=== null){
                                             db.ref("posts/content/"+ post.key+ "/comments/num").once("value", function(number){
                                                 if(comment.key.toString()=== number.val().toString() || parseInt(number.val()) === 0){
                                                     rs();
@@ -61,6 +61,7 @@ module.exports = {
                                         }
                                         else{
                                             data[post.key].comments["content"][comment.key]["author"] = commentAuthor;
+                                            console.log(data[post.key])
                                             db.ref("posts/content/"+ post.key+ "/comments/num").once("value", function(number){
                                                 if(comment.key.toString()=== number.val().toString() || parseInt(number.val()) === 0){
                                                     rs();
