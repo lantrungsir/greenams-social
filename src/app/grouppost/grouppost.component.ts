@@ -13,6 +13,7 @@ export class GrouppostComponent implements OnInit {
   isLike = false
   socket:any
 
+  @Input() currentUser: any
   @Input() post :any
   slideIndex: number = 1;
   constructor(private ioService: UpdateService) {

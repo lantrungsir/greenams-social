@@ -27,7 +27,10 @@
   <div id = "likes" *ngIf = "isLike">
     <a href="#" class="w3-bar-item w3-button"><i class="fa fa-thumbs-up"></i>  {{post.likes.length}} lượt thích</a>
   </div>
-
+  <div id = "comment-box" hidden>
+      <img src="{{currentUser.profile_pic}}" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:35px">
+      <input class = "w3-input w3-animate-input" placeholder="put in here the comment">
+  </div>
   <div id = "comments" *ngIf = "isComment">
     <!-- list of comments-->
     <div class="w3-container w3-card w3-white w3-round w3-margin" *ngFor = "let comment of post.comments"><br>
