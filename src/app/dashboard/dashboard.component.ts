@@ -94,7 +94,9 @@ export class DashboardComponent implements OnInit {
         id:""
       },
       "message" : "",
-      "time" :""
+      "time" :"",
+      comments :[],
+      likes:[]
     }
     Object.defineProperty(newPost, "author", {
       value : {
