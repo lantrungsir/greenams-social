@@ -123,6 +123,6 @@ export class GrouppostComponent implements OnInit {
   }
   //add comment
   showCommentBox(){
-    $("#comment-box").show(500);
+    $("#comment-box"+this.post.id).show(500);
   }
 }
