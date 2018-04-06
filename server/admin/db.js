@@ -52,12 +52,21 @@ module.exports = {
                                             agr(comment_author.val()) 
                                         })
                                     }).then((commentAuthor)=>{
-                                        data[post.key].comments[comment.key]["author"] = commentAuthor;
-                                        db.ref("posts/content/"+ post.key+ "/comments/num").once("value", function(number){
-                                            if(comment.key.toString()=== number.val().toString() || parseInt(number.val()) === 0){
-                                                rs();
-                                            }
-                                        })
+                                        if(data[post.key].comments[comment.key]=== undefined){
+                                            db.ref("posts/content/"+ post.key+ "/comments/num").once("value", function(number){
+                                                if(comment.key.toString()=== number.val().toString() || parseInt(number.val()) === 0){
+                                                    rs();
+                                                }
+                                            })
+                                        }
+                                        else{
+                                            data[post.key].comments[comment.key]["author"] = commentAuthor;
+                                            db.ref("posts/content/"+ post.key+ "/comments/num").once("value", function(number){
+                                                if(comment.key.toString()=== number.val().toString() || parseInt(number.val()) === 0){
+                                                    rs();
+                                                }
+                                            })
+                                        }  
                                     })
                                 })
                             }).then(()=>{
