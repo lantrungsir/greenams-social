@@ -22,6 +22,7 @@ export class GrouppostComponent implements OnInit {
 
   ngOnInit() {
     var thisId = this.post.id
+    
     this.socket.on("like", (data)=>{
       $("#button-like").css("color" , "red");
       if(parseInt(thisId)+parseInt(data.post_id)-1 === parseInt(data.sum)){
@@ -51,6 +52,13 @@ export class GrouppostComponent implements OnInit {
     }
     
     if(this.post.comments.length > 0){
+      for(var i = 0;i < this.post.comments.length; i++){
+        Object.defineProperty(this.post.comments[i], "id",{
+          value : i+1,
+          configurable: true,
+          writable: true
+        })
+      }
       this.isComment = true
     }
     else{
@@ -131,7 +139,23 @@ export class GrouppostComponent implements OnInit {
       return;
     }
     else{
-      $("#comment-text"+this.post.id).val("")
+      for(var i = 0;i < this.post.comments.length; i++){
+        Object.defineProperty(this.post.comments[i], "id",{
+          value : i+2,
+          configurable: true,
+          writable: true
+        })
+      }
+      $("#comment-text"+this.post.id).val("");
+      var newComment = {
+        author:{
+          name : this.currentUser.name,
+          profile_pic: this.currentUser.profile_pic
+        },
+        message : msg,
+        id: 1
+      }
+      this.post.comments.splice(0,0,newComment)
       this.socket.emit("new-comment", {
         post_id: this.post.id,
         data :{

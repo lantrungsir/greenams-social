@@ -26,9 +26,16 @@ module.exports ={
                                     purifiedLikes.push(likeKey)
                                 }
                             }
+                            var purifiedComments= []
+                            for(commentKey in data[key].comments){
+                                if(data[key].comments.hasOwnProperty(commentKey)){
+                                    purifiedComments.slice(0,0, data[key].comments[commentKey]);
+                                }
+                            }
                             data[key].likes = purifiedLikes
                             data[key].images =  purifiedImageData;
                             data[key].links =  purifiedLinkData;
+                            data[key].comments = purifiedComments;
                             purifiedPostData.push(data[key]);      
                     }
                 }

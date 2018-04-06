@@ -68,18 +68,22 @@ io.on("connection", function(socket){
         db.ref("posts/num").once("value", function(num){
             var number = parseInt(num.val())
             var realId = number - parseInt(data.post_id)+1;
-            database.pushData("posts/content/"+ realId +"/comments/content", {
-                author : data.data.author_id,
-                message : data.data.message
+            db.ref("posts/content/"+realId+"/comments/num").once("value", function(val){
+                var comment_num = val.val();
+                var realCommentId = parseInt(comment_num)+1
+                database.data("posts/content/"+ realId +"/comments/content/"+ realCommentId, {
+                    author : data.data.author_id,
+                    message : data.data.message
+                })
             })
             db.ref("users/"+data.data.author_id).once("value", function(user){
                 var author = user.val()
                 socket.broadcast.emit("new-comment", {
                     post_id : realId,
-                    comment :{
+                    comment : {
                         author : author,
                         message : data.data.message,
-                    }
+                    } 
                 })
             })
         })

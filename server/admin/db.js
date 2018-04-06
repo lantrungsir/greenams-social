@@ -24,9 +24,12 @@ module.exports = {
                 var value = snap.val() + 1;
                 db.ref("posts/num").set(value);
             })
-        })
-        db.ref("posts/content/:id/comments/content").on("child_added", function(snapshot,prevKey){
-            console.log(id);
+            db.ref("posts/content/"+snapshot.key +"/comments/content").on("child_added", (snap,preK)=>{
+                db.ref("posts/content/"+snapshot.key+"/comments/num").once("value", function(num){
+                    var value = num.val() + 1;
+                    db.ref("posts/content/"+snapshot.key+"/comments/num").set(value);
+                })
+            })
         })
     },
     getPost: async function(){
@@ -40,11 +43,28 @@ module.exports = {
                                 approve(author.val())
                             })
                         }).then((authorval)=>{
-                            data[post.key].author = authorval;
-                            db.ref("posts/num").once("value", function(number){
-                                if(post.key.toString() === number.val().toString() || number.val()===0){
-                                    agree();
-                                }
+                            new Promise((rs,rj)=>{
+                                data[post.key].author = authorval;
+                                post.child("comments/content").forEach(function(comment){
+                                    new Promise((agr, disagr)=>{
+                                        db.ref("users/"+comment.child("author").val()).once("value", (comment_author)=>{
+                                            agr(comment_author.val()) 
+                                        })
+                                    }).then((commentAuthor)=>{
+                                        data[post.key].comments[comment.key].author = commentAuthor;
+                                        db.ref("posts/content/"+ post.key+ "/comments/num").once("value", function(number){
+                                            if(comment.key.toString()=== number.val().toString()){
+                                                rs();
+                                            }
+                                        })
+                                    })
+                                })
+                            }).then(()=>{
+                                db.ref("posts/num").once("value", function(number){
+                                    if(post.key.toString() === number.val().toString() || number.val()===0){
+                                        agree();
+                                    }
+                                })
                             })
                         })
                     })
