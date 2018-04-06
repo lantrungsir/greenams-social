@@ -29,7 +29,7 @@
   </div>
   <div id = "comment-box{{post.id}}" hidden>
       <img src="{{currentUser.profile_pic}}" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:35px">
-      <textarea class = "w3-input w3-animate-input w3-right" placeholder="put in here the comment"></textarea>
+      <textarea class = "w3-input w3-animate-input w3-right" placeholder="put in here the comment" id = "comment-text{{post.id}}"></textarea>
       <button class ="w3-button w3-circle w3-ripple w3-btn" (click) = "addComment()">+</button>
   </div>
   <div id = "comments" *ngIf = "isComment">
