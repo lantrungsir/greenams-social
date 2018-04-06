@@ -44,15 +44,18 @@ module.exports = {
                                 approve(author.val())
                             })
                         }).then((authorval)=>{
+                            data[post.key].author = authorval;
                             new Promise((rs,rj)=>{
-                                data[post.key].author = authorval;
                                 post.child("comments/content").forEach(function(comment){
                                     new Promise((agr, disagr)=>{
                                         db.ref("users/"+comment.child("author").val()).once("value", (comment_author)=>{
                                             agr(comment_author.val()) 
                                         })
                                     }).then((commentAuthor)=>{
-                                        data[post.key].comments[comment.key].author = commentAuthor;
+                                        Object.defineProperty(data[post.key].comments[comment.key]," author",{
+                                            value : commentAuthor,
+                                            configurable: true
+                                        })
                                         db.ref("posts/content/"+ post.key+ "/comments/num").once("value", function(number){
                                             if(comment.key.toString()=== number.val().toString() || parseInt(number.val()) === 0){
                                                 rs();
