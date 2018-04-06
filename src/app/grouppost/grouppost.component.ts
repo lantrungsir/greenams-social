@@ -154,7 +154,7 @@ export class GrouppostComponent implements OnInit {
         },
         message : msg,
         comments :[],
-        likes:[]
+        likes:[],
         id: 1
       }
       this.post.comments.splice(0,0,newComment)
