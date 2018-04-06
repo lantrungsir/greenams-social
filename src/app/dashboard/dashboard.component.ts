@@ -135,7 +135,7 @@ export class DashboardComponent implements OnInit {
             value: [],
             configurable: true
           })
-          Object.defineProperty(newPost, "images", {
+          Object.defineProperty(newPost, "comments", {
             value: [],
             configurable: true
           })
