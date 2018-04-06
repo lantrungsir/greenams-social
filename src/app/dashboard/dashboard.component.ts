@@ -44,6 +44,8 @@ export class DashboardComponent implements OnInit {
 
     })
     this.socket.on("new-post",(data)=>{
+      data.post.likes = [];
+      data.post.comments = [];
       this.addPost(data.post)
     })
    }
@@ -94,9 +96,7 @@ export class DashboardComponent implements OnInit {
         id:""
       },
       "message" : "",
-      "time" :"",
-      comments :[],
-      likes:[]
+      "time" :""
     }
     Object.defineProperty(newPost, "author", {
       value : {
@@ -131,10 +131,26 @@ export class DashboardComponent implements OnInit {
           })
           this.addPost(newPost)
           this.socket.emit("new-post", {post: newPost})
+          Object.defineProperty(newPost,"likes", {
+            value: [],
+            configurable: true
+          })
+          Object.defineProperty(newPost, "images", {
+            value: [],
+            configurable: true
+          })
           return;
         })
       }
       else{
+        Object.defineProperty(newPost,"likes", {
+          value: [],
+          configurable: true
+        })
+        Object.defineProperty(newPost, "images", {
+          value: [],
+          configurable: true
+        })
         this.addPost(newPost)
         this.socket.emit("new-post", {post: newPost})
       }
