@@ -71,7 +71,7 @@ io.on("connection", function(socket){
             db.ref("posts/content/"+realId+"/comments/num").once("value", function(val){
                 var comment_num = val.val();
                 var realCommentId = parseInt(comment_num)+1
-                database.data("posts/content/"+ realId +"/comments/content/"+ realCommentId, {
+                database.saveData("posts/content/"+ realId +"/comments/content/"+ realCommentId, {
                     author : data.data.author_id,
                     message : data.data.message
                 })
