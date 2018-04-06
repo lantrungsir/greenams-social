@@ -153,6 +153,8 @@ export class GrouppostComponent implements OnInit {
           profile_pic: this.currentUser.profile_pic
         },
         message : msg,
+        comments :[],
+        likes:[]
         id: 1
       }
       this.post.comments.splice(0,0,newComment)
