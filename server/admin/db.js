@@ -54,7 +54,7 @@ module.exports = {
                                     }).then((commentAuthor)=>{
                                         data[post.key].comments[comment.key].author = commentAuthor;
                                         db.ref("posts/content/"+ post.key+ "/comments/num").once("value", function(number){
-                                            if(comment.key.toString()=== number.val().toString() || number.val() === null){
+                                            if(comment.key.toString()=== number.val().toString() || number.val() === 0){
                                                 rs();
                                             }
                                         })
@@ -62,7 +62,7 @@ module.exports = {
                                 })
                             }).then(()=>{
                                 db.ref("posts/num").once("value", function(number){
-                                    if(post.key.toString() === number.val().toString() || number.val()===null){
+                                    if(post.key.toString() === number.val().toString() || number.val()===0){
                                         agree();
                                     }
                                 })
