@@ -4,6 +4,7 @@ import {UserService} from "./user.service"
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
+import {FormsModule} from "@angular/forms"
 import {Http} from "@angular/http"
 import {AuthHttp, AuthConfig} from "angular2-jwt"
 import { AppRouteModule } from './app.route/app.route.module';
@@ -32,7 +33,8 @@ export function getAuthHttp(http: Http) {
   imports: [
     BrowserModule,
     AppRouteModule,
-    HttpModule
+    HttpModule,
+    FormsModule
   ],
   providers: [UserService,
     {

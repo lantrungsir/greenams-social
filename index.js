@@ -63,6 +63,27 @@ io.on("connection", function(socket){
             })
         })
     })
+    socket.on("new-comment", function(data){
+        console.log(data.post_id);
+        db.ref("posts/num").once("value", function(num){
+            var number = parseInt(num.val())
+            var realId = number - parseInt(data.post_id)+1;
+            database.pushData("posts/content/"+ realId +"/comments/content", {
+                author : data.data.author_id,
+                message : data.data.message
+            })
+            db.ref("users/"+data.data.author_id).once("value", function(user){
+                var author = user.val()
+                socket.broadcast.emit("new-comment", {
+                    post_id : realId,
+                    comment :{
+                        author : author,
+                        message : data.data.message,
+                    }
+                })
+            })
+        })
+    })
 })
 database.postsListener();
 http.listen(app.get('port'), function(){

@@ -125,4 +125,20 @@ export class GrouppostComponent implements OnInit {
   showCommentBox(){
     $("#comment-box"+this.post.id).show(500);
   }
+  addComment(){
+    var msg = $("#comment-box"+this.post.id).text();
+    if(msg === ""){
+      return;
+    }
+    else{
+      $("#comment-box"+this.post.id).text("")
+      this.socket.emit("new-comment", {
+        post_id: this.post.id,
+        data :{
+          author_id: localStorage.getItem("id"),
+          message : msg
+        }
+      })
+    }
+  }
 }
