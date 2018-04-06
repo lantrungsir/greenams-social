@@ -25,7 +25,7 @@ module.exports = {
                 db.ref("posts/num").set(value);
             })
         })
-        db.ref("posts/content/{id}/comments/content").on("child_added", function(snapshot,prevKey){
+        db.ref("posts/content/:id/comments/content").on("child_added", function(snapshot,prevKey){
             console.log(id);
         })
     },
