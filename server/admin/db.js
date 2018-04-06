@@ -52,7 +52,7 @@ module.exports = {
                                             agr(comment_author.val()) 
                                         })
                                     }).then((commentAuthor)=>{
-                                        if(data[post.key].comments[comment.key]=== null){
+                                        if(data[post.key].comments["content"][comment.key]=== null){
                                             db.ref("posts/content/"+ post.key+ "/comments/num").once("value", function(number){
                                                 if(comment.key.toString()=== number.val().toString() || parseInt(number.val()) === 0){
                                                     rs();
