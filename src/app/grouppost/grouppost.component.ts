@@ -126,12 +126,12 @@ export class GrouppostComponent implements OnInit {
     $("#comment-box"+this.post.id).show(500);
   }
   addComment(){
-    var msg = $("#comment-text"+this.post.id).text();
+    var msg = $("#comment-text"+this.post.id).val();
     if(msg === ""){
       return;
     }
     else{
-      $("#comment-text"+this.post.id).text("")
+      $("#comment-text"+this.post.id).val("")
       this.socket.emit("new-comment", {
         post_id: this.post.id,
         data :{
