@@ -34,12 +34,11 @@
   </div>
   <div id = "comments" *ngIf = "isComment">
     <!-- list of comments-->
-    <div class="w3-panel w3-green w3-round w3-margin" *ngFor = "let comment of post.comments"><br>
-      <img src="{{comment.author.profile_pic}}" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:30px">
-      <h6>{{comment.author.name}}</h6><br>
-      <p>{{comment.message}}</p>
-      <br>
-      <hr class="w3-clear"> 
-    </div> 
+    <table class="new_comment_table" *ngFor = "let comment of post.comments">
+      <tr class="new_comment_row">
+        <td class="new_comment_img" ><img src="{{comment.author.profile_pic}}" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:40px"></td>
+        <td class="new_comment_text" ><h6><b>{{comment.author.name}}</b></h6>: {{comment.message}}
+      </tr>
+    </table>
   </div> 
 </div>

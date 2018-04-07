@@ -1,0 +1,20 @@
+.new_comment_table
+{
+clear:left;
+float:none;
+overflow:hidden;
+padding:5px 0 4px 5px;
+width:380px;
+font-size:11px;
+margin:1px 0 0 25px;
+}
+.new_comment_row
+{
+background-color:rgb(18, 231, 46);
+}
+.new_comment_text
+{
+width:300px;
+margin-top:2px;
+vertical-align:top;
+}
