@@ -1,0 +1,9 @@
+body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
+    .w3-row-padding img {margin-bottom: 12px}
+    .bgimg {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-image: url('https://scontent.fsgn2-1.fna.fbcdn.net/v/t1.0-9/20883047_1366491023471643_1741232120989624938_n.jpg?_nc_cat=0&oh=96a436e218dc831333ffc387cef06640&oe=5B35B9E3');
+        min-height: 100%;
+    }

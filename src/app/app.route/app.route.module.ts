@@ -4,6 +4,7 @@ import {LoginComponent} from  "../login/login.component";
 import { AuthGuard } from '../auth.guard';
 import { AnonymousGuard } from '../anonymous.guard';
 import { DashboardComponent } from '../dashboard/dashboard.component';
+import {MessengerComponent} from "../messenger/messenger.component"
 const appRoute : Routes = [
   {
     path: 'login',
@@ -11,6 +12,7 @@ const appRoute : Routes = [
     canActivate: [AnonymousGuard]
   },
   {path: 'dashboard', component:DashboardComponent, canActivate : [AuthGuard]},
+  {path: 'messenger', component : MessengerComponent, canActivate :[AuthGuard]},
   {path: '', redirectTo: "login", pathMatch :"full"},
 ]
 @NgModule({
