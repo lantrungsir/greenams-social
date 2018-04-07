@@ -5,7 +5,7 @@ float:none;
 overflow:hidden;
 padding:5px 0 4px 5px;
 width:380px;
-font-size:11px;
+font: size 14;
 margin:1px 0 0 25px;
 }
 .new_comment_row
