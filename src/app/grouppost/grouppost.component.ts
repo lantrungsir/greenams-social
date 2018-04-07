@@ -37,6 +37,11 @@ export class GrouppostComponent implements OnInit {
         this.deleteLike(this.getLikeOrd(data.id))
       }
     })
+    this.socket.on("new-comment", (data)=>{
+      if(parseInt(thisId) + parseInt(data.post_id)- 1 === parseInt(data.sum)){
+        this.post.comments.splice(0,0, data.comment);
+      }
+    })
     if(this.post.images.length > 0){
       this.isImage = true
     }

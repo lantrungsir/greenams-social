@@ -80,6 +80,7 @@ io.on("connection", function(socket){
                 var author = user.val()
                 socket.broadcast.emit("new-comment", {
                     post_id : realId,
+                    sum : number,
                     comment : {
                         author : author,
                         message : data.data.message,
