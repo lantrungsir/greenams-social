@@ -4,7 +4,7 @@ clear:left;
 float:none;
 overflow:hidden;
 padding:5px 0 4px 5px;
-width:380px;
+width:500px;
 font: size 14;
 margin:1px 0 0 25px;
 }
@@ -14,7 +14,7 @@ background-color:rgb(18, 231, 46);
 }
 .new_comment_text
 {
-width:300px;
+width:420px;
 margin-top:2px;
 vertical-align:top;
 }
