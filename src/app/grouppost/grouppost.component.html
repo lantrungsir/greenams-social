@@ -34,7 +34,7 @@
   </div>
   <div id = "comments" *ngIf = "isComment">
     <!-- list of comments-->
-    <div class="w3-container w3-card w3-white w3-round w3-margin" *ngFor = "let comment of post.comments"><br>
+    <div class="w3-panel w3-card w3-white w3-round w3-margin" *ngFor = "let comment of post.comments"><br>
       <img src="{{comment.author.profile_pic}}" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:30px">
       <h6>{{comment.author.name}}</h6><br>
       <p>{{comment.message}}</p>
