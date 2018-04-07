@@ -42,7 +42,7 @@ export class GrouppostComponent implements OnInit {
         this.post.comments.splice(0,0,{
           author : data.comment.author,
           message : data.comment.message,
-          
+          id : 1
         });
       }
     })
