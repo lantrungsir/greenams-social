@@ -40,7 +40,7 @@ body {
     background: #2c3e50;
     color: #f5f5f5;
     overflow: hidden;
-    position: relative;
+    position: fixed;
   }
   @media screen and (max-width: 735px) {
     #frame #sidepanel {
