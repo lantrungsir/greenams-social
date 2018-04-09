@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from "../user.service"
+import { AuthHttp } from 'angular2-jwt';
 @Component({
   selector: 'app-messenger',
   templateUrl: './messenger.component.html',
@@ -7,9 +8,15 @@ import {UserService} from "../user.service"
 })
 export class MessengerComponent implements OnInit {
   currentUser : any
-  constructor(private userService : UserService) {
+  users: any
+  userKeys : any
+  constructor(private userService : UserService, private http :AuthHttp) {
     this.userService.getCurrentUser().then((user)=>{
       this.currentUser = user
+    })
+    this.http.get("api/users").toPromise().then((res)=>{
+      this.users = res.json();
+      this.userKeys = Object.keys(this.users);
     })
    }
 

@@ -75,5 +75,21 @@ module.exports ={
                 data : data
             }));
         });
+    },
+
+    //get all users data
+    getAllUsers : function(req, res){
+        db.getData("users").then((data)=>{
+            for(key in data){
+                if(data.hasOwnProperty(key)){
+                    if(data[key].realtime !== null){
+                        data[key].realtime = "online"
+                    }
+                    else{
+                        data[key].realtime = "offline"                    }
+                }
+            }
+            res.status(200).send(JSON.stringify(data))
+        })
     }
 }

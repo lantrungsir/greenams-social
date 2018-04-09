@@ -1,3 +1,5 @@
+import { TokenExpiredError } from "./C:/Users/Administrator/AppData/Local/Microsoft/TypeScript/2.6/node_modules/@types/jsonwebtoken";
+
 //middleware
 var bodyParser = require("body-parser")
 var cors =  require("cors")
@@ -28,5 +30,6 @@ module.exports = {
         app.post("/api/upload", multer({
             storage : multer.memoryStorage()
         }).array("uploads"), TokenManagement.authenticateRequest, ApiResolve.filesUploadHandle)
+        app.get("/api/users", TokenManagement.authenticateRequest, ApiResolve)
     } 
 }
