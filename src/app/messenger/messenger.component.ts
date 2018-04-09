@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from "../user.service"
 import { AuthHttp } from 'angular2-jwt';
+import { UpdateService } from '../update.service';
 @Component({
   selector: 'app-messenger',
   templateUrl: './messenger.component.html',
@@ -10,7 +11,8 @@ export class MessengerComponent implements OnInit {
   currentUser : any
   users: any
   userKeys : any
-  constructor(private userService : UserService, private http :AuthHttp) {
+  socket: any
+  constructor(private userService : UserService, private http :AuthHttp, private ioService : UpdateService) {
     this.userService.getCurrentUser().then((user)=>{
       this.currentUser = user
       Object.defineProperty(this.currentUser, "id", {
@@ -23,9 +25,18 @@ export class MessengerComponent implements OnInit {
       this.users = res.json();
       this.userKeys = Object.keys(this.users);
     })
+    this.socket = this.ioService.socket
    }
 
   ngOnInit() {
+    this.socket.on("online", function(user){
+      this.userKeys.push(user.id);
+      Object.defineProperty(this.users, user.id, {
+        value : user.data,
+        configurable: true,
+        writable: true
+      })
+    })
   }
 
 }
