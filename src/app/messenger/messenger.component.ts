@@ -32,7 +32,6 @@ export class MessengerComponent implements OnInit {
    }
 
   ngOnInit() {
-    
     this.socket.on("online", (user)=>{
       Object.defineProperty(this.users, user.id, {
         value : user.data,
