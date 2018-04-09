@@ -3,7 +3,7 @@ import {UserService} from "../user.service"
 @Component({
   selector: 'app-messenger',
   templateUrl: './messenger.component.html',
-  styleUrls: ['./messenger.component.css']
+  styleUrls: ['./messenger.component.scss']
 })
 export class MessengerComponent implements OnInit {
   currentUser : any
