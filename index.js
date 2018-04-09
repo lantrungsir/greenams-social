@@ -24,9 +24,22 @@ io.on("connection", function(socket){
                 "id": "",
                 "data":{}
             }
-            Object.defineProperty(result,"id", data.uid);
-            Object.defineProperty(result, "data",  user);
-            Object.defineProperty(result.data, "realtime", "online")
+            Object.defineProperty(result,"id", 
+            {
+                value: data.uid,
+                configurable: true,
+                writable: true
+            });
+            Object.defineProperty(result, "data", {
+                value : user,
+                configurable: true,
+                writable: true
+            });
+            Object.defineProperty(result.data, "realtime", {
+                value : "offline",
+                configurable: true,
+                writable: true
+            })
             socket.broadcast.emit("online", result)
         })
        
