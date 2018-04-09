@@ -557,8 +557,10 @@
   }
   #frame .content .messages ul li.sent img {
     margin: 6px 8px 0 0;
+    float: left;
   }
   #frame .content .messages ul li.sent p {
+    float:left;
     background: #435f7a;
     color: #f5f5f5;
   }
@@ -597,7 +599,7 @@
     position: relative;
   }
   #frame .content .message-input .wrap input {
-    font-family: "proxima-nova",  "Source Sans Pro", sans-serif;
+    font-family: "proxima-nova", "Source Sans Pro", sans-serif;
     float: left;
     border: none;
     width: calc(100% - 90px);
@@ -639,7 +641,7 @@
     padding: 12px 0;
     cursor: pointer;
     background: #32465a;
-    color: #f5f5f5;
+    color: #0fc78a;
   }
   @media screen and (max-width: 735px) {
     #frame .content .message-input .wrap button {
