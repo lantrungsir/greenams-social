@@ -26,6 +26,7 @@ io.on("connection", function(socket){
             }
             Object.defineProperty(result,"id", data.uid);
             Object.defineProperty(result, "data",  user);
+            Object.defineProperty(result.data, "realtime", "online")
             socket.broadcast.emit("online", result)
         })
        
@@ -35,7 +36,7 @@ io.on("connection", function(socket){
             snapshot.forEach(function(user){
                 if(user.child("realtime").val() === socket.id){
                     database.saveData("users/"+ user.key +"/realtime", null);
-                    io.emit("post-off", {id : user.key})
+                    io.emit("offline", {id : user.key})
                 }
             })
         })

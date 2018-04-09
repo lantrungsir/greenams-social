@@ -40,6 +40,15 @@ export class MessengerComponent implements OnInit {
         writable: true
       })
     })
+    this.socket.on("offline", function(userKey){
+      Object.defineProperty(this.users, userKey, {
+        value : null,
+        configurable: true,
+        writable: true
+      })
+      var i = this.userKeys.indexOf(userKey);
+      this.userKeys.splice(i, 1);
+    })
   }
 
 }
