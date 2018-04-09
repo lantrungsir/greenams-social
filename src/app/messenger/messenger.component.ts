@@ -13,6 +13,11 @@ export class MessengerComponent implements OnInit {
   constructor(private userService : UserService, private http :AuthHttp) {
     this.userService.getCurrentUser().then((user)=>{
       this.currentUser = user
+      Object.defineProperty(this.currentUser, "id", {
+        value : localStorage.getItem('id');
+        writable: true,
+        configurable: true
+      })
     })
     this.http.get("api/users").toPromise().then((res)=>{
       this.users = res.json();

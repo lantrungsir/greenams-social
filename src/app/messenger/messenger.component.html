@@ -5,7 +5,7 @@
         <i class="fa fa-search"></i>
       </div>
       <ul class="list">
-        <li class="clearfix" *ngFor = "let key of userKeys" *ngIf = "key !== localStorage.getItem('id')">
+        <li class="clearfix" *ngFor = "let key of userKeys" *ngIf = "key !== currentUser.id">
           <img src="{{users[key].profile_pic}}" alt="avatar" class = "w3-circle"/>
           <div class="about">
             <div class="name">{{users[key].name}}</div>
