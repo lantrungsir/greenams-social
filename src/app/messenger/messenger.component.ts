@@ -32,13 +32,15 @@ export class MessengerComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.socket.on("online", function(user){
+    this.socket.on("online", (user)=>{
       Object.defineProperty(this.users, user.id, {
         value : user.data,
         configurable: true,
         writable: true
       })
-      this.userKeys = Object.keys(this.users)
+      if(this.userKeys.indexOf(user.id) === -1){
+        this.userKeys.push(user.id)
+      }
     })
     this.socket.on("offline", function(userKey){
       Object.defineProperty(this.users[userKey], "realtime", {
