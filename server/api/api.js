@@ -86,9 +86,11 @@ module.exports ={
                         data[key].realtime = "online"
                     }
                     else{
-                        data[key].realtime = "offline"                    }
+                        data[key].realtime = "offline"                    
+                    }
                 }
             }
+            console.log(data)
             res.status(200).send(JSON.stringify(data))
         })
     }
