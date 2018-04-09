@@ -1,5 +1,3 @@
-import { TokenExpiredError } from "./C:/Users/Administrator/AppData/Local/Microsoft/TypeScript/2.6/node_modules/@types/jsonwebtoken";
-
 //middleware
 var bodyParser = require("body-parser")
 var cors =  require("cors")
