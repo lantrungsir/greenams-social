@@ -5,14 +5,16 @@
         <i class="fa fa-search"></i>
       </div>
       <ul class="list">
-        <li class="clearfix" *ngFor = "let key of userKeys" *ngIf = "key !== currentUser.id">
+        <li class="clearfix" *ngFor = "let key of userKeys" >
+		<div *ngIf = "key !== currentUser.id">
           <img src="{{users[key].profile_pic}}" alt="avatar" class = "w3-circle"/>
           <div class="about">
             <div class="name">{{users[key].name}}</div>
             <div class="status">
               <i class="fa fa-circle {{users[key].realtime}} "></i> {{users[key].realtime}}
             </div>
-          </div>
+		  </div>
+		</div>
         </li>
       </ul>
     </div>
