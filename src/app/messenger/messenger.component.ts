@@ -25,7 +25,10 @@ export class MessengerComponent implements OnInit {
       this.users = res.json();
       this.userKeys = Object.keys(this.users);
     })
-    this.socket = this.ioService.socket
+    this.socket = this.ioService.socket;
+    this.socket.emit("post-on", {
+      uid : localStorage.getItem('id')
+    })
    }
 
   ngOnInit() {
