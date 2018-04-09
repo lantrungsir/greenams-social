@@ -594,7 +594,8 @@
     z-index: 99;
   }
   #frame .content .message-input .wrap {
-    position: relative;
+    position: absolute;
+    bottom : 0px
   }
   #frame .content .message-input .wrap input {
     font-family: "proxima-nova",  "Source Sans Pro", sans-serif;
