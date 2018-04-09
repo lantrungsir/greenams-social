@@ -14,7 +14,7 @@ export class MessengerComponent implements OnInit {
     this.userService.getCurrentUser().then((user)=>{
       this.currentUser = user
       Object.defineProperty(this.currentUser, "id", {
-        value : localStorage.getItem('id');
+        value : localStorage.getItem('id'),
         writable: true,
         configurable: true
       })
