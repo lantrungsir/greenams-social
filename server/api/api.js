@@ -82,7 +82,7 @@ module.exports ={
         db.getData("users").then((data)=>{
             for(key in data){
                 if(data.hasOwnProperty(key)){
-                    if(data[key].realtime !== null){
+                    if(data[key].realtime !== undefined){
                         data[key].realtime = "online"
                     }
                     else{
