@@ -50,6 +50,7 @@ io.on("connection", function(socket){
             snapshot.forEach(function(user){
                 if(user.child("realtime").val() === socket.id){
                     database.saveData("users/"+ user.key +"/realtime", null);
+                    console.log(user.key)
                     io.emit("offline", {id : user.key})
                 }
             })
