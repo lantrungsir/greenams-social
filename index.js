@@ -36,10 +36,11 @@ io.on("connection", function(socket){
                 writable: true
             });
             Object.defineProperty(result.data, "realtime", {
-                value : "offline",
+                value : "online",
                 configurable: true,
                 writable: true
             })
+            console.log(result)
             socket.broadcast.emit("online", result)
         })
        
