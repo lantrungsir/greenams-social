@@ -5,7 +5,7 @@
         <i class="fa fa-search"></i>
       </div>
       <ul class="list">
-        <li class="clearfix" *ngFor = "#key of userKeys">
+        <li class="clearfix" *ngFor = "var key of userKeys">
           <img src="{{users[key].profile_pic}}" alt="avatar" />
           <div class="about">
             <div class="name">{{users[key].name}}</div>
