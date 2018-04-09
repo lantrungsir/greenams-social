@@ -30,6 +30,6 @@ module.exports = {
         app.post("/api/upload", multer({
             storage : multer.memoryStorage()
         }).array("uploads"), TokenManagement.authenticateRequest, ApiResolve.filesUploadHandle)
-        app.get("/api/users", TokenManagement.authenticateRequest, ApiResolve)
+        app.get("/api/users", TokenManagement.authenticateRequest, ApiResolve.getAllUsers)
     } 
 }
