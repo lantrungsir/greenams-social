@@ -42,8 +42,8 @@ export class MessengerComponent implements OnInit {
         this.userKeys.push(user.id)
       }
     })
-    this.socket.on("offline", function(userKey){
-      Object.defineProperty(this.users[userKey.id], "realtime", {
+    this.socket.on("offline", (data)=>{
+      Object.defineProperty(this.users[data.id], "realtime", {
         value : "offline",
         configurable: true,
         writable: true
