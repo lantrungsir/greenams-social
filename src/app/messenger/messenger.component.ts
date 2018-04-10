@@ -54,12 +54,10 @@ export class MessengerComponent implements OnInit {
     //des resizable window :
     if($(window).width() <= 400){
       $(".chat").hide();
-      $(".container").show();
     }
     $(window).resize(()=>{
       if($(window).width() <= 400){
         $(".chat").hide();
-        $(".container").show();
       }
       else{
         $(".chat").show();
