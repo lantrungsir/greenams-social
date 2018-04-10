@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UserService} from "../user.service"
 import { AuthHttp } from 'angular2-jwt';
 import { UpdateService } from '../update.service';
+import * as $ from "jquery"
 @Component({
   selector: 'app-messenger',
   templateUrl: './messenger.component.html',
@@ -48,6 +49,15 @@ export class MessengerComponent implements OnInit {
         configurable: true,
         writable: true
       })
+    })
+
+    //des resizable window :
+    if($(window).width() <= 400){
+      $(".chat").hide();
+      $(".container").show();
+    }
+    $(window).resize((event)=>{
+      console.log(event);
     })
   }
 
