@@ -62,6 +62,7 @@ export class MessengerComponent implements OnInit {
         $("#people-list").width(w)
       }
       else{
+        $("#people-list").width("33%")
         $(".chat").show();
       }
     })
