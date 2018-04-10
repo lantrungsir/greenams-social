@@ -61,6 +61,9 @@ export class MessengerComponent implements OnInit {
         $(".chat").hide();
         $(".container").show();
       }
+      else{
+        $(".chat").show();
+      }
     })
   }
 
