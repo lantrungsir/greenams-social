@@ -56,8 +56,8 @@ export class MessengerComponent implements OnInit {
       $(".chat").hide();
       $(".container").show();
     }
-    $(window).resize((event)=>{
-      console.log(event);
+    $(window).resize(()=>{
+      console.log($(window).width())
     })
   }
 
