@@ -10,14 +10,14 @@
                     <i class="fa fa-circle {{users[key].realtime}} "></i> {{users[key].realtime}}
                   </div>
                 </div>
-              <hr class="w3-clear">
-		      </div>
+          </div>
+          <hr class="w3-clear">
         </li>
       </ul>
     </div>
     
-    <div class="chat" *ngIf= "selectedChatroom !== null">
-      <div class="chat-header clearfix">
+    <div class="chat" >
+      <div class="chat-header clearfix" *ngIf= "selectedChatroom !== null">
         <img src="{{users[selectedChatroom.to].profile_pic}}" alt="avatar" />
         
         <div class="chat-about">
@@ -26,7 +26,7 @@
         <i class="fa fa-star"></i>
       </div> <!-- end chat-header -->
       
-      <div class="chat-history">
+      <div class="chat-history" *ngIf= "selectedChatroom !== null">
         <ul>
           <li class="clearfix" *ngFor = "let message of selectedChatroom.messages">
             <div *ngIf = "message.author === currentUser.id ; then forme else forother">
