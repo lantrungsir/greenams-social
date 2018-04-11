@@ -1,5 +1,3 @@
-import { ActionSequence } from "selenium-webdriver";
-
 //middleware
 var bodyParser = require("body-parser")
 var cors =  require("cors")
