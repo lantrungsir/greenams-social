@@ -13,7 +13,7 @@ export class MessengerComponent implements OnInit {
   users: any
   userKeys : any
   socket: any
-  selectedChatroom : any
+  selectedChatroom : any = null;
   constructor(private userService : UserService, private http :AuthHttp, private ioService : UpdateService) {
     this.userService.getCurrentUser().then((user)=>{
       this.currentUser = user

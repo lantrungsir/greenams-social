@@ -16,7 +16,7 @@
       </ul>
     </div>
     
-    <div class="chat">
+    <div class="chat" *ngIf= "selectedChatroom !== null">
       <div class="chat-header clearfix">
         <img src="{{users[selectedChatroom.to].profile_pic}}" alt="avatar" />
         
