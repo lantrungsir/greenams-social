@@ -69,7 +69,24 @@ export class MessengerComponent implements OnInit {
     })
   }
   chooseChatRoom(key: string){
-    
+    if(this.users[key] !== undefined){
+      this.http.get("api/messages/individual?from="+this.currentUser.id+ "&to=" +key).toPromise()
+      .then((res)=>{
+        this.selectedChatroom = {
+          "type" :"individual",
+          "to" : key,
+          "messages" : res.json()
+        }
+      })
+    } 
+    else {
+      if(key === "admin"){
+
+      }
+      if(key === "group"){
+
+      }
+    }
   }
 
 }

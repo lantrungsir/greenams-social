@@ -93,5 +93,20 @@ module.exports ={
             console.log(data)
             res.status(200).send(JSON.stringify(data))
         })
+    },
+    //get indvidual messages :
+    getIndividualMessages: function(req,res){
+        var from = req.query["from"];
+        var to = req.query["to"]
+        db.getIndividualMessages(from, to).then((data)=>{
+            var purifiedData = []
+            for(key in data){
+                if(data.hasOwnProperty(key)){
+                    purifiedData.push(data[key]);
+                }
+            }
+            console.log(purifiedData);
+            res.status(200).send(JSON.stringify(purifiedData))
+        })
     }
 }

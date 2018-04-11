@@ -84,5 +84,17 @@ module.exports = {
                 })
             })
         })
+    },
+    getIndividualMessages:  async function(from, to){
+        return new Promise((resolve, reject)=>{
+            db.ref("messages/individual").once("value", function(data){
+                data.forEach(function(chatroom){
+                    var keys = chatroom.key.split("*");
+                    if(keys.indexOf(from)!== -1 && keys.indexOf(to)!== -1){
+                        resolve(chatroom.val())
+                    }
+                })
+            })
+        })
     }
 }
