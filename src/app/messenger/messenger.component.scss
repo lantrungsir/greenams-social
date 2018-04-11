@@ -18,13 +18,13 @@ body {
 
 .container {
   margin: 0 auto;
-  width: 750px;
+  width: 100%;
   background: #444753;
   border-radius: 5px;
 }
 
 .people-list {
-  width:260px;
+  width:33%;
   float: left;
   
   .search {
@@ -49,10 +49,6 @@ body {
   ul {
     padding: 20px;
     height: 770px;
- 
-    
-    
-    
     li {
       padding-bottom: 20px;
     }
@@ -78,7 +74,7 @@ body {
 }
 
 .chat {
-  width: 490px;
+  width: 67%;
   float:left;
   background: #F2F5F8;
   border-top-right-radius: 5px;
@@ -169,9 +165,9 @@ body {
   
   .chat-message {
     padding: 30px;
-    position : fixed;
+    position: fixed;
     bottom :0 ;
-    right :0;
+    right :0 ;
     textarea {
       width: 100%;
       border: none;
@@ -206,45 +202,6 @@ body {
     }
   }
 }
-
-.online, .offline, .me {
-    margin-right: 3px;
-    font-size: 10px;
-  }
-  
-.online {
-  color: $green;
-}
-  
-.offline {
-  color: $orange;
-}
-
-.me {
-  color: $blue;
-}
-
-.align-left {
-  text-align: left;
-}
-
-.align-right {
-  text-align: right;
-}
-
-.float-right {
-  float: right;
-}
-
-.clearfix:after {
-	visibility: hidden;
-	display: block;
-	font-size: 0;
-	content: " ";
-	clear: both;
-	height: 0;
-}
-
 
 .online, .offline, .me {
     margin-right: 3px;
