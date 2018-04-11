@@ -14,7 +14,7 @@
         <div class="clearfix" *ngFor = "let group of groupKeys" (click)= "chooseChatRoom(group, 'group')" >
                   <img src="{{groups[group].picture}}" alt="avatar" class = "w3-circle" style="width:60px"/>
                   <div class="about">
-                    <div class="name">{{group.name}}</div>
+                    <div class="name">{{groups[group].name}}</div>
                     <div class="status">
                       <i class="fa fa-circle online "></i> online
                     </div>
