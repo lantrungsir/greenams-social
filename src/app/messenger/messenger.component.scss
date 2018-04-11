@@ -165,7 +165,8 @@ body {
   
   .chat-message {
     padding: 30px;
-    
+    position : fixed;
+    bottom : 0px;
     textarea {
       width: 100%;
       border: none;
