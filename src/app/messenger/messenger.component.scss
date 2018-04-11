@@ -18,13 +18,13 @@ body {
 
 .container {
   margin: 0 auto;
-  width: 100%;
+  width: 750px;
   background: #444753;
   border-radius: 5px;
 }
 
 .people-list {
-  width:33%;
+  width:260px;
   float: left;
   
   .search {
@@ -49,6 +49,10 @@ body {
   ul {
     padding: 20px;
     height: 770px;
+ 
+    
+    
+    
     li {
       padding-bottom: 20px;
     }
@@ -74,7 +78,7 @@ body {
 }
 
 .chat {
-  width: 67%;
+  width: 490px;
   float:left;
   background: #F2F5F8;
   border-top-right-radius: 5px;
@@ -100,6 +104,11 @@ body {
       font-weight: bold;
       font-size: 16px;
     }
+    
+    .chat-num-messages {
+      color: $gray;
+    }
+    
     .fa-star {
       float: right;
       color: #D8DADF;
@@ -166,6 +175,7 @@ body {
   .chat-message {
     padding: 30px;
     position: fixed;
+    float: left;
     textarea {
       width: 100%;
       border: none;
@@ -200,6 +210,45 @@ body {
     }
   }
 }
+
+.online, .offline, .me {
+    margin-right: 3px;
+    font-size: 10px;
+  }
+  
+.online {
+  color: $green;
+}
+  
+.offline {
+  color: $orange;
+}
+
+.me {
+  color: $blue;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.float-right {
+  float: right;
+}
+
+.clearfix:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+}
+
 
 .online, .offline, .me {
     margin-right: 3px;
