@@ -19,14 +19,16 @@ body {
 .container {
   margin: 0 auto;
   width: 100%;
+  width :100%;
   background: #444753;
   border-radius: 5px;
 }
 
 .people-list {
   width:33%;
+  height : 100%;
   float: left;
-  
+  overflow: scroll;
   .search {
     padding: 20px;
   }
@@ -168,6 +170,7 @@ body {
     position: fixed;
     bottom :0 ;
     right :0 ;
+    width :100%;
     textarea {
       width: 100%;
       border: none;
