@@ -28,7 +28,6 @@ body {
   width:33%;
   height : 100%;
   float: left;
-  overflow: scroll;
   .search {
     padding: 20px;
   }
@@ -170,7 +169,6 @@ body {
     position: fixed;
     bottom :0 ;
     right :0 ;
-    width :100%;
     textarea {
       width: 100%;
       border: none;
@@ -179,7 +177,6 @@ body {
       margin-bottom: 10px;
       border-radius: 5px;
       resize: none;
-      
     }
     
     .fa-file-o, .fa-file-image-o {
