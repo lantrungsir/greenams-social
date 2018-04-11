@@ -113,7 +113,11 @@ export class MessengerComponent implements OnInit {
           "messages" : res.json()
         }
       })
-    } 
+    }
+    if($(window).width() <= 400){
+      $('.people-list').hide();
+      $('.chat').animate({left: 0});
+    }
   }
 
 }
