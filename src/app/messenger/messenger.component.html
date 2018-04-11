@@ -15,46 +15,51 @@
       </ul>
     </div>
     
-    <div class="chat" >
-      <div class="chat-header clearfix" *ngIf= "selectedChatroom !== null">
-        <img src="{{users[selectedChatroom.to].profile_pic}}" alt="avatar" />
-        
-        <div class="chat-about">
-          <div class="chat-with">Chat with {{users[selectedChatroom.to].name}}</div>
-        </div>
-        <i class="fa fa-star"></i>
-      </div> <!-- end chat-header -->
-      
-      <div class="chat-history" *ngIf= "selectedChatroom !== null">
-        <ul>
-          <li class="clearfix" *ngFor = "let message of selectedChatroom.messages">
-            <div *ngIf = "message.author === currentUser.id ; then forme else forother">
+    <div class="chat" *ngIf= "selectedChatroom !== null; then displaychatroom else displaygart" >
+     
+      </div> <!-- end chat-history -->
+      <ng-template #displaygart>
+        <nav class="w3-sidebar w3-hide-medium w3-hide-small" style="width:40%">
+          <div class="bgimg"></div>
+        </nav></ng-template>
+      <ng-template #displaychatroom>
+          <div class="chat-header clearfix" >
+              <img src="{{users[selectedChatroom.to].profile_pic}}" alt="avatar" />
               
-             
-            </div>
-          <ng-template #forme><div class="message-data align-right">
-              <span class="message-data-time" >{{message.time}}</span> &nbsp; &nbsp;
-              <span class="message-data-name" >You</span><i class="fa fa-circle me"></i>
-              
-            </div>
-            <div class="message other-message float-right">
-              {{message.text}}
-            </div>
-          </ng-template>
-            <ng-template #forother>
-                <div class="message-data">
-                    <span class="message-data-name"><i class="fa fa-circle online"></i> {{users[message.author].name}}</span>
-                    <span class="message-data-time">{{message.time}}</span>
+              <div class="chat-about">
+                <div class="chat-with">Chat with {{users[selectedChatroom.to].name}}</div>
+              </div>
+              <i class="fa fa-star"></i>
+            </div> <!-- end chat-header -->
+            
+            <div class="chat-history">
+              <ul>
+                <li class="clearfix" *ngFor = "let message of selectedChatroom.messages">
+                  <div *ngIf = "message.author === currentUser.id ; then forme else forother">
+                    
+                   
                   </div>
-                  <div class="message my-message">
+                <ng-template #forme><div class="message-data align-right">
+                    <span class="message-data-time" >{{message.time}}</span> &nbsp; &nbsp;
+                    <span class="message-data-name" >You</span><i class="fa fa-circle me"></i>
+                    
+                  </div>
+                  <div class="message other-message float-right">
                     {{message.text}}
                   </div>
-            </ng-template>
-          </li>
-        </ul>
-        
-      </div> <!-- end chat-history -->
-      
+                </ng-template>
+                  <ng-template #forother>
+                      <div class="message-data">
+                          <span class="message-data-name"><i class="fa fa-circle online"></i> {{users[message.author].name}}</span>
+                          <span class="message-data-time">{{message.time}}</span>
+                        </div>
+                        <div class="message my-message">
+                          {{message.text}}
+                        </div>
+                  </ng-template>
+                </li>
+              </ul>
+      </ng-template>
       <div class="chat-message clearfix">
         <textarea name="message-to-send" id="message-to-send" placeholder ="Type your message" rows="3"></textarea>
                 
