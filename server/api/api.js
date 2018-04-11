@@ -98,11 +98,18 @@ module.exports ={
     getIndividualMessages: function(req,res){
         var from = req.query["from"];
         var to = req.query["to"]
-        db.getIndividualMessages(from, to).then((data)=>{
+        db.getData("messages/individual").then((data)=>{
             var purifiedData = []
             for(key in data){
                 if(data.hasOwnProperty(key)){
-                    purifiedData.push(data[key]);
+                    var keys =  key.split("*");
+                    if(keys.indexOf(from)!== -1 && keys.indexOf(to)!==-1){
+                        for(subkey in data[key]){
+                            if(data[key].hasOwnProperty(subkey)){
+                                purifiedData.push(data[key][subkey]);
+                            }
+                        }
+                    }
                 }
             }
             console.log(purifiedData);
