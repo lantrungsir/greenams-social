@@ -29,6 +29,6 @@ module.exports = {
             storage : multer.memoryStorage()
         }).array("uploads"), TokenManagement.authenticateRequest, ApiResolve.filesUploadHandle)
         app.get("/api/users", TokenManagement.authenticateRequest, ApiResolve.getAllUsers)
-        app.get("api/messages/individual", TokenManagement.authenticateRequest, ApiResolve.getIndividualMessages)
+        app.get("/api/messages/individual", TokenManagement.authenticateRequest, ApiResolve.getIndividualMessages)
     } 
 }
