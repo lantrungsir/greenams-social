@@ -80,6 +80,7 @@ export class MessengerComponent implements OnInit {
         $("#people-list").width(w)
       }
       else{
+        $("#people-list").show()
         $("#people-list").width("33%");
         $(".chat").width('67%')
         $(".chat").show();
