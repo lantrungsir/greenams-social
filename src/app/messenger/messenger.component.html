@@ -1,8 +1,8 @@
 <div class="container clearfix">
     <div class="people-list" id="people-list">
-        <div class="clearfix" *ngFor = "let key of userKeys" (click)= "chooseChatRoom(key,'personal')" >
+        <div class="clearfix" *ngFor = "let key of userKeys" (click)= "chooseChatRoom(key,'personal')"  >
           <div *ngIf = "key !== currentUser.id">
-                <img src="{{users[key].profile_pic}}" alt="avatar" class = "w3-circle"/>
+                <img src="{{users[key].profile_pic}}" alt="avatar" class = "w3-circle" style="width:60px"/>
                 <div class="about">
                   <div class="name">{{users[key].name}}</div>
                   <div class="status">
@@ -24,7 +24,7 @@
     
     <div class="chat" >
       <div class="chat-header clearfix">
-          <img src="{{selectedChatroom.picture}}" alt="avatar" />
+          <img src="{{selectedChatroom.picture}}" alt="avatar" style="width:60px" />
         
           <div class="chat-about">
             <div class="chat-with">{{selectedChatroom.name}}</div>
