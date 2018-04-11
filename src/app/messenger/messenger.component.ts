@@ -115,7 +115,8 @@ export class MessengerComponent implements OnInit {
       })
     }
     if($(window).width() <= 400){
-      $('.people-list').hide();
+      $('#people-list').hide();
+      $('.chat').width($(window).width())
       $('.chat').animate({left: 0});
     }
   }
