@@ -80,7 +80,8 @@ export class MessengerComponent implements OnInit {
         $("#people-list").width(w)
       }
       else{
-        $("#people-list").width("33%")
+        $("#people-list").width("33%");
+        $(".chat").width('67%')
         $(".chat").show();
       }
     })
@@ -117,7 +118,7 @@ export class MessengerComponent implements OnInit {
     if($(window).width() <= 400){
       $('#people-list').hide();
       $('.chat').width($(window).width())
-      $('.chat').animate({left: 0});
+      $('.chat').show();
     }
   }
 
