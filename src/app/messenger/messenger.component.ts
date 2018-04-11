@@ -77,6 +77,7 @@ export class MessengerComponent implements OnInit {
       var w = $(window).width();
       if($(window).width() <= 400){
         $(".chat").hide();
+        $("#people-list").show();
         $("#people-list").width(w)
       }
       else{
