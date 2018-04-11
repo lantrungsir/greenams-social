@@ -14,6 +14,8 @@ export class MessengerComponent implements OnInit {
   userKeys : any
   socket: any
   selectedChatroom : any = null;
+  groups: any;
+  groupKeys: any
   constructor(private userService : UserService, private http :AuthHttp, private ioService : UpdateService) {
     this.userService.getCurrentUser().then((user)=>{
       this.currentUser = user
@@ -26,6 +28,21 @@ export class MessengerComponent implements OnInit {
     this.http.get("api/users").toPromise().then((res)=>{
       this.users = res.json();
       this.userKeys = Object.keys(this.users);
+    })
+    this.http.get("api/messages/groups").toPromise().then((res)=>{
+      this.groups = res.json();
+      
+      this.groupKeys = Object.keys(this.groups)
+    })
+    this.http.get("api/messages/groups?id=main").toPromise().then((res)=>{
+      var data = res.json()
+      this.selectedChatroom = {
+        "type": "group",
+        "name": data.name,
+        "id": "main",
+        picture : data.picture,
+        'messages': data['messages']
+      }
     })
     this.socket = this.ioService.socket;
     this.socket.emit("post-on", {
@@ -68,25 +85,35 @@ export class MessengerComponent implements OnInit {
       }
     })
   }
-  chooseChatRoom(key: string){
-    if(this.users[key] !== undefined){
+  chooseChatRoom(key: string, type: string){
+    if(type === "admin"){
+
+    }
+    if(type === "group"){
+      this.http.get("api/messages/groups?id="+key).toPromise()
+        .then((res)=>{
+          var data = res.json()
+          this.selectedChatroom = {
+            "type": "group",
+            "id": "key",
+            "name" : data.name,
+            "picture" : data.picture,
+            "messages": data['messages']
+          }
+        })
+    }
+    if(type === "personal"){
       this.http.get("api/messages/individual?from="+this.currentUser.id+ "&to=" +key).toPromise()
       .then((res)=>{
         this.selectedChatroom = {
           "type" :"individual",
           "to" : key,
+          "picture" : this.users[key].profile_pic,
+          "name" : this.users[key].name,
           "messages" : res.json()
         }
       })
     } 
-    else {
-      if(key === "admin"){
-
-      }
-      if(key === "group"){
-
-      }
-    }
   }
 
 }

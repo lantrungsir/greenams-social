@@ -115,5 +115,30 @@ module.exports ={
             console.log(purifiedData);
             res.status(200).send(JSON.stringify(purifiedData))
         })
+    },
+    getGroupMessages : function(req,res){
+        var id = req.query.id;
+        if(id !== undefined){
+            db.getData("messages/groups/"+ id).then((data)=>{
+                var messages = []
+                for(key in data['messages']){
+                    if(data['messages'].hasOwnProperty(key)){
+                        messages.push(data['messages'][key]);
+                    }
+                }
+                data['messages'] =  messages;
+                res.status(200).send(JSON.stringify(data))
+            })
+        }
+        else{
+            db.getData("messages/groups").then((data)=>{
+                for(key in data){
+                    if(data.hasOwnProperty(key)){
+                        data[key]['messages'] = null;
+                    }
+                }
+                res.status(200).send(JSON.stringify(data));
+            })
+        }
     }
 }
