@@ -2,7 +2,7 @@
     <div class="people-list" id="people-list">
         <div class="clearfix" *ngFor = "let key of userKeys" (click)= "chooseChatRoom(key,'personal')"  >
           <div *ngIf = "key !== currentUser.id">
-                <img src="{{users[key].profile_pic}}" alt="avatar" class = "w3-circle" style="width:60px"/>
+                <img src="{{users[key].profile_pic}}" alt="avatar" style="width:60px"/>
                 <div class="about">
                   <div class="name">{{users[key].name}}</div>
                   <div class="status">
