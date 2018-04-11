@@ -19,14 +19,14 @@ body {
 .container {
   margin: 0 auto;
   width: 100%;
-  width :100%;
+  height :100%;
   background: #444753;
   border-radius: 5px;
 }
 
 .people-list {
   width:33%;
-  height : 100%;
+  height :100%;
   float: left;
   .search {
     padding: 20px;
@@ -46,15 +46,7 @@ body {
     position: relative;
     left: -25px;
   }
-  
-  ul {
-    padding: 20px;
-    height: 770px;
-    li {
-      padding-bottom: 20px;
-    }
-  }
-  
+
   img {
     float: left;
   }
@@ -103,7 +95,7 @@ body {
     }
     .fa-star {
       float: right;
-      color: #D8DADF;
+      color: rgb(232, 248, 9);
       font-size: 20px;
       margin-top: 12px;
     }
