@@ -29,7 +29,7 @@
       <div class="chat-history">
         <ul>
           <li class="clearfix" *ngFor = "let message of selectedChatroom.messages">
-            <div *ngIf = "if(message.author === currentUser.id); then forme else forother">
+            <div *ngIf = "message.author === currentUser.id ; then forme else forother">
               
              
             </div>
