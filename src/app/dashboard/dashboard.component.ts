@@ -51,7 +51,7 @@ export class DashboardComponent implements OnInit {
    }
 
   ngOnInit() {
-    
+    $("div .container").hide()
   }
 
 
