@@ -20,9 +20,9 @@
 
 <!-- Navbar on small screens -->
 <div class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large" #navDemo>
-  <a href="#" class="w3-bar-item w3-button w3-padding-large">GROUP</a>
-  <a href="#" class="w3-bar-item w3-button w3-padding-large">CHAT</a>
-  <a href="#" class="w3-bar-item w3-button w3-padding-large">SCHEDULE</a>
+  <a class="w3-bar-item w3-button w3-padding-large">GROUP</a>
+  <a class="w3-bar-item w3-button w3-padding-large" (click) = "navigateChat()"><i class="fa fa-envelope"></i> CHAT</a>
+  <a class="w3-bar-item w3-button w3-padding-large">SCHEDULE</a>
 </div>
 
 <!-- Page Container -->
@@ -154,6 +154,7 @@
   <!-- Modal content -->
   <div class="modal-content">
       <span class="close">&times;</span>
+      <h2>GreenAms Messenger</h2>
       <app-messenger [currentUser] = "CurrentUser"></app-messenger>
   </div>
 </div>
