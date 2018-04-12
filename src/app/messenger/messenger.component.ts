@@ -7,7 +7,7 @@ import * as $ from "jquery"
 @Component({
   selector: 'app-messenger',
   templateUrl: './messenger.component.html',
-  styleUrls: ['./messenger.component.scss']
+  styleUrls: ['./messenger.component.css']
 })
 export class MessengerComponent implements OnInit {
   @Input() currentUser : any

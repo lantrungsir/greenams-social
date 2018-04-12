@@ -10,6 +10,7 @@ input[type="file"] {
     padding: 6px 12px;
     cursor: pointer;
 }
+
 #messenger-pop-up {
     position:  fixed;
     bottom :0;
