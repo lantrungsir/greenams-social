@@ -1,77 +1,146 @@
-<div class="container clearfix">
-    <div class="people-list" id="people-list">
-        <div class="clearfix" *ngFor = "let key of userKeys" (click)= "chooseChatRoom(key,'personal')"  >
-          <div *ngIf = "key !== currentUser.id">
-                <img src="{{users[key].profile_pic}}" alt="avatar" style="width:60px" class = "w3-circle"/>
-                <div class="about">
-                  <div class="name">{{users[key].name}}</div>
-                  <div class="status">
-                    <i class="fa fa-circle {{users[key].realtime}} "></i> {{users[key].realtime}}
-                  </div>
-                </div>
-          </div>
-          <br>
-        </div>
-        <div class="clearfix" *ngFor = "let group of groupKeys" (click)= "chooseChatRoom(group, 'group')" >
-                  <img src="{{groups[group].picture}}" alt="avatar" class = "w3-circle" style="width:60px"/>
-                  <div class="about">
-                    <div class="name">{{groups[group].name}}</div>
-                    <div class="status">
-                      <i class="fa fa-circle online "></i> online
-                    </div>
-                  </div>
-        </div>
+<div class="col-md-12 col-sm-12 col-xs-12 first-section">
+  <div class="row">
+    <div class="col-md-8 col-sm-6 col-xs-6 left-first-section">
+      <p>GreenAms Messenger</p>
     </div>
-    
-    <div class="chat">
-      <div class="chat-header clearfix">
-          <img src="{{selectedChatroom.picture}}" alt="avatar" style="width:60px" />
-        
-          <div class="chat-about">
-            <div class="chat-with">{{selectedChatroom.name}}</div>
-          </div>
-          <i class="fa fa-star"></i>
-      </div> <!-- end chat-header -->      
-      <div class="chat-history">
-        <ul>
-          <li class="clearfix" *ngFor = "let message of selectedChatroom.messages">
-            <div *ngIf = "message.author === currentUser.id ; then forme else forother">
-            </div>
-          <ng-template #forme><div class="message-data align-right">
-              <span class="message-data-time" >{{message.time}}</span> &nbsp; &nbsp;
-              <span class="message-data-name" >You</span><i class="fa fa-circle me"></i>
-              
-            </div>
-            <div class="message other-message float-right">
-              {{message.text}}
-            </div>
-          </ng-template>
-            <ng-template #forother>
-                <div class="message-data">
-                    <span class="message-data-name"><i class="fa fa-circle online"></i> {{users[message.author].name}}</span>
-                    <span class="message-data-time">{{message.time}}</span>
-                  </div>
-                  <div class="message my-message">
-                    {{message.text}}
-                  </div>
-            </ng-template>
-          </li>
-        </ul>
-        
-      </div> <!-- end chat-history -->
-      
-      <div class="chat-message clearfix">
-        <textarea name="message-to-send" id="message-to-send" placeholder ="Type your message" rows="3"></textarea>
-                
-        <i class="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;
-        <i class="fa fa-file-image-o"></i>
-        
-        <button>Send</button>
-      </div> <!-- end chat-message -->
-      
-    </div> <!-- end chat -->
-    
-  </div> <!-- end container -->
+    <div class="col-md-4 col-sm-6 col-xs-6 right-first-section">
+      <a href="#"><i class="fa fa-minus" aria-hidden="true"></i></a>
+    </div>
+  </div>
+</div>
+<div class = ".main-section">
+  <div class="container w3layouts agileits">
 
+		<div id="chatbox">
+
+			<div id="friendslist">
+
+				<div id="topmenu">
+					<span class="friends">CONTACTS</span>
+				</div>
+
+				<div id="friends">
+
+					<div class="friend w3layouts">
+						<img src="images/winter-soldier.jpg">
+						<p>
+							<strong>Bucky Barnes</strong>
+							<span>wintersoldier@gmail.com</span>
+						</p>
+						<div class="status available"></div>
+					</div>
+
+					<div class="friend">
+						<img src="images/captain-america.jpg">
+						<p>
+							<strong>Steve Rogers</strong>
+							<span>captainamerica@gmail.com</span>
+						</p>
+						<div class="status away"></div>
+					</div>
+
+					<div class="friend">
+						<img src="images/flying-falcon.jpg">
+						<p>
+							<strong>Sam Wilson</strong>
+							<span>flyingfalcon@gmail.com</span>
+						</p>
+						<div class="status inactive"></div>
+					</div>
+
+					<div class="friend">
+						<img src="images/black-widow.jpg">
+						<p>
+							<strong>Natasha Romanoff</strong>
+							<span>blackwidow@gmail.com</span>
+						</p>
+						<div class="status inactive"></div>
+					</div>
+
+					<div class="friend agileits">
+						<img src="images/iron-man.jpg">
+						<p>
+							<strong>Tony Stark</strong>
+							<span>imironman4u@gmail.com</span>
+						</p>
+						<div class="status inactive"></div>
+					</div>
+
+					<div id="search">
+						<input type="text" id="searchfield" value="Search contacts...">
+					</div>
+
+				</div>
+
+			</div>
+
+			<div id="chatview" class="p1">
+
+				<div id="profile">
+					<div id="close">
+						<div class="cy"></div>
+						<div class="cx"></div>
+					</div>
+					<p>Bucky Barnes</p>
+					<span>wintersoldier@gmail.com</span>
+				</div>
+
+				<div id="chat-messages">
+
+					<label>Monday 01</label>
+
+					<div class="message w3layouts">
+						<img src="images/winter-soldier.jpg">
+						<div class="bubble">
+							Why are you protecting me?
+							<span>4 min</span>
+						</div>
+					</div>
+
+					<div class="message right agileits">
+						<img src="images/captain-america.jpg">
+						<div class="bubble">
+							Coz you're my best friend
+							<span>3 min</span>
+						</div>
+					</div>
+
+					<div class="message">
+						<img src="images/winter-soldier.jpg">
+						<div class="bubble">
+							I don't remember you
+							<span>2 Min</span>
+						</div>
+					</div>
+
+					<div class="message right w3layouts">
+						<img src="images/captain-america.jpg">
+						<div class="bubble">
+							But I remember you
+							<span>1 Min</span>
+						</div>
+					</div>
+
+					<div class="message">
+						<img src="images/winter-soldier.jpg">
+						<div class="bubble">
+							Well, okay!
+							<span>Now</span>
+						</div>
+					</div>
+
+				</div>
+
+				<div id="sendmessage">
+					<input type="text" value="Send message...">
+					<button id="send"></button>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+</div>
 
 

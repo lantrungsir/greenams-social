@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UserService} from "../user.service"
 import { AuthHttp } from 'angular2-jwt';
 import { UpdateService } from '../update.service';
+import {Input} from "@angular/core"
 import * as $ from "jquery"
 @Component({
   selector: 'app-messenger',
@@ -9,22 +10,15 @@ import * as $ from "jquery"
   styleUrls: ['./messenger.component.scss']
 })
 export class MessengerComponent implements OnInit {
-  currentUser : any
+  @Input() currentUser : any
   users: any
   userKeys : any
   socket: any
   selectedChatroom : any = null;
   groups: any;
   groupKeys: any
-  constructor(private userService : UserService, private http :AuthHttp, private ioService : UpdateService) {
-    this.userService.getCurrentUser().then((user)=>{
-      this.currentUser = user
-      Object.defineProperty(this.currentUser, "id", {
-        value : localStorage.getItem('id'),
-        writable: true,
-        configurable: true
-      })
-    })
+  constructor(private http :AuthHttp, private ioService : UpdateService) {
+    
     this.http.get("api/users").toPromise().then((res)=>{
       this.users = res.json();
       this.userKeys = Object.keys(this.users);
@@ -68,26 +62,14 @@ export class MessengerComponent implements OnInit {
         writable: true
       })
     })
-
-    //des resizable window :
-    if($(window).width() <= 400){
-      $(".chat").hide();
-    }
-    $(window).resize(()=>{
-      var w = $(window).width();
-      if($(window).width() <= 400){
-        $(".chat").hide();
-        $("#people-list").show();
-        $("#people-list").width(w)
-      }
-      else{
-        $("#people-list").show()
-        $("#people-list").width("33%");
-        $(".chat").width('67%')
-        $(".chat").show();
-      }
-    })
+    	$(".left-first-section").click(function(){
+            $('.main-section').toggleClass("open-more");
+        });
+    	$(".fa-minus").click(function(){
+            $('.main-section').toggleClass("open-more");
+        });
   }
+  
   chooseChatRoom(key: string, type: string){
     if(type === "admin"){
 
@@ -116,11 +98,6 @@ export class MessengerComponent implements OnInit {
           "messages" : res.json()
         }
       })
-    }
-    if($(window).width() <= 400){
-      $('#people-list').hide();
-      $('.chat').width($(window).width())
-      $('.chat').show();
     }
   }
 
