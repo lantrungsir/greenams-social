@@ -51,7 +51,10 @@ export class DashboardComponent implements OnInit {
    }
 
   ngOnInit() {
-    $("div .container").hide()
+    $("#myModal").hide();
+    $(".close").click(()=>{
+      $("#myModal").hide();
+    })
   }
 
 
@@ -178,6 +181,6 @@ export class DashboardComponent implements OnInit {
   }
 
   navigateChat(){
-    $("div .container").slideToggle(500);
+    $("#myModal").show();
   }
 }
