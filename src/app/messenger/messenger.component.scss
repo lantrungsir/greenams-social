@@ -39,6 +39,12 @@ img{max-width:100%;}
   margin:0px;
   padding: 10px 0px;
 }
+.main-section{
+    width: 300px;
+    position: fixed;
+    right:50px;
+    bottom:-350px;
+  }
 .first-section p:hover{
   color:#fff;
   cursor: pointer;
