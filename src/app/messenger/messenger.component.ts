@@ -62,14 +62,12 @@ export class MessengerComponent implements OnInit {
         writable: true
       })
     })
-    	$(".left-first-section").click(function(){
-            $('.main-section').toggleClass("open-more");
-        });
-    	$(".fa-minus").click(function(){
-            $('.main-section').toggleClass("open-more");
-        });
+    	
   }
-  
+  openChat(){
+      $('.main-section').toggleClass("open-more");
+      $('.main-section').toggleClass("open-more");
+  }
   chooseChatRoom(key: string, type: string){
     if(type === "admin"){
 
