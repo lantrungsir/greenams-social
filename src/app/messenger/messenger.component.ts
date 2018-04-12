@@ -129,9 +129,6 @@ export class MessengerComponent implements OnInit {
       });
     });		
   }
-  openChat(){
-      $('.main-section').toggleClass("open-more");
-  }
   chooseChatRoom(key: string, type: string){
     if(type === "admin"){
 
