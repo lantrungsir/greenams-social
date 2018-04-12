@@ -17,7 +17,17 @@
 							<span>{{users[userkey].realtime}}</span>
 						</p>
 						<div class="status {{users[userkey].realtime}}"></div>
-					</div>
+          </div>
+          
+          <div class="friend" *ngFor ="let groupkey of groupKeys">
+						<img src="{{groups[groupkey].profile_pic}}">
+						<p>
+							<strong>{{groups[groupkey].name}}</strong>
+							<span>online</span>
+						</p>
+						<div class="status online"></div>
+          </div>
+          
 					<div id="search">
 						<input type="text" id="searchfield" value="Search contacts...">
 					</div>

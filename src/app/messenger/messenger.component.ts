@@ -28,16 +28,6 @@ export class MessengerComponent implements OnInit {
       
       this.groupKeys = Object.keys(this.groups)
     })
-    this.http.get("api/messages/groups?id=main").toPromise().then((res)=>{
-      var data = res.json()
-      this.selectedChatroom = {
-        "type": "group",
-        "name": data.name,
-        "id": "main",
-        picture : data.picture,
-        'messages': data['messages']
-      }
-    })
     this.socket = this.ioService.socket;
     this.socket.emit("post-on", {
       uid : localStorage.getItem('id')
