@@ -178,6 +178,6 @@ export class DashboardComponent implements OnInit {
   }
 
   navigateChat(){
-    this.router.navigate(["/messenger"])
+    $("div .container").slideToggle(500);
   }
 }
