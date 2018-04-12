@@ -10,51 +10,14 @@
 
 				<div id="friends">
 
-					<div class="friend w3layouts">
-						<img src="images/winter-soldier.jpg">
+					<div class="friend" *ngFor ="let userkey of userKeys">
+						<img src="{{users[userkey].profile_pic}}">
 						<p>
-							<strong>Bucky Barnes</strong>
-							<span>wintersoldier@gmail.com</span>
+							<strong>{{users[userkey].name}}</strong>
+							<span>{{users[userkey].realtime}}</span>
 						</p>
-						<div class="status available"></div>
+						<div class="status {{users[userkey].realtime}}"></div>
 					</div>
-
-					<div class="friend">
-						<img src="images/captain-america.jpg">
-						<p>
-							<strong>Steve Rogers</strong>
-							<span>captainamerica@gmail.com</span>
-						</p>
-						<div class="status away"></div>
-					</div>
-
-					<div class="friend">
-						<img src="images/flying-falcon.jpg">
-						<p>
-							<strong>Sam Wilson</strong>
-							<span>flyingfalcon@gmail.com</span>
-						</p>
-						<div class="status inactive"></div>
-					</div>
-
-					<div class="friend">
-						<img src="images/black-widow.jpg">
-						<p>
-							<strong>Natasha Romanoff</strong>
-							<span>blackwidow@gmail.com</span>
-						</p>
-						<div class="status inactive"></div>
-					</div>
-
-					<div class="friend agileits">
-						<img src="images/iron-man.jpg">
-						<p>
-							<strong>Tony Stark</strong>
-							<span>imironman4u@gmail.com</span>
-						</p>
-						<div class="status inactive"></div>
-					</div>
-
 					<div id="search">
 						<input type="text" id="searchfield" value="Search contacts...">
 					</div>

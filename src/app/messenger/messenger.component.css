@@ -128,12 +128,8 @@ top: 31px;
 right: 17px;
 }
 
-.friend .status.away {
-background: #FFEB3B;
-}
-
-.friend .status.inactive {
-background: #EEE;
+.friend .status.offline  {
+background: rgb(224, 8, 8);
 }
 
 #search {
