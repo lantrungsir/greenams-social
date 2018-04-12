@@ -5,14 +5,8 @@ input[type="file"] {
     display: none;
 }
 .custom-file-upload {
-    border: 1px solid #ccc;
+    border: 1px solid #cccccc;
     display: inline-block;
     padding: 6px 12px;
     cursor: pointer;
-}
-
-#messenger-pop-up {
-    position:  fixed;
-    bottom :0;
-    align-content: center;
 }
