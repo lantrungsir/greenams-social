@@ -11,12 +11,14 @@
 				<div id="friends">
 
 					<div class="friend" *ngFor ="let userkey of userKeys">
-						<img src="{{users[userkey].profile_pic}}">
-						<p>
-							<strong>{{users[userkey].name}}</strong>
-							<span>{{users[userkey].realtime}}</span>
-						</p>
-						<div class="status {{users[userkey].realtime}}"></div>
+						<div *ngIf = "userkey !== currentUser.id">
+								<img src="{{users[userkey].profile_pic}}">
+								<p>
+									<strong>{{users[userkey].name}}</strong>
+									<span>{{users[userkey].realtime}}</span>
+								</p>
+								<div class="status {{users[userkey].realtime}}"></div>
+						</div>
           			</div>
           
 					<div class="friend" *ngFor ="let groupkey of groupKeys">

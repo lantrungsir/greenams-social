@@ -18,7 +18,7 @@ export class MessengerComponent implements OnInit {
   groups: any;
   groupKeys: any
   constructor(private http :AuthHttp, private ioService : UpdateService) {
-    
+    this.currentUser.id = localStorage.getItem('id');
     this.http.get("api/users").toPromise().then((res)=>{
       this.users = res.json();
       this.userKeys = Object.keys(this.users);
