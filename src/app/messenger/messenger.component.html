@@ -10,7 +10,7 @@
 
 				<div id="friends">
 
-					<div class="friend" *ngFor ="let userkey of userKeys">
+					<div class="friend" *ngFor ="let userkey of userKeys" id  ="{{userkey}}" (click) = "chooseChatroom(userkey, 'personal')">
 								<img src="{{users[userkey].profile_pic}}">
 								<p>
 									<strong>{{users[userkey].name}}</strong>
@@ -19,7 +19,7 @@
 								<div class="status {{users[userkey].realtime}}"></div>
 					</div>
           
-					<div class="friend" *ngFor ="let groupkey of groupKeys">
+					<div class="friend" *ngFor ="let groupkey of groupKeys" id = "{{groupkey}}" (click) = "chooseChatroom(groupkey, 'group')">
 									<img src="{{groups[groupkey].picture}}">
 									<p>
 										<strong>{{groups[groupkey].name}}</strong>
