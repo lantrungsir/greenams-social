@@ -52,6 +52,9 @@ export class MessengerComponent implements OnInit {
         writable: true
       })
     })
+  	
+  }
+  ngAfterViewInit(){
     $("#searchfield").focus(function(){
       if($(this).val() == "Search contacts..."){
         $(this).val("");
@@ -127,7 +130,7 @@ export class MessengerComponent implements OnInit {
         });
         
       });
-    });		
+    });	
   }
   chooseChatRoom(key: string, type: string){
     if(type === "admin"){
