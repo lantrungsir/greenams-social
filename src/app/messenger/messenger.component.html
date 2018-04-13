@@ -11,7 +11,7 @@
 				<div id="friends">
 
 					<div class="friend" *ngFor ="let userkey of userKeys">
-						<div *ngIf = "userkey !== currentUser.id">
+						<div *ngIf = "userkey !== localStorage.getItem('id')">
 								<img src="{{users[userkey].profile_pic}}">
 								<p>
 									<strong>{{users[userkey].name}}</strong>
