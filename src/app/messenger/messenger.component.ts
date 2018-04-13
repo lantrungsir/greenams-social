@@ -74,7 +74,7 @@ export class MessengerComponent implements OnInit {
         })
     }
     if(type === "personal"){
-      this.http.get("api/messages/individual?from="+this.currentUser.id+ "&to=" +key).toPromise()
+      this.http.get("api/messages/individual?from="+localStorage.getItem('id')+ "&to=" +key).toPromise()
       .then((res)=>{
         this.selectedChatroom = {
           "type" :"individual",
