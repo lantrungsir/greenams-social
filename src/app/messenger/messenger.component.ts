@@ -15,7 +15,7 @@ export class MessengerComponent implements OnInit {
   users: any
   userKeys : any
   socket: any
-  selectedChatroom : any = null;
+  selectedChatroom : any ={};
   groups: any;
   groupKeys: any;
   constructor(private http :AuthHttp, private ioService : UpdateService) {
