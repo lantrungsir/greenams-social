@@ -155,7 +155,9 @@
   <div class="modal-content">
       <span class="close">&times;</span>
       <h2>GreenAms Messenger</h2>
-      <app-messenger [currentUser] = "CurrentUser"></app-messenger>
+      <app-messenger [currentUser] = "CurrentUser"
+        [currentId]= "id"
+      ></app-messenger>
   </div>
 </div>
 <script>

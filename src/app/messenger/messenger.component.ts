@@ -10,15 +10,16 @@ import * as $ from "jquery"
   styleUrls: ['./messenger.component.css']
 })
 export class MessengerComponent implements OnInit {
-  @Input() currentUser : any
+  @Input() currentUser : any;
+  @Input() currentId : any;
   users: any
   userKeys : any
   socket: any
   selectedChatroom : any = null;
   groups: any;
-  groupKeys: any
+  groupKeys: any;
   constructor(private http :AuthHttp, private ioService : UpdateService) {
-    this.http.get("api/users").toPromise().then((res)=>{
+      this.http.get("api/users").toPromise().then((res)=>{
       this.users = res.json();
       this.userKeys = Object.keys(this.users);
     })

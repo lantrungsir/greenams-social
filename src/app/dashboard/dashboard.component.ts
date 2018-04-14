@@ -16,9 +16,10 @@ export class DashboardComponent implements OnInit {
   @ViewChild("navDemo") nav ;
   private socket;
   CurrentUser : any
-  posts = []
+  posts = [];
+  id : string;
   constructor(private userService : UserService, private router: Router, private http :AuthHttp, private ioService : UpdateService) {
-
+    this.id = localStorage.getItem('id')
     this.userService.getCurrentUser().then((user)=>{
       this.CurrentUser = user
       this.getPost()

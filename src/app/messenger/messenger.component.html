@@ -11,12 +11,15 @@
 				<div id="friends">
 
 					<div class="friend" *ngFor ="let userkey of userKeys" id  ="{{userkey}}" (click) = "chooseChatRoom(userkey, 'personal')">
-								<img src="{{users[userkey].profile_pic}}">
-								<p>
-									<strong>{{users[userkey].name}}</strong>
-									<span>{{users[userkey].realtime}}</span>
-								</p>
-								<div class="status {{users[userkey].realtime}}"></div>
+						<div *ngIf= "userkey !== currentId">
+							<img src="{{users[userkey].profile_pic}}">
+							<p>
+								<strong>{{users[userkey].name}}</strong>
+								<span>{{users[userkey].realtime}}</span>
+							</p>
+							<div class="status {{users[userkey].realtime}}"></div>
+						</div>
+								
 					</div>
           
 					<div class="friend" *ngFor ="let groupkey of groupKeys" id = "{{groupkey}}" (click) = "chooseChatRoom(groupkey, 'group')">
