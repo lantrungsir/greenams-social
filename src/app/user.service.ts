@@ -38,7 +38,7 @@ export class UserService {
   }
   logout() {
     localStorage.removeItem('auth_token');
-    localStorage.removeItem('id')
+    localStorage.removeItem('id');
   }
 
   isLoggedIn(): Promise<boolean> {

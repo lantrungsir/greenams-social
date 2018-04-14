@@ -185,6 +185,7 @@ export class DashboardComponent implements OnInit {
     $("#myModal").show();
   }
   logout(){
-    this.userService.logout()
+    this.userService.logout();
+    this.router.navigate(['login'])
   }
 }
