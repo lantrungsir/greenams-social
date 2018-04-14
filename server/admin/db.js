@@ -32,9 +32,9 @@ module.exports = {
                 })
             })
         })
-        db.ref("messages").once("value", function(categories){
-            categories.forEach(function(category){
-                category.forEach(function(chatroom){
+        db.ref("messages").on("child_added", function(categories, nextkey){
+            db.ref("messages/"+categories.key).on("child_added",function(category){
+                db.ref("messages/"+categories.key +"/"+category.key).on("child_added",function(chatroom){
                     db.ref("messages/"+ category.key +"/"+chatroom.key +"/messages/num").set(0)
                     db.ref("messages/"+ category.key +"/"+chatroom.key +"/messages/content").on("child_added", function(message){
                         db.ref("messages/"+ category.key +"/"+chatroom.key +"/messages/num").once("value", function(num){
