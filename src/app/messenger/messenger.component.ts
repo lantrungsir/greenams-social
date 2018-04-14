@@ -59,7 +59,6 @@ export class MessengerComponent implements OnInit {
         if(this.selectedChatroom.to === data.recipient){
           this.selectedChatroom.messages.push({
             "creator" : data.sender,
-            "time" : data.message.time,
             "data" : data.message
           })
         }
@@ -148,7 +147,7 @@ export class MessengerComponent implements OnInit {
     //send the message
       var data = {
         text : $("#sendmessage textarea").val(),
-        time : new Date().toString()
+        time : new Date().toLocaleTimeString()
       }
       this.socket.emit("new-message", {
         'type' : type,
