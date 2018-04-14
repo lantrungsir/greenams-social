@@ -148,7 +148,7 @@ io.on("connection", function(socket){
                         }
                         else{
                             db.ref("messages/individual/"+ option1 + "/messages/num").once("value", function(number){
-                                var num = parseInt(number.val().toString());
+                                var num = parseInt(number.val());
                                 database.saveData("messages/individual/"+option1 +"/messages/content/"+ num, {
                                     "sender" : data.sender,
                                     "time" : data.message.time,
