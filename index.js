@@ -125,7 +125,7 @@ io.on("connection", function(socket){
                         db.ref("messages/individual/"+ option1 + "/messages/num").once("value", function(number){
                             var num = parseInt(number.val().toString());
                             database.saveData("messages/individual/"+option1 +"/messages/content/"+ num, {
-                                "sender" : data.sender,
+                                "author" : data.sender,
                                 "time" : new Date().toString(),
                                 "data" :{
                                     "text" : data.message.text
@@ -138,7 +138,7 @@ io.on("connection", function(socket){
                             db.ref("messages/individual/"+ option2 + "/messages/num").once("value", function(number){
                                 var num = parseInt(number.val().toString());
                                 database.saveData("messages/individual/"+option2 +"/messages/content/"+ num, {
-                                    "sender" : data.sender,
+                                    "author" : data.sender,
                                     "time" : new Date().toString(),
                                     "data" :{
                                         "text" : data.message.text
@@ -148,7 +148,7 @@ io.on("connection", function(socket){
                         }
                         else{
                                 database.saveData("messages/individual/"+option1 +"/messages/content/0", {
-                                    "sender" : data.sender,
+                                    "author" : data.sender,
                                     "time" : data.message.time,
                                     "data" :{
                                         "text" : data.message.text
@@ -165,7 +165,7 @@ io.on("connection", function(socket){
                 db.ref("messages/groups/"+data.recipient +"/messages/num").once("value", function(number){
                     if(number.val() === null){
                         database.saveData("messages/groups/"+ data.recipient +"/messages/content/0", {
-                            "sender" : data.sender,
+                            "author" : data.sender,
                             "time" : data.message.time,
                             "data" :{
                                 "text": data.message.text
@@ -175,7 +175,7 @@ io.on("connection", function(socket){
                     else{
                         var num = parseInt(number.val())
                         database.saveData("messages/groups/"+ data.recipient +"/messages/content/"+ num, {
-                            "sender" : data.sender,
+                            "author" : data.sender,
                             "time" : data.message.time,
                             "data" :{
                                 "text": data.message.text
