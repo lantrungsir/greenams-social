@@ -83,7 +83,6 @@ export class MessengerComponent implements OnInit {
         this.renderChatroom(key)
       })
     }
-    this.renderChatroom(key)
   }
   renderChatroom(key: string){
     var childOffset = $("#"+ key).offset();
