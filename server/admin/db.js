@@ -32,13 +32,13 @@ module.exports = {
                 })
             })
         })
-        db.ref("massages").once("value", function(categories){
+        db.ref("messages").once("value", function(categories){
             categories.forEach(function(category){
                 category.forEach(function(chatroom){
-                    db.ref("massages/"+ category.key +"/"+chatroom.key +"/messages/content").on("child_added", function(message){
-                        db.ref("massages/"+ category.key +"/"+chatroom.key +"/messages/num").once("value", function(num){
+                    db.ref("messages/"+ category.key +"/"+chatroom.key +"/messages/content").on("child_added", function(message){
+                        db.ref("messages/"+ category.key +"/"+chatroom.key +"/messages/num").once("value", function(num){
                             var value = num.val()+1;
-                            db.ref("massages/"+ category.key +"/"+chatroom.key +"/messages/num").set(value)
+                            db.ref("messages/"+ category.key +"/"+chatroom.key +"/messages/num").set(value)
                         })
                     })
                 })
