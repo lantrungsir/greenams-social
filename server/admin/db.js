@@ -35,6 +35,7 @@ module.exports = {
         db.ref("messages").once("value", function(categories){
             categories.forEach(function(category){
                 category.forEach(function(chatroom){
+                    db.ref("messages/"+ category.key +"/"+chatroom.key +"/messages/num").set(0)
                     db.ref("messages/"+ category.key +"/"+chatroom.key +"/messages/content").on("child_added", function(message){
                         db.ref("messages/"+ category.key +"/"+chatroom.key +"/messages/num").once("value", function(num){
                             var value = num.val()+1;
