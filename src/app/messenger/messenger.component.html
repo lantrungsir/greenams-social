@@ -51,50 +51,29 @@
 
 				<div id="chat-messages">
 
-					<label>Monday 01</label>
-
-					<div class="message w3layouts">
-						<img src="images/winter-soldier.jpg">
-						<div class="bubble">
-							Why are you protecting me?
-							<span>4 min</span>
+					<div *ngFor = "let message of selectedChatroom['messages']">
+						<div *ngIf= "message.author!== currentId; then displaymymessage else displayothermessage">
 						</div>
+						<ng-template #displaymymessage>
+								<div class="message">
+										<img src="{{currentUser.profile_pic}}">
+										<div class="bubble">
+												{{message.data.text}}
+											<span>{{message.data.time}}</span>
+										</div>
+									</div>
+						</ng-template>
+						<ng-template #displayothermessage>
+								<div class="message right">
+										<img src="{{users[message.author].profile_pic}}">
+										<div class="bubble">
+												{{message.data.text}}
+											<span>{{message.data.time}}</span>
+										</div>
+									</div>
+						</ng-template>
 					</div>
-
-					<div class="message right agileits">
-						<img src="images/captain-america.jpg">
-						<div class="bubble">
-							Coz you're my best friend
-							<span>3 min</span>
-						</div>
-					</div>
-
-					<div class="message">
-						<img src="images/winter-soldier.jpg">
-						<div class="bubble">
-							I don't remember you
-							<span>2 Min</span>
-						</div>
-					</div>
-
-					<div class="message right w3layouts">
-						<img src="images/captain-america.jpg">
-						<div class="bubble">
-							But I remember you
-							<span>1 Min</span>
-						</div>
-					</div>
-
-					<div class="message">
-						<img src="images/winter-soldier.jpg">
-						<div class="bubble">
-							Well, okay!
-							<span>Now</span>
-						</div>
-					</div>
-
 				</div>
-
 				<div id="sendmessage">
 					<input type="text" placeholder="Send message...">
 					<button id="send"></button>

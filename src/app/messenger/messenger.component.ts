@@ -58,7 +58,7 @@ export class MessengerComponent implements OnInit {
   }
   chooseChatRoom(key: string, type: string){
     if(type === "admin"){
-
+      
     }
     if(type === "group"){
       this.http.get("api/messages/groups?id="+key).toPromise()
@@ -114,9 +114,7 @@ export class MessengerComponent implements OnInit {
     var name = $("#"+key).find("p strong").html();
     var email = $("#"+key).find("p span").html();														
     $("#profile p").html(name);
-    $("#profile span").html(email);			
-    
-    $(".message").not(".right").find("img").attr("src", $(clone).attr("src"));									
+    $("#profile span").html(email);												
     $('#friendslist').fadeOut();
     $('#chatview').fadeIn();
   

@@ -12,7 +12,6 @@ const appRoute : Routes = [
     canActivate: [AnonymousGuard]
   },
   {path: 'dashboard', component: DashboardComponent, canActivate : [AuthGuard]},
-  {path: 'messenger', component : MessengerComponent, canActivate :[AuthGuard]},
   {path: '', redirectTo: "login", pathMatch :"full"},
 ]
 @NgModule({
