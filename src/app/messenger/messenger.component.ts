@@ -67,11 +67,9 @@ export class MessengerComponent implements OnInit {
           this.selectedChatroom = {
             "type": "group",
             "id": "key",
-            "name" : data.name,
-            "picture" : data.picture,
             "messages": data['messages']
           }
-          this.renderChatroom(key)
+          
         })
     }
     if(type === "personal"){
@@ -80,13 +78,11 @@ export class MessengerComponent implements OnInit {
         this.selectedChatroom = {
           "type" :"individual",
           "to" : key,
-          "picture" : this.users[key].profile_pic,
-          "name" : this.users[key].name,
           "messages" : res.json()
         }
-        this.renderChatroom(key)
       })
     }
+    this.renderChatroom(key)
   }
   renderChatroom(key: string){
     var childOffset = $("#"+ key).offset();
