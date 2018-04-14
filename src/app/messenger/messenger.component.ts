@@ -69,7 +69,7 @@ export class MessengerComponent implements OnInit {
             "id": "key",
             "messages": data['messages']
           }
-          
+          this.renderChatroom(key)
         })
     }
     if(type === "personal"){
@@ -80,6 +80,7 @@ export class MessengerComponent implements OnInit {
           "to" : key,
           "messages" : res.json()
         }
+        this.renderChatroom(key)
       })
     }
     this.renderChatroom(key)
