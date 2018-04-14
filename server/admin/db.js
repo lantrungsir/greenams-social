@@ -17,7 +17,7 @@ module.exports = {
             })
         })
     },
-    postsListener : function(){
+    listener : function(){
         db.ref("posts/num").set(0);
         db.ref("posts/content").on("child_added", function(snapshot, prevKey){
             db.ref("posts/num").once("value", function(snap){
@@ -29,6 +29,18 @@ module.exports = {
                 db.ref("posts/content/"+snapshot.key+"/comments/num").once("value", function(num){
                     var value = num.val() + 1;
                     db.ref("posts/content/"+snapshot.key+"/comments/num").set(value);
+                })
+            })
+        })
+        db.ref("messenger").once("value", function(categories){
+            categories.forEach(function(category){
+                category.forEach(function(chatroom){
+                    db.ref("messenger/"+ category.key +"/"+chatroom.key +"/messages/content").on("child_added", function(message){
+                        db.ref("messenger/"+ category.key +"/"+chatroom.key +"/messages/num").once("value", function(num){
+                            var value = num.val()+1;
+                            db.ref("messenger/"+ category.key +"/"+chatroom.key +"/messages/num").set(value)
+                        })
+                    })
                 })
             })
         })

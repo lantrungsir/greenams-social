@@ -98,8 +98,9 @@ module.exports ={
     getIndividualMessages: function(req,res){
         var from = req.query["from"];
         var to = req.query["to"]
-        db.getData("messages/individual").then((data)=>{
+        db.getData("messenger/individual").then((data)=>{
             var purifiedData = []
+            var messages = [];
             for(key in data){
                 if(data.hasOwnProperty(key)){
                     var keys =  key.split("*");
@@ -112,6 +113,12 @@ module.exports ={
                     }
                 }
             }
+            for(mKey in data.messages['content']){
+                if(data['messages']['content'].hasOwnProperty(mKey)){
+                    messages.splice(0,0, data['messages']['content'][mKey]);
+                }
+            }
+            data['messages'] = messages
             console.log(purifiedData);
             res.status(200).send(JSON.stringify(purifiedData))
         })
@@ -119,14 +126,15 @@ module.exports ={
     getGroupMessages : function(req,res){
         var id = req.query.id;
         if(id !== undefined){
-            db.getData("messages/groups/"+ id).then((data)=>{
+            db.getData("messenger/groups/"+ id).then((data)=>{
                 var messages = []
-                for(key in data['messages']){
-                    if(data['messages'].hasOwnProperty(key)){
+                for(key in data['messages']['content']){
+                    if(data['messages']['content'].hasOwnProperty(key)){
                         messages.push(data['messages'][key]);
                     }
                 }
                 data['messages'] =  messages;
+                console.log(data);
                 res.status(200).send(JSON.stringify(data))
             })
         }
@@ -137,6 +145,7 @@ module.exports ={
                         data[key]['messages'] = null;
                     }
                 }
+                console.log(data);
                 res.status(200).send(JSON.stringify(data));
             })
         }

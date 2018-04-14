@@ -115,7 +115,7 @@ io.on("connection", function(socket){
         })
     })
 })
-database.postsListener();
+database.listener();
 http.listen(app.get('port'), function(){
     console.log("we are on " + app.get('port') + " again, GART" )
 })
