@@ -147,16 +147,14 @@ io.on("connection", function(socket){
                             })
                         }
                         else{
-                            db.ref("messages/individual/"+ option1 + "/messages/num").once("value", function(number){
-                                var num = parseInt(number.val());
-                                database.saveData("messages/individual/"+option1 +"/messages/content/"+ num, {
+                                database.saveData("messages/individual/"+option1 +"/messages/content/0", {
                                     "sender" : data.sender,
                                     "time" : data.message.time,
                                     "data" :{
                                         "text" : data.message.text
                                     }
                                 })
-                            })
+                            
                         }
                     }
                 })
@@ -165,14 +163,25 @@ io.on("connection", function(socket){
         else{
            if(data.type === "groups"){
                 db.ref("messages/groups/"+data.recipient +"/messages/num").once("value", function(number){
-                    var num = parseInt(number.val())
-                    database.saveData("messages/groups/"+ data.recipient +"/messages/content/"+num, {
-                        "sender" : data.sender,
-                        "time" : data.message.time,
-                        "data" :{
-                            "text": data.message.text
-                        }
-                    })
+                    if(number.val() === null){
+                        database.saveData("messages/groups/"+ data.recipient +"/messages/content/0", {
+                            "sender" : data.sender,
+                            "time" : data.message.time,
+                            "data" :{
+                                "text": data.message.text
+                            }
+                        })
+                    }
+                    else{
+                        var num = parseInt(number.val())
+                        database.saveData("messages/groups/"+ data.recipient +"/messages/content/"+ num, {
+                            "sender" : data.sender,
+                            "time" : data.message.time,
+                            "data" :{
+                                "text": data.message.text
+                            }
+                        })
+                    }
                 })
             } 
         }
