@@ -120,10 +120,12 @@ module.exports ={
         var id = req.query.id;
         if(id !== undefined){
             db.getData("messages/groups/"+ id).then((data)=>{
-                var messages = []
-                for(key in data['messages']['content']){
-                    if(data['messages']['content'].hasOwnProperty(key)){
-                        messages.push(data['messages'][key]);
+                var messages = [];
+                if(data['messages']!== undefined){
+                    for(key in data['messages']['content']){
+                        if(data['messages']['content'].hasOwnProperty(key)){
+                            messages.push(data['messages'][key]);
+                        }
                     }
                 }
                 data['messages'] =  messages;
