@@ -56,6 +56,7 @@ export class MessengerComponent implements OnInit {
   }
   ngAfterViewInit(){    
   }
+  
   chooseChatRoom(key: string, type: string){
     if(type === "admin"){
       

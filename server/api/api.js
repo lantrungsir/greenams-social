@@ -98,7 +98,7 @@ module.exports ={
     getIndividualMessages: function(req,res){
         var from = req.query["from"];
         var to = req.query["to"]
-        db.getData("messenger/individual").then((data)=>{
+        db.getData("messages/individual").then((data)=>{
             var purifiedData = []
             var messages = [];
             for(key in data){
@@ -126,7 +126,7 @@ module.exports ={
     getGroupMessages : function(req,res){
         var id = req.query.id;
         if(id !== undefined){
-            db.getData("messenger/groups/"+ id).then((data)=>{
+            db.getData("messages/groups/"+ id).then((data)=>{
                 var messages = []
                 for(key in data['messages']['content']){
                     if(data['messages']['content'].hasOwnProperty(key)){
