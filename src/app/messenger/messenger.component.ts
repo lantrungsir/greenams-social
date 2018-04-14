@@ -29,17 +29,7 @@ export class MessengerComponent implements OnInit {
       
       this.groupKeys = Object.keys(this.groups)
     })
-    this.socket.on("new-message", (data)=>{
-      if(this.selectedChatroom.type === data.type){
-        if(this.selectedChatroom.to === data.recipient){
-          this.selectedChatroom.messages.push({
-            "creator" : data.sender,
-            "time" : data.message.time,
-            "data" : data.message
-          })
-        }
-      }
-    })
+    
     this.socket = this.ioService.socket;
     this.socket.emit("post-on", {
       uid : localStorage.getItem('id')
@@ -64,7 +54,17 @@ export class MessengerComponent implements OnInit {
         writable: true
       })
     })
-  	
+  	this.socket.on("new-message", (data)=>{
+      if(this.selectedChatroom.type === data.type){
+        if(this.selectedChatroom.to === data.recipient){
+          this.selectedChatroom.messages.push({
+            "creator" : data.sender,
+            "time" : data.message.time,
+            "data" : data.message
+          })
+        }
+      }
+    })
   }
   ngAfterViewInit(){    
   }
