@@ -58,7 +58,7 @@ export class MessengerComponent implements OnInit {
       if(this.selectedChatroom.type === data.type){
         if(this.selectedChatroom.to === data.recipient){
           this.selectedChatroom.messages.push({
-            "creator" : data.sender,
+            "author" : data.sender,
             "data" : data.message
           })
         }
@@ -154,6 +154,10 @@ export class MessengerComponent implements OnInit {
         'sender' : this.currentId,
         'recipient' : recipient,
         'message' : data
+      })
+      this.selectedChatroom.messages.push({
+        "author" : this.currentId,
+        "data" : data
       })
   }
 }
