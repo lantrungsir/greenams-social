@@ -307,7 +307,7 @@ background: #333;
 padding-bottom: 50px;
 }
 
-#sendmessage input {
+#sendmessage textarea {
 background: #333;
 margin: 21px 0 0 21px;
 border: none;
@@ -318,7 +318,7 @@ font-weight: 400px;
 color: #aab8c2;
 }
 
-#sendmessage input:focus {
+#sendmessage textarea:focus {
 outline: 0;
 }
 

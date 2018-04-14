@@ -114,6 +114,70 @@ io.on("connection", function(socket){
             })
         })
     })
+    socket.on('new-message', (data)=>{
+        console.log(data);
+        if(data.type === "individual"){
+            var option1 =  data.recipient + "*" + data.sender
+            var option2 = data.sender + "*" +data.recipient
+            db.ref("messages/individual/"+ option1).once("value", function(data1){
+                db.ref("messages/individual/"+ option2).once("value", function(data2){
+                    if(data1.exists()){
+                        db.ref("messages/individual/"+ option1 + "/messages/num").once("value", function(number){
+                            var num = parseInt(number.val().toString());
+                            database.saveData("messages/individual/"+option1 +"/messages/content/"+ num, {
+                                "sender" : data.sender,
+                                "time" : new Date().toString(),
+                                "data" :{
+                                    "text" : data.message.text
+                                }
+                            })
+                        })
+                    }
+                    else {
+                        if(data2.exists()){
+                            db.ref("messages/individual/"+ option2 + "/messages/num").once("value", function(number){
+                                var num = parseInt(number.val().toString());
+                                database.saveData("messages/individual/"+option2 +"/messages/content/"+ num, {
+                                    "sender" : data.sender,
+                                    "time" : new Date().toString(),
+                                    "data" :{
+                                        "text" : data.message.text
+                                    }
+                                })
+                            })
+                        }
+                        else{
+                            db.ref("messages/individual/"+ option1 + "/messages/num").once("value", function(number){
+                                var num = parseInt(number.val().toString());
+                                database.saveData("messages/individual/"+option1 +"/messages/content/"+ num, {
+                                    "sender" : data.sender,
+                                    "time" : data.message.time,
+                                    "data" :{
+                                        "text" : data.message.text
+                                    }
+                                })
+                            })
+                        }
+                    }
+                })
+            })
+        }
+        else{
+           if(data.type === "groups"){
+                db.ref("messages/groups/"+data.recipient +"/messages/num").once("value", function(number){
+                    var num = parseInt(number.val())
+                    database.saveData("messages/groups/"+ data.recipient +"/messages/content/"+num, {
+                        "sender" : data.sender,
+                        "time" : data.message.time,
+                        "data" :{
+                            "text": data.message.text
+                        }
+                    })
+                })
+            } 
+        }
+        socket.broadcast.emit("new-message", data)
+    })
 })
 database.listener();
 http.listen(app.get('port'), function(){

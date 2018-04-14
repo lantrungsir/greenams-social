@@ -75,8 +75,8 @@
 					</div>
 				</div>
 				<div id="sendmessage">
-					<input type="text" placeholder="Send message...">
-					<button id="send"><i class = "fa fa-send"></i></button>
+					<textarea type="text" placeholder="Send message..."></textarea>
+					<button id="send" (click) = "sendMessage(selectedChatroom.type, selectedChatroom.to)"><i class = "fa fa-send"></i></button>
 				</div>
 
 			</div>

@@ -104,9 +104,9 @@ module.exports ={
                 if(data.hasOwnProperty(key)){
                     var keys =  key.split("*");
                     if(keys.indexOf(from)!== -1 && keys.indexOf(to)!==-1){
-                        for(subkey in data[key]['content']){
-                            if(data[key]['content'].hasOwnProperty(subkey)){
-                                purifiedData.push(data[key]['content'][subkey]);
+                        for(subkey in data[key]['messages']['content']){
+                            if(data[key].messages['content'].hasOwnProperty(subkey)){
+                                purifiedData.push(data[key].messages['content'][subkey]);
                             }
                         }
                     }

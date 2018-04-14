@@ -18,6 +18,7 @@ export class MessengerComponent implements OnInit {
   selectedChatroom : any ={};
   groups: any;
   groupKeys: any;
+  fileToUpload : File[] =  []
   constructor(private http :AuthHttp, private ioService : UpdateService) {
       this.http.get("api/users").toPromise().then((res)=>{
       this.users = res.json();
@@ -56,7 +57,7 @@ export class MessengerComponent implements OnInit {
   }
   ngAfterViewInit(){    
   }
-  
+
   chooseChatRoom(key: string, type: string){
     if(type === "admin"){
       
@@ -66,8 +67,8 @@ export class MessengerComponent implements OnInit {
         .then((res)=>{
           var data = res.json()
           this.selectedChatroom = {
-            "type": "group",
-            "id": "key",
+            "type": "groups",
+            "to": key,
             "messages": data['messages']
           }
           this.renderChatroom(key)
@@ -130,5 +131,19 @@ export class MessengerComponent implements OnInit {
         $('#friendslist').fadeIn();				
       }, 50);
     });
+  }
+
+  sendMessage(type: string, recipient : string){
+    //send the message
+      var data = {
+        text : $("#sendmessage textarea").val(),
+        time : new Date().toString()
+      }
+      this.socket.emit("new-message", {
+        'type' : type,
+        'sender' : this.currentId,
+        'recipient' : recipient,
+        'message' : data
+      })
   }
 }
