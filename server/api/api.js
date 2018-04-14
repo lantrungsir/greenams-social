@@ -100,25 +100,18 @@ module.exports ={
         var to = req.query["to"]
         db.getData("messages/individual").then((data)=>{
             var purifiedData = []
-            var messages = [];
             for(key in data){
                 if(data.hasOwnProperty(key)){
                     var keys =  key.split("*");
                     if(keys.indexOf(from)!== -1 && keys.indexOf(to)!==-1){
-                        for(subkey in data[key]){
-                            if(data[key].hasOwnProperty(subkey)){
-                                purifiedData.push(data[key][subkey]);
+                        for(subkey in data[key]['content']){
+                            if(data[key]['content'].hasOwnProperty(subkey)){
+                                purifiedData.push(data[key]['content'][subkey]);
                             }
                         }
                     }
                 }
             }
-            for(mKey in data.messages['content']){
-                if(data['messages']['content'].hasOwnProperty(mKey)){
-                    messages.splice(0,0, data['messages']['content'][mKey]);
-                }
-            }
-            data['messages'] = messages
             console.log(purifiedData);
             res.status(200).send(JSON.stringify(purifiedData))
         })
