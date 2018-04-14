@@ -11,7 +11,7 @@
 				<div id="friends">
 
 					<div *ngFor ="let userkey of userKeys"  (click) = "chooseChatRoom(userkey, 'personal')">
-						<div  class="friend" *ngIf= "userkey !== currentId" id  ="{{userkey}}">
+						<div class="friend" *ngIf= "userkey !== currentId" id  ="{{userkey}}">
 							<img src="{{users[userkey].profile_pic}}">
 							<p>
 								<strong>{{users[userkey].name}}</strong>

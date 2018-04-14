@@ -184,4 +184,7 @@ export class DashboardComponent implements OnInit {
   navigateChat(){
     $("#myModal").show();
   }
+  logout(){
+    this.userService.logout()
+  }
 }
