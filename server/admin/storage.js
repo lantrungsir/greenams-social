@@ -111,15 +111,46 @@ module.exports = {
                                                    )
                                                 }
                                                 else{
+                                                    db.pushData("messages/individual/"+option1 +"/messages/content/"+id +"/data/images",
+                                                    filename
+                                                   )
                                                 }
                                             }
                                         })
                                     })
                                 }
+                                
                             }
                             else{
-                                console.log("good link")
-                                db.pushData("posts/content/"+num+"/links", getPublicUrl(file.name))
+                                console.log("good link");
+                                if(type === "individual"){
+                                    var option1 = from +"*"+to;
+                                    var option2 = to +"*"+ from;
+                                    database.ref("messages/individual/"+ option1).once("value", function(data1){
+                                        database.ref("messages/individual/"+ option2).once("value", function(data2){
+                                            if(data1.exists()){
+                                                    db.pushData("messages/individual/"+option1 +"/messages/content/"+id +"/data/links",
+                                                    filename
+                                                   )
+                                            }
+                                            else {
+                                                if(data2.exists()){
+                                                    db.pushData("messages/individual/"+option2 +"/messages/content/"+id +"/data/links",
+                                                    filename
+                                                   )
+                                                }
+                                                else{
+                                                    db.pushData("messages/individual/"+option1 +"/messages/content/"+id +"/data/links",
+                                                    filename
+                                                   )
+                                                }
+                                            }
+                                        })
+                                    })
+                                }
+                                else{
+                                    db.pushData("messages/groups/"+ to + "/messages/content/"+ id +"/data/links", filename);
+                                }
                             }
                             resolve(j);
                         })

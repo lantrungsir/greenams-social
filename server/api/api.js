@@ -147,10 +147,11 @@ module.exports ={
     },
     messengerFileUploadHandle(req,res){
         var type= req.query.type;
-        if(type === "individual"){
-            var from = req.query['from']
-            var to = req.query['to']
-            
-        }
+        var from = req.query['from']
+        var to = req.query['to']
+        storage.messengerUploadFiles(req.files, type, from, to, req.query['mid']).then((data)=>{
+            console.log(data);
+            res.status(200).send(JSON.stringify(data));
+        });
     }
 }
