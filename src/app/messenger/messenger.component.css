@@ -605,7 +605,7 @@ input[type="file"] {
 .custom-file-upload {
     border: 1px solid #cccccc;
     display: inline-block;
-    padding: 6px 12px;
+    padding: 0;
     cursor: pointer;
 }
 
