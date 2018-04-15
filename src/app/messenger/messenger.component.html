@@ -56,24 +56,23 @@
 						</div>
 						<ng-template #displaymymessage>
 								<div class="message right">
-										<img src="{{currentUser.profile_pic}}">
-										<div class="bubble">
+											<img src="{{currentUser.profile_pic}}" class="tooltip">
+											<span class="tooltiptext">{{currentUser.name}}</span>
+										<div class="bubble tooltip">
 												{{message.data.text}}
-											<span>{{message.time}}</span>
+												<span class="tooltiptext">{{message.time}}</span>
 										</div>
-									</div>
+								</div>
 						</ng-template>
 						<ng-template #displayothermessage>
 								<div class="message">
-										<div class = "tooltip">
-											<img src="{{users[message.author].profile_pic}}">
+											<img src="{{users[message.author].profile_pic}}" class = "tooltip">
 											<span class="tooltiptext">{{users[message.author].name}}</span>
-										</div>
 										<div class="bubble tooltip">
 												{{message.data.text}}
-													<span class="tooltiptext">{{message.time}}</span>
+												<span class="tooltiptext">{{message.time}}</span>
 										</div>
-									</div>
+								</div>
 						</ng-template>
 					</div>
 				</div>
