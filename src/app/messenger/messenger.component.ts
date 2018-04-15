@@ -58,8 +58,11 @@ export class MessengerComponent implements OnInit {
       if(this.selectedChatroom.type === data.type){
         if(this.selectedChatroom.to === data.recipient){
           this.selectedChatroom.messages.push({
-            "author" : data.sender,
-            "data" : data.message
+            "author" : this.currentId,
+            "time" : new Date(data.message.time).toLocaleDateString() +" " + new Date(data.message.time).toLocaleDateString(),
+            "data" : {
+              "text" : data.message.text
+            }
           })
         }
       }
@@ -147,7 +150,7 @@ export class MessengerComponent implements OnInit {
     //send the message
       var data = {
         text : $("#sendmessage textarea").val(),
-        time : new Date().toLocaleTimeString()
+        time : new Date().toString()
       }
       this.socket.emit("new-message", {
         'type' : type,
@@ -157,7 +160,10 @@ export class MessengerComponent implements OnInit {
       })
       this.selectedChatroom.messages.push({
         "author" : this.currentId,
-        "data" : data
+        "time" : new Date(data.time).toLocaleDateString() +" " + new Date(data.time).toLocaleDateString(),
+        "data" : {
+          "text" : data.text
+        }
       })
   }
 }
