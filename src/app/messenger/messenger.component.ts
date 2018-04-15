@@ -198,7 +198,7 @@ export class MessengerComponent implements OnInit {
       this.http.post(
           "api/messages/upload?type="+ type +"&from="+this.currentId+"&to="+ this.selectedChatroom.to+ "&mid="+this.selectedChatroom.messages.length, 
           formData).toPromise().then((res)=>{
-            console.log(res.json())
+            
           })
     }
   }
