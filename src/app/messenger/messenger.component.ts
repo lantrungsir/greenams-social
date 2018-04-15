@@ -180,7 +180,7 @@ export class MessengerComponent implements OnInit {
           "text" : data.text
         }
       })
-
+      this.makeFileRequest()
   }
 
   fileChangeEvent(fileInput : any){
@@ -197,7 +197,7 @@ export class MessengerComponent implements OnInit {
         this.http.post(
           "api/messages/upload?type="+ type +"&from="+this.currentId+"&to="+ this.selectedChatroom.to+ "&mid="+this.selectedChatroom.length , 
           formData).toPromise().then((res)=>{
-            
+            console.log(res.json())
           })
       }
       
