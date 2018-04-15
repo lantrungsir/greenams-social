@@ -601,9 +601,6 @@ h1 {
     left: 53%;
 }
 }
-.tooltip {
-    position: relative;
-}
 .tooltiptext {
     visibility: hidden;
     width: 120px;
