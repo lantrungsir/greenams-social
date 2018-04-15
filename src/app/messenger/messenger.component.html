@@ -1,4 +1,4 @@
-<div class="container w3layouts agileits"  id = "#messenger-pop-up">
+<div class="container w3layouts agileits" >
 
 		<div id="chatbox">
 
@@ -75,7 +75,14 @@
 				</div>
 				<div id="sendmessage">
 					<textarea type="text" placeholder="Send message..."></textarea>
-					<button id="send" (click) = "sendMessage(selectedChatroom.type, selectedChatroom.to)">-></button>
+					<label for="file-upload" class="custom-file-upload">
+							<i class="fa fa-cloud-upload"></i>
+						</label>
+						<input id= "file-upload" type="file" (change) = "fileChangeEvent($event)" multiple/>
+					<button id="send" (click) = "sendMessage(selectedChatroom.type, selectedChatroom.to)">--></button><br>
+					<div></div><!--progress bar -->
+					<!-- file upload -->
+					<div></div>
 				</div>
 
 			</div>

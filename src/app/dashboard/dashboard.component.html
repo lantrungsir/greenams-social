@@ -13,18 +13,15 @@
       <a href="#" class="w3-bar-item w3-button">Jane likes your post</a>
     </div>
   </div>
-  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
-    <img src='{{CurrentUser.profile_pic}}' class="w3-circle" style="height:23px;width:23px" alt="Avatar">
+  <a class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
+    <img src='{{CurrentUser.profile_pic}}' class="w3-circle" style="height:30px;width:30px" alt="Avatar">
   </a>
  </div>
  <div class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large" #navDemo>
-  <a class="w3-bar-item w3-button w3-padding-large"  (click) = "navigateChat()"><i class="fa fa-envelope"></i> CHAT</a>
-  <a class="w3-bar-item w3-button w3-padding-large" >SCHEDULE</a>
+  <a class="w3-bar-item w3-button w3-padding-large"  (click) = "navigateChat()"> CHAT</a>
+  <a class="w3-bar-item w3-button w3-padding-large" (click) = "logout()" >LOG OUT</a>
 </div>
 </div>
-
-<!-- Navbar on small screens -->
-
 
 <!-- Page Container -->
 <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">    
@@ -40,24 +37,7 @@
          <hr>
          <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>{{CurrentUser.name}}</p>
         </div>
-      </div>
-      <br>
-      
-      <!-- Accordion -->
-      <div class="w3-card w3-round">
-        <div class="w3-white">
-          <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>Create Event</button>
-          <div id="Demo1" class="w3-hide w3-container">
-            <p>Some text..</p>
-          </div>
-          <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>Update Events</button>
-          <div id="Demo1" class="w3-hide w3-container">
-            <p>Some text..</p>
-          </div>
-        </div>      
-      </div>
-      <br>
-      
+      </div> 
       <br>
     
     <!-- End Left Column -->
@@ -83,7 +63,6 @@
                 <i class="fa fa-cloud-upload"></i>
             </label>
             <input id= "file-upload" type="file" (change) = "fileChangeEvent($event)" multiple/>
-
             </div>
           </div>
         </div>
@@ -162,18 +141,6 @@
   </div>
 </div>
 <script>
-// Accordion
-function myFunction(id) {
-    var x = document.getElementById(id);
-    if (x.className.indexOf("w3-show") == -1) {
-        x.className += " w3-show";
-        x.previousElementSibling.className += " w3-theme-d1";
-    } else { 
-        x.className = x.className.replace("w3-show", "");
-        x.previousElementSibling.className = 
-        x.previousElementSibling.className.replace(" w3-theme-d1", "");
-    }
-}
 
 // Used to toggle the menu on smaller screens when clicking on the menu button
 </script>

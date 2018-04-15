@@ -144,5 +144,13 @@ module.exports ={
                 res.status(200).send(JSON.stringify(data));
             })
         }
+    },
+    messengerFileUploadHandle(req,res){
+        var type= req.query.type;
+        if(type === "individual"){
+            var from = req.query['from']
+            var to = req.query['to']
+            
+        }
     }
 }

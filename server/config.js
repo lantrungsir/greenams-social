@@ -31,5 +31,8 @@ module.exports = {
         app.get("/api/users", TokenManagement.authenticateRequest, ApiResolve.getAllUsers)
         app.get("/api/messages/individual", TokenManagement.authenticateRequest, ApiResolve.getIndividualMessages);
         app.get("/api/messages/groups", TokenManagement.authenticateRequest, ApiResolve.getGroupMessages)
+        app.post("/api/messages/upload",multer({
+            storage : multer.memoryStorage()
+        }).array("uploads"), TokenManagement.authenticateRequest, ApiResolve.messengerFileUploadHandle)
     } 
 }

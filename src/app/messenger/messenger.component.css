@@ -326,8 +326,6 @@ outline: 0;
 width: 35px;
 height: 35px;
 position: absolute;
-/*--w3layouts--*/
-/*--agileits--*/
 right: 15px;
 top: 23px;
 border: none;
@@ -601,5 +599,13 @@ h1 {
     left: 53%;
 }
 }
-
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    border: 1px solid #cccccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
 

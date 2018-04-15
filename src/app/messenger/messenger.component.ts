@@ -18,7 +18,7 @@ export class MessengerComponent implements OnInit {
   selectedChatroom : any ={};
   groups: any;
   groupKeys: any;
-  fileToUpload : File[] =  []
+  filesToUpload : File[] =  []
   constructor(private http :AuthHttp, private ioService : UpdateService) {
       this.http.get("api/users").toPromise().then((res)=>{
       this.users = res.json();
@@ -180,5 +180,27 @@ export class MessengerComponent implements OnInit {
           "text" : data.text
         }
       })
+
+  }
+
+  fileChangeEvent(fileInput : any){
+    this.filesToUpload = fileInput.target.files;
+  }
+  makeFileRequest(){
+    var formData = new FormData();
+    for(var i =0 ;i< this.filesToUpload.length; i++){
+      formData.append("uploads", this.filesToUpload[i], this.filesToUpload[i].name);
+    }
+    if(this.filesToUpload.length >0){
+      var type = this.selectedChatroom.type;
+      if(type = "individual"){
+        this.http.post(
+          "api/messages/upload?type="+ type +"&from="+this.currentId+"&to="+ this.selectedChatroom.to+ "&mid="+this.selectedChatroom.length , 
+          formData).toPromise().then((res)=>{
+            
+          })
+      }
+      
+    }
   }
 }
