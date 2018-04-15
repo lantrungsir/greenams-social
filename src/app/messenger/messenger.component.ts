@@ -55,7 +55,7 @@ export class MessengerComponent implements OnInit {
       })
     })
   	this.socket.on("new-message", (data)=>{
-      if(this.selectedChatroom.type === data.type){
+      if(this.selectedChatroom.type === data.type && data.type === "individual"){
         if(this.selectedChatroom.to === data.sender){
           if(this.currentId === data.recipient){
             this.selectedChatroom.messages.push({

@@ -117,8 +117,8 @@ io.on("connection", function(socket){
     socket.on('new-message', (data)=>{
         socket.broadcast.emit("new-message", {
             type : data.type,
-            sender : data.recipient,
-            recipient: data.sender,
+            sender : data.sender,
+            recipient: data.recipient,
             message: data.message
         })
         console.log(data);
