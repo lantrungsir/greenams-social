@@ -184,7 +184,7 @@ export class MessengerComponent implements OnInit {
   }
 
   fileChangeEvent(fileInput : any){
-    this.filesToUpload = fileInput.target.files;
+    this.filesToUpload = <Array<File>>fileInput.target.files;
   }
   makeFileRequest(){
     var formData = new FormData();
