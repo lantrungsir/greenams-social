@@ -66,9 +66,14 @@
 						<ng-template #displayothermessage>
 								<div class="message">
 										<img src="{{users[message.author].profile_pic}}">
+										<div class = "tooltip">
+											<span class="tooltiptext">{{users[message.author].name}}</span>
+										</div>
 										<div class="bubble">
 												{{message.data.text}}
-											<span>{{message.time}}</span>
+												<div class = "tooltip">
+													<span class="tooltiptext">{{message.time}}</span>
+												</div>
 										</div>
 									</div>
 						</ng-template>
@@ -76,7 +81,7 @@
 				</div>
 				<div id="sendmessage">
 					<textarea type="text" placeholder="Send message..."></textarea>
-					<button id="send" (click) = "sendMessage(selectedChatroom.type, selectedChatroom.to)"><i class = "fa fa-send"></i></button>
+					<button id="send" (click) = "sendMessage(selectedChatroom.type, selectedChatroom.to)"><i class = "fa fa-send" style="size :30px"></i></button>
 				</div>
 
 			</div>

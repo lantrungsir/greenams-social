@@ -58,7 +58,7 @@ export class MessengerComponent implements OnInit {
       if(this.selectedChatroom.type === data.type){
         if(this.selectedChatroom.to === data.recipient){
           this.selectedChatroom.messages.push({
-            "author" : this.currentId,
+            "author" : data.sender,
             "time" : new Date(data.message.time).toLocaleDateString() +" " + new Date(data.message.time).toLocaleTimeString(),
             "data" : {
               "text" : data.message.text
