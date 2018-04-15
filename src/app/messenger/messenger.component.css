@@ -603,6 +603,7 @@ input[type="file"] {
     display: none;
 }
 .custom-file-upload {
+    background-color: #1BBC9B;
     border: 1px solid #cccccc;
     display: inline-block;
     padding: 6px 12px;
