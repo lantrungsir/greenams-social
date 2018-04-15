@@ -78,11 +78,15 @@ export class MessengerComponent implements OnInit {
     if(type === "group"){
       this.http.get("api/messages/groups?id="+key).toPromise()
         .then((res)=>{
-          var data = res.json()
+          var data = res.json();
+          var messages = data['messages']
+          for(var i = 0 ;i< messages.length;i++){
+            messages[i].time = new Date(messages[i].time).toLocaleDateString() +" " + new Date(messages[i].time).toLocaleDateString()
+          }
           this.selectedChatroom = {
             "type": "groups",
             "to": key,
-            "messages": data['messages']
+            "messages": messages
           }
           this.renderChatroom(key)
         })
@@ -90,10 +94,14 @@ export class MessengerComponent implements OnInit {
     if(type === "personal"){
       this.http.get("api/messages/individual?from="+localStorage.getItem('id')+ "&to=" +key).toPromise()
       .then((res)=>{
+        var messages = res.json();
+        for(var i = 0 ;i< messages.length;i++){
+          messages[i].time = new Date(messages[i].time).toLocaleDateString() +" " + new Date(messages[i].time).toLocaleDateString()
+        }
         this.selectedChatroom = {
           "type" :"individual",
           "to" : key,
-          "messages" : res.json()
+          "messages" : messages
         }
         this.renderChatroom(key)
       })
