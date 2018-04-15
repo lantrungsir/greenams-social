@@ -599,7 +599,7 @@ h1 {
     left: 53%;
 }
 }
-input[type="file"] {
+#file-upload-1{
     display: none;
 }
 .custom-file-upload {
