@@ -75,10 +75,10 @@
 				</div>
 				<div id="sendmessage">
 					<textarea type="text" placeholder="Send message..."></textarea>
-						<label for="file-upload" class="custom-file-upload">
+						<label for="file-upload-1" class="custom-file-upload">
 							<i class="fa fa-cloud-upload"></i>
 						</label>
-						<input id= "file-upload" type="file" (change) = "filesChangeEvent($event)" multiple/>
+						<input id= "file-upload-1" type="file" (change) = "filesChangeEvent($event)" multiple/>
 					<button id="send" (click) = "sendMessage(selectedChatroom.type, selectedChatroom.to)">--></button><br>
 					<div></div><!--progress bar -->
 					<!-- file upload -->
