@@ -67,6 +67,18 @@ export class MessengerComponent implements OnInit {
           }
         }
       }
+      if(this.selectedChatroom.type === data.type && data.type === "groups"){
+        if(this.selectedChatroom.to === data.recipient){
+          if(data.recipient === "main" || this.groups[data.recipient].members[this.currentId]=== true){
+            this.selectedChatroom.messages.push({
+              "author" : data.sender,
+              "data" : {
+                "text" : data.message.text
+              }
+            })
+          }
+        }
+      }
     })
   }
   ngAfterViewInit(){    
