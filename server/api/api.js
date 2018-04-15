@@ -106,6 +106,21 @@ module.exports ={
                     if(keys.indexOf(from)!== -1 && keys.indexOf(to)!==-1){
                         for(subkey in data[key]['messages']['content']){
                             if(data[key].messages['content'].hasOwnProperty(subkey)){
+                                
+                                var images = [];
+                                var links = []
+                                for(imageKey in data[key].messages['content'][subkey]['data'].images){
+                                    if(data[key].messages['content'][subkey]['data'].images.hasOwnProperty(imageKey)){
+                                        images.push(data[key].messages['content'][subkey]['data'].images[imageKey])
+                                    }
+                                }
+                                data[key].messages['content'][subkey]['data'].images = images;
+                                for(linkKey in data[key].messages['content'][subkey]['data'].links){
+                                    if(data[key].messages['content'][subkey]['data'].links.hasOwnProperty(linkKey)){
+                                        images.push(data[key].messages['content'][subkey]['data'].links[linkKey])
+                                    }
+                                }
+                                data[key].messages['content'][subkey]['data'].links = links;
                                 purifiedData.push(data[key].messages['content'][subkey]);
                             }
                         }
@@ -124,7 +139,22 @@ module.exports ={
                 if(data['messages']!== undefined){
                     for(key in data['messages']['content']){
                         if(data['messages']['content'].hasOwnProperty(key)){
+                            var images = [];
+                            var links = []
+                            for(imageKey in data.messages['content'][key]['data'].images){
+                                if(data.messages['content'][key]['data'].images.hasOwnProperty(imageKey)){
+                                    images.push(data.messages['content'][key]['data'].images[imageKey])
+                                }
+                            }
+                            data.messages['content'][key]['data'].images = images;
+                            for(linkKey in data.messages['content'][key]['data'].links){
+                                if(data.messages['content'][key]['data'].links.hasOwnProperty(linkKey)){
+                                    images.push(data.messages['content'][key]['data'].links[linkKey])
+                                }
+                            }
+                            data.messages['content'][key]['data'].links = links;
                             messages.push(data['messages']['content'][key]);
+
                         }
                     }
                 }

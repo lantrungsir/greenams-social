@@ -163,22 +163,25 @@ export class MessengerComponent implements OnInit {
 
   sendMessage(type: string, recipient : string){
     //send the message
-      this.makesFileRequest()
-      var data = {
-        text : $("#sendmessage textarea").val(),
-      }
-      $("#sendmessage textarea").val("")
-      this.socket.emit("new-message", {
-        'type' : type,
-        'sender' : this.currentId,
-        'recipient' : recipient,
-        'message' : data
-      })
-      this.selectedChatroom.messages.push({
-        "author" : this.currentId,
-        "data" : {
-          "text" : data.text
+      this.makesFileRequest().then((result)=>{
+        var data = {
+          text : $("#sendmessage textarea").val(),
+          images : result.images,
+          links: result.links
         }
+        $("#sendmessage textarea").val("")
+        this.socket.emit("new-message", {
+          'type' : type,
+          'sender' : this.currentId,
+          'recipient' : recipient,
+          'message' : data
+        })
+        this.selectedChatroom.messages.push({
+          "author" : this.currentId,
+          "data" : {
+            "text" : data.text
+          }
+        })
       })
   }
 
@@ -186,20 +189,19 @@ export class MessengerComponent implements OnInit {
     this.filesToUpload = <Array<File>>fileInput.target.files;
   }
   makesFileRequest(){
-    console.log("hey hey")
-    var formData = new FormData();
-    for(var i =0 ;i< this.filesToUpload.length; i++){
-      console.log('fuck you')
-      formData.append("upload", this.filesToUpload[i], this.filesToUpload[i].name);
-    }
-    if(this.filesToUpload.length >0){
-      console.log('hello')
-      var type = this.selectedChatroom.type;
-      this.http.post(
-          "api/messages/upload?type="+ type +"&from="+this.currentId+"&to="+ this.selectedChatroom.to+ "&mid="+this.selectedChatroom.messages.length, 
-          formData).toPromise().then((res)=>{
-            
+    return new Promise<any>((resolve, reject)=>{
+      var formData = new FormData();
+      for(var i =0 ;i< this.filesToUpload.length; i++){
+        formData.append("upload", this.filesToUpload[i], this.filesToUpload[i].name);
+      }
+      if(this.filesToUpload.length >0){
+        var type = this.selectedChatroom.type;
+        this.http.post(
+            "api/messages/upload?type="+ type +"&from="+this.currentId+"&to="+ this.selectedChatroom.to+ "&mid="+this.selectedChatroom.messages.length, 
+            formData).toPromise().then((res)=>{
+              resolve(res.json())
           })
-    }
+      }
+    })
   }
 }
