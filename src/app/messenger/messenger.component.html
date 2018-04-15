@@ -65,15 +65,13 @@
 						</ng-template>
 						<ng-template #displayothermessage>
 								<div class="message">
-										<img src="{{users[message.author].profile_pic}}">
 										<div class = "tooltip">
+											<img src="{{users[message.author].profile_pic}}">
 											<span class="tooltiptext">{{users[message.author].name}}</span>
 										</div>
-										<div class="bubble">
+										<div class="bubble tooltip">
 												{{message.data.text}}
-												<div class = "tooltip">
 													<span class="tooltiptext">{{message.time}}</span>
-												</div>
 										</div>
 									</div>
 						</ng-template>
