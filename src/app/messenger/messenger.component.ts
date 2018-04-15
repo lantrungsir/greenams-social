@@ -156,10 +156,12 @@ export class MessengerComponent implements OnInit {
 
   sendMessage(type: string, recipient : string){
     //send the message
+    
       var data = {
         text : $("#sendmessage textarea").val(),
         time : new Date().toString()
       }
+      $("#sendmessage textarea").val("")
       this.socket.emit("new-message", {
         'type' : type,
         'sender' : this.currentId,
