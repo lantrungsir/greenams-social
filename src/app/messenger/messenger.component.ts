@@ -190,7 +190,7 @@ export class MessengerComponent implements OnInit {
     var formData = new FormData();
     for(var i =0 ;i< this.filesToUpload.length; i++){
       console.log('fuck you')
-      formData.append("uploads", this.filesToUpload[i], this.filesToUpload[i].name);
+      formData.append("upload", this.filesToUpload[i], this.filesToUpload[i].name);
     }
     if(this.filesToUpload.length >0){
       console.log('hello')

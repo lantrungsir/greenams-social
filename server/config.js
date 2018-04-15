@@ -33,6 +33,6 @@ module.exports = {
         app.get("/api/messages/groups", TokenManagement.authenticateRequest, ApiResolve.getGroupMessages)
         app.post("/api/messages/upload",multer({
             storage : multer.memoryStorage()
-        }).array("uploads"), TokenManagement.authenticateRequest, ApiResolve.messengerFileUploadHandle)
+        }).array("upload"), TokenManagement.authenticateRequest, ApiResolve.messengerFileUploadHandle)
     } 
 }
