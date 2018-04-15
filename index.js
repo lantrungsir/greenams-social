@@ -115,7 +115,12 @@ io.on("connection", function(socket){
         })
     })
     socket.on('new-message', (data)=>{
-        socket.broadcast.emit("new-message", data)
+        socket.broadcast.emit("new-message", {
+            type : data.type,
+            sender : data.recipient,
+            recipient: data.sender,
+            message: data.message
+        })
         console.log(data);
         if(data.type === "individual"){
             var option1 =  data.recipient + "*" + data.sender
@@ -127,7 +132,6 @@ io.on("connection", function(socket){
                             var num = parseInt(number.val().toString());
                             database.saveData("messages/individual/"+option1 +"/messages/content/"+ num, {
                                 "author" : data.sender,
-                                "time" : new Date().toString(),
                                 "data" :{
                                     "text" : data.message.text
                                 }
@@ -140,7 +144,6 @@ io.on("connection", function(socket){
                                 var num = parseInt(number.val().toString());
                                 database.saveData("messages/individual/"+option2 +"/messages/content/"+ num, {
                                     "author" : data.sender,
-                                    "time" : new Date().toString(),
                                     "data" :{
                                         "text" : data.message.text
                                     }
@@ -150,7 +153,6 @@ io.on("connection", function(socket){
                         else{
                                 database.saveData("messages/individual/"+option1 +"/messages/content/0", {
                                     "author" : data.sender,
-                                    "time" : data.message.time,
                                     "data" :{
                                         "text" : data.message.text
                                     }
@@ -167,7 +169,6 @@ io.on("connection", function(socket){
                     if(number.val() === null){
                         database.saveData("messages/groups/"+ data.recipient +"/messages/content/0", {
                             "author" : data.sender,
-                            "time" : data.message.time,
                             "data" :{
                                 "text": data.message.text
                             }
@@ -177,7 +178,6 @@ io.on("connection", function(socket){
                         var num = parseInt(number.val())
                         database.saveData("messages/groups/"+ data.recipient +"/messages/content/"+ num, {
                             "author" : data.sender,
-                            "time" : data.message.time,
                             "data" :{
                                 "text": data.message.text
                             }

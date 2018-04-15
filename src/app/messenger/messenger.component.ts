@@ -59,7 +59,6 @@ export class MessengerComponent implements OnInit {
         if(this.selectedChatroom.to === data.recipient){
           this.selectedChatroom.messages.push({
             "author" : data.sender,
-            "time" : new Date(data.message.time).toLocaleDateString() +" " + new Date(data.message.time).toLocaleTimeString(),
             "data" : {
               "text" : data.message.text
             }
@@ -80,9 +79,6 @@ export class MessengerComponent implements OnInit {
         .then((res)=>{
           var data = res.json();
           var messages = data['messages']
-          for(var i = 0 ;i< messages.length;i++){
-            messages[i].time = new Date(messages[i].time).toLocaleDateString() +" " + new Date(messages[i].time).toLocaleTimeString()
-          }
           this.selectedChatroom = {
             "type": "groups",
             "to": key,
@@ -95,9 +91,6 @@ export class MessengerComponent implements OnInit {
       this.http.get("api/messages/individual?from="+localStorage.getItem('id')+ "&to=" +key).toPromise()
       .then((res)=>{
         var messages = res.json();
-        for(var i = 0 ;i< messages.length;i++){
-          messages[i].time = new Date(messages[i].time).toLocaleDateString() +" " + new Date(messages[i].time).toLocaleTimeString()
-        }
         this.selectedChatroom = {
           "type" :"individual",
           "to" : key,
@@ -159,7 +152,6 @@ export class MessengerComponent implements OnInit {
     
       var data = {
         text : $("#sendmessage textarea").val(),
-        time : new Date().toString()
       }
       $("#sendmessage textarea").val("")
       this.socket.emit("new-message", {
@@ -170,7 +162,6 @@ export class MessengerComponent implements OnInit {
       })
       this.selectedChatroom.messages.push({
         "author" : this.currentId,
-        "time" : new Date(data.time).toLocaleDateString() +" " + new Date(data.time).toLocaleTimeString(),
         "data" : {
           "text" : data.text
         }
