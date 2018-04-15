@@ -189,9 +189,11 @@ export class MessengerComponent implements OnInit {
     console.log("hey hey")
     var formData = new FormData();
     for(var i =0 ;i< this.filesToUpload.length; i++){
+      console.log('fuck you')
       formData.append("uploads", this.filesToUpload[i], this.filesToUpload[i].name);
     }
     if(this.filesToUpload.length >0){
+      console.log('hello')
       var type = this.selectedChatroom.type;
       this.http.post(
           "api/messages/upload?type="+ type +"&from="+this.currentId+"&to="+ this.selectedChatroom.to+ "&mid="+this.selectedChatroom.messages.length, 
