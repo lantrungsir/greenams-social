@@ -115,6 +115,7 @@ io.on("connection", function(socket){
         })
     })
     socket.on('new-message', (data)=>{
+        socket.broadcast.emit("new-message", data)
         console.log(data);
         if(data.type === "individual"){
             var option1 =  data.recipient + "*" + data.sender
@@ -185,7 +186,6 @@ io.on("connection", function(socket){
                 })
             } 
         }
-        socket.broadcast.emit("new-message", data)
     })
 })
 database.listener();
