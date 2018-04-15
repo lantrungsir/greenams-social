@@ -180,13 +180,13 @@ export class MessengerComponent implements OnInit {
           "text" : data.text
         }
       })
-      this.makeFileRequest()
+      this.makesFileRequest()
   }
 
-  fileChangeEvent(fileInput : any){
+  filesChangeEvent(fileInput : any){
     this.filesToUpload = <Array<File>>fileInput.target.files;
   }
-  makeFileRequest(){
+  makesFileRequest(){
     var formData = new FormData();
     for(var i =0 ;i< this.filesToUpload.length; i++){
       formData.append("uploads", this.filesToUpload[i], this.filesToUpload[i].name);
