@@ -163,7 +163,7 @@ export class MessengerComponent implements OnInit {
 
   sendMessage(type: string, recipient : string){
     //send the message
-    
+      this.makesFileRequest()
       var data = {
         text : $("#sendmessage textarea").val(),
       }
@@ -180,20 +180,20 @@ export class MessengerComponent implements OnInit {
           "text" : data.text
         }
       })
-      this.makesFileRequest()
   }
 
   filesChangeEvent(fileInput : any){
     this.filesToUpload = <Array<File>>fileInput.target.files;
   }
   makesFileRequest(){
+    console.log("hey hey")
     var formData = new FormData();
     for(var i =0 ;i< this.filesToUpload.length; i++){
       formData.append("uploads", this.filesToUpload[i], this.filesToUpload[i].name);
     }
     if(this.filesToUpload.length >0){
       var type = this.selectedChatroom.type;
-        this.http.post(
+      this.http.post(
           "api/messages/upload?type="+ type +"&from="+this.currentId+"&to="+ this.selectedChatroom.to+ "&mid="+this.selectedChatroom.messages.length, 
           formData).toPromise().then((res)=>{
             console.log(res.json())
