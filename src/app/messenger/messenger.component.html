@@ -52,10 +52,10 @@
 				<div id="chat-messages">
 
 					<div *ngFor = "let message of selectedChatroom['messages']">
-						<div *ngIf= "message.author!== currentId; then displaymymessage else displayothermessage">
+						<div *ngIf= "message.author === currentId; then displaymymessage else displayothermessage">
 						</div>
 						<ng-template #displaymymessage>
-								<div class="message">
+								<div class="message right">
 										<img src="{{currentUser.profile_pic}}">
 										<div class="bubble">
 												{{message.data.text}}
@@ -64,7 +64,7 @@
 									</div>
 						</ng-template>
 						<ng-template #displayothermessage>
-								<div class="message right">
+								<div class="message">
 										<img src="{{users[message.author].profile_pic}}">
 										<div class="bubble">
 												{{message.data.text}}
