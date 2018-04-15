@@ -124,7 +124,7 @@ module.exports ={
                 if(data['messages']!== undefined){
                     for(key in data['messages']['content']){
                         if(data['messages']['content'].hasOwnProperty(key)){
-                            messages.push(data['messages'][key]);
+                            messages.push(data['messages']['content'][key]);
                         }
                     }
                 }
