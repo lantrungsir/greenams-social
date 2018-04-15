@@ -606,8 +606,8 @@ input[type="file"] {
     border: 1px solid #cccccc;
     display: inline-block;
     padding: 6px 12px;
-    width : 30px;
-    height : 30px;
+    width : 35px;
+    height : 35px;
     cursor: pointer;
 }
 
