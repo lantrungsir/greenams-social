@@ -124,7 +124,7 @@ export class DashboardComponent implements OnInit {
     }).toPromise().then((res)=>{
       console.log(res.text());
       if(this.FilesToUpload.length !== 0){
-        this.makeFileRequest().then((data)=>{
+        this.makesFileRequest().then((data)=>{
           Object.defineProperty(newPost,"links", {
             value: data.links,
             configurable: true
@@ -161,11 +161,11 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-  fileChangeEvent(fileInput: any){
+  filesChangeEvent(fileInput: any){
     this.FilesToUpload = <Array<File>> fileInput.target.files;
   }
 
-  makeFileRequest(){
+  makesFileRequest(){
     var formData = new FormData();
     for(var i =0 ;i< this.FilesToUpload.length; i++){
       formData.append("uploads", this.FilesToUpload[i], this.FilesToUpload[i].name);
