@@ -119,6 +119,9 @@ module.exports = {
                                         })
                                     })
                                 }
+                                else{
+                                    db.pushData("messages/groups/"+ to + "/messages/content/"+ id +"/data/images", filename);
+                                }
                                 
                             }
                             else{
