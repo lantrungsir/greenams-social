@@ -61,7 +61,7 @@
 												{{message.data.text}}
 												
 										</div>
-										<img *ngFor ="let image of message.data.images" style="width:100%; height: 200px">
+										<img *ngFor ="let image of message.data.images" src = "{{image}}" style="width:100%; height: 200px">
 								</div>
 						</ng-template>
 						<ng-template #displayothermessage>
