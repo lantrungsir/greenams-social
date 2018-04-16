@@ -68,6 +68,9 @@
 											<img src= "{{users[message.author].profile_pic}}" alt = "">
 										<div class="bubble">
 												{{message.data.text}}
+												<ul class = "w3-ul w3-center">
+													<li *ngFor = "let link of message.data.links"><a href = "{{link}}">{{link}}</a></li>
+												</ul>
 										</div>
 										<img *ngFor ="let image of message.data.images" src = "{{image}}" style="width:100%; height: 200px">
 								</div>

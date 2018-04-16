@@ -230,6 +230,7 @@ export class MessengerComponent implements OnInit {
       }
       if(this.filesToUpload.length >0){
         var type = this.selectedChatroom.type;
+        this.filesToUpload = [];
         this.http.post(
             "api/messages/upload?type="+ type +"&from="+this.currentId+"&to="+ this.selectedChatroom.to+ "&mid="+id, 
             formData).toPromise().then((res)=>{
