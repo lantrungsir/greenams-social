@@ -76,17 +76,18 @@
 					</div>
 				</div>
 				<div id="sendmessage">
+						<div id = "files-to-upload">
+								<ul class="w3-ul w3-center">
+										<li *ngFor = "let file of filesToUpload">{{file.name}}</li>
+								</ul>
+						</div>
 					<textarea type="text" placeholder="Send message..."></textarea>
 						<label for="file-upload-1" class="custom-file-upload">
 							<i class="fa fa-cloud-upload"></i>
 						</label>
 						<input id= "file-upload-1" type="file" (change) = "filesChangeEvent($event)" multiple/>
 					<button id="send" (click) = "sendMessage(selectedChatroom.type, selectedChatroom.to)">--></button><br>
-					<div id = "files-to-upload">
-							<ul class="w3-ul w3-center">
-									<li *ngFor = "let file of filesToUpload">{{file.name}}</li>
-							</ul>
-					</div>
+					
 				</div>
 
 			</div>

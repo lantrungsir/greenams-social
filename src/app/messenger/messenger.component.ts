@@ -202,6 +202,12 @@ export class MessengerComponent implements OnInit {
               resolve(res.json())
           })
       }
+      else{
+        resolve({
+          "images":[],
+          "links": []
+        })
+      }
     })
   }
 }
