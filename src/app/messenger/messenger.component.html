@@ -66,11 +66,11 @@
 						</ng-template>
 						<ng-template #displayothermessage>
 								<div class="message">
-											<img src="{{users[message.author].profile_pic}}">
-											
+											<img src="{{users[message.author].profile_pic}}"
 										<div class="bubble">
 												{{message.data.text}}
 										</div>
+										<img *ngFor ="let image of message.data.images" src = "{{image}}" style="width:100%; height: 200px">
 								</div>
 						</ng-template>
 					</div>
@@ -82,13 +82,11 @@
 						</label>
 						<input id= "file-upload-1" type="file" (change) = "filesChangeEvent($event)" multiple/>
 					<button id="send" (click) = "sendMessage(selectedChatroom.type, selectedChatroom.to)">--></button><br>
-					<div></div><!--progress bar -->
 					<!-- file upload -->
-					<div id = "files-to-upload">
+					<br>
 							<ul class="w3-ul w3-center">
-									<li *ngFor = "let file of filesToUpload">{{file.name}}</li>
+								<li *ngFor = "let file of filesToUpload">{{file.name}}</li>
 							</ul>
-					</div>
 				</div>
 
 			</div>
