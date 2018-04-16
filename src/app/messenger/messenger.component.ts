@@ -163,30 +163,33 @@ export class MessengerComponent implements OnInit {
 
   sendMessage(type: string, recipient : string){
     //send the message
-      this.makesFileRequest().then((result)=>{
-        var data = {
-          text : $("#sendmessage textarea").val(),
-          images : result.images,
-          links: result.links
-        }
-        $("#sendmessage textarea").val("")
-        this.socket.emit("new-message", {
-          'type' : type,
-          'sender' : this.currentId,
-          'recipient' : recipient,
-          'message' : data
-        })
+    var data = {
+      text : $("#sendmessage textarea").val(),
+    }
+    
+    this.socket.emit("new-message", {
+      'type' : type,
+      'sender' : this.currentId,
+      'recipient' : recipient,
+      'message' : data
+    })
+    this.makesFileRequest(this.selectedChatroom.messages.length).then((result)=>{
         this.selectedChatroom.messages.push({
           "author" : this.currentId,
-          "data": data
+          "data": {
+            text: data.text,
+            images:  result.images,
+            links: result.links
+          }
         })
+        $("#sendmessage textarea").val("");
       })
   }
 
   filesChangeEvent(fileInput : any){
     this.filesToUpload = <Array<File>>fileInput.target.files;
   }
-  makesFileRequest(){
+  makesFileRequest(id: number){
     return new Promise<any>((resolve, reject)=>{
       var formData = new FormData();
       for(var i =0 ;i< this.filesToUpload.length; i++){
@@ -195,7 +198,7 @@ export class MessengerComponent implements OnInit {
       if(this.filesToUpload.length >0){
         var type = this.selectedChatroom.type;
         this.http.post(
-            "api/messages/upload?type="+ type +"&from="+this.currentId+"&to="+ this.selectedChatroom.to+ "&mid="+this.selectedChatroom.messages.length, 
+            "api/messages/upload?type="+ type +"&from="+this.currentId+"&to="+ this.selectedChatroom.to+ "&mid="+id, 
             formData).toPromise().then((res)=>{
               resolve(res.json())
           })
