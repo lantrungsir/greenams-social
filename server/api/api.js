@@ -117,7 +117,7 @@ module.exports ={
                                 data[key].messages['content'][subkey]['data'].images = images;
                                 for(linkKey in data[key].messages['content'][subkey]['data'].links){
                                     if(data[key].messages['content'][subkey]['data'].links.hasOwnProperty(linkKey)){
-                                        images.push(data[key].messages['content'][subkey]['data'].links[linkKey])
+                                        links.push(data[key].messages['content'][subkey]['data'].links[linkKey])
                                     }
                                 }
                                 data[key].messages['content'][subkey]['data'].links = links;
@@ -149,7 +149,7 @@ module.exports ={
                             data.messages['content'][key]['data'].images = images;
                             for(linkKey in data.messages['content'][key]['data'].links){
                                 if(data.messages['content'][key]['data'].links.hasOwnProperty(linkKey)){
-                                    images.push(data.messages['content'][key]['data'].links[linkKey])
+                                    links.push(data.messages['content'][key]['data'].links[linkKey])
                                 }
                             }
                             data.messages['content'][key]['data'].links = links;
