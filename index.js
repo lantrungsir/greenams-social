@@ -187,6 +187,9 @@ io.on("connection", function(socket){
             } 
         }
     })
+    socket.on("update-message", (data)=>{
+        this.socket.broadcast.emit("update-message", data);
+    })
 })
 database.listener();
 http.listen(app.get('port'), function(){

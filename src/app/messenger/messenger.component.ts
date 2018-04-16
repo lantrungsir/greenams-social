@@ -80,6 +80,28 @@ export class MessengerComponent implements OnInit {
         }
       }
     })
+    this.socket.on("update-message", (data)=>{
+      if(this.selectedChatroom.type === data.type && data.type === "individual"){
+        if(this.selectedChatroom.to === data.from){
+          if(this.currentId === data.to){
+            this.selectedChatroom.messages[parseInt(data.id)] = {
+              "author" : data.from,
+              "data" : data.data
+            }
+          }
+        }
+      }
+      if(this.selectedChatroom.type === data.type && data.type === "groups"){
+        if(this.selectedChatroom.to === data.from){
+          if(data.to === "main" || this.groups[data.to].members[this.currentId]=== true){
+            this.selectedChatroom.messages[parseInt(data.id)] = {
+              "author" : data.from,
+              "data" : data.data
+            }
+          }
+        }
+      }
+    })
   }
   ngAfterViewInit(){    
   }
@@ -179,6 +201,17 @@ export class MessengerComponent implements OnInit {
           "data": {
             text: data.text,
             images:  result.images,
+            links: result.links
+          }
+        })
+        this.socket.emit("update-message", {
+          "type" : this.selectedChatroom.type,
+          "from": this.currentId,
+          "to" : this.selectedChatroom.to,
+          "id" : this.selectedChatroom.messages.length-1,
+          "data" : {
+            text : data.text,
+            images: result.images,
             links: result.links
           }
         })
