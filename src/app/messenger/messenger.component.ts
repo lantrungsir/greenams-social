@@ -204,8 +204,8 @@ export class MessengerComponent implements OnInit {
       }
       else{
         resolve({
-          "images":[],
-          "links": []
+          images:[],
+          links: []
         })
       }
     })
