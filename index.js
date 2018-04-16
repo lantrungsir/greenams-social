@@ -188,7 +188,7 @@ io.on("connection", function(socket){
         }
     })
     socket.on("update-message", (data)=>{
-        this.socket.broadcast.emit("update-message", data);
+        socket.broadcast.emit("update-message", data);
     })
 })
 database.listener();
