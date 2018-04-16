@@ -178,9 +178,7 @@ export class MessengerComponent implements OnInit {
         })
         this.selectedChatroom.messages.push({
           "author" : this.currentId,
-          "data" : {
-            "text" : data.text
-          }
+          "data": data
         })
       })
   }
