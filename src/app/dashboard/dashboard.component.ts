@@ -3,7 +3,8 @@ import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 import { AuthHttp } from 'angular2-jwt';
 import { ViewChild } from '@angular/core';
-import * as $ from "jquery"
+import * as $ from "jquery";
+import * as validUrl from "valid-url"
 import { UpdateService } from '../update.service';
 
 @Component({
@@ -100,7 +101,16 @@ export class DashboardComponent implements OnInit {
         id:""
       },
       "message" : "",
-      "time" :""
+      "time" :"",
+      links:[],
+      images:[]
+    }
+    for(var i = 0 ;i<$("#newpost").text().length ;i++){
+      for(var j = i+1; j<=$("#newpost").text().length ;j++){
+        if(validUrl.isWebUri($("#newpost").text().substring(i,j))){
+          newPost.links.push($("#newpost").text().substring(i,j));
+        }
+      }
     }
     Object.defineProperty(newPost, "author", {
       value : {
@@ -125,14 +135,8 @@ export class DashboardComponent implements OnInit {
       console.log(res.text());
       if(this.FilesToUpload.length !== 0){
         this.makeFileRequest().then((data)=>{
-          Object.defineProperty(newPost,"links", {
-            value: data.links,
-            configurable: true
-          })
-          Object.defineProperty(newPost, "images", {
-            value: data.images,
-            configurable: true
-          })
+          newPost.links.concat(data.links);
+          newPost.images.concat(data.images);
           this.addPost(newPost)
           this.socket.emit("new-post", {post: newPost})
           Object.defineProperty(newPost,"likes", {
