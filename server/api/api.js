@@ -37,15 +37,11 @@ module.exports ={
                             data[key].images =  purifiedImageData;
                             data[key].links =  purifiedLinkData;
                             data[key].comments = purifiedComments;
-                            purifiedPostData.push(data[key]);      
+                            purifiedPostData.splice(0,0, data[key]);      
                     }
                 }
-                var superPosts = [];
-                for(var i = purifiedPostData.length-1 ;i > -1 ;i--){
-                  superPosts.push(purifiedPostData[i]);
-                }
-                console.log(superPosts)
-                res.status(200).send(JSON.stringify(superPosts)); 
+                console.log(purifiedPostData)
+                res.status(200).send(JSON.stringify(purifiedPostData)); 
             })
     },
     setNewPost: function(req, res){
