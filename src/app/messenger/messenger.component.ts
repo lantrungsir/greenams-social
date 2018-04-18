@@ -12,7 +12,7 @@ import * as $ from "jquery"
 export class MessengerComponent implements OnInit {
   @Input() currentUser : any;
   @Input() currentId : any;
-  @Input users: any
+  @Input() users: any
   userKeys : any
   socket: any
   selectedChatroom : any ={};
