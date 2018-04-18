@@ -72,7 +72,6 @@ module.exports = {
                                         }
                                         else{
                                             data[post.key].comments["content"][comment.key]["author"] = commentAuthor;
-                                            console.log(data[post.key].comments["content"][comment.key])
                                             db.ref("posts/content/"+ post.key+ "/comments/num").once("value", function(number){
                                                 if(comment.key.toString()=== number.val().toString() || parseInt(number.val()) === 0){
                                                     rs();
