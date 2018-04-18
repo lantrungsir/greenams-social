@@ -15,6 +15,7 @@ export class GrouppostComponent implements OnInit {
 
   @Input() currentUser: any
   @Input() post :any
+  @Input() users : any
   slideIndex: number = 1;
   constructor(private ioService: UpdateService) {
     this.socket = this.ioService.socket;

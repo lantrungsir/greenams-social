@@ -3,7 +3,7 @@ var storage = require("../admin/storage.js")
 var database = require("../admin/admin.js").database();
 module.exports ={
     getPost: function(req, res){
-        db.getPost().then(function(data){
+        db.getData("posts/content").then(function(data){
             console.log(data);
                 var purifiedPostData = [];
                 for(key in data){

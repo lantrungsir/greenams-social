@@ -1,7 +1,7 @@
 <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-  <img src="{{post.author.profile_pic}}" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+  <img src="{{users[post.author].profile_pic}}" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
   <span class="w3-right w3-opacity">{{post.time}}</span>
-  <h4>{{post.author.name}}</h4><br>
+  <h4>{{users[post.author].name}}</h4><br>
   <hr class="w3-clear">
   <p>{{post.message}}</p>
   <!-- list of links-->

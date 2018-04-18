@@ -72,6 +72,8 @@
           *ngFor= "let post of posts" 
           [post]= "post"
           [currentUser] = "CurrentUser"
+          [users] = "users"
+          [userKeys] = "userKeys"
         ></app-grouppost>
 
       </div>
@@ -137,6 +139,8 @@
       <h2>GreenAms Messenger</h2>
       <app-messenger [currentUser] = "CurrentUser"
         [currentId]= "id"
+        [users] = "users"
+        [userKeys] = "userKeys"
       ></app-messenger>
   </div>
 </div>
