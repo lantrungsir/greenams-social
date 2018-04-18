@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit {
   posts = [];
   id : string;
   users: any
+  userKeys : any = []
   constructor(private userService : UserService, private router: Router, private http :AuthHttp, private ioService : UpdateService) {
     this.id = localStorage.getItem('id')
     this.userService.getCurrentUser().then((user)=>{
@@ -33,6 +34,7 @@ export class DashboardComponent implements OnInit {
           })
           this.http.get("api/users").toPromise().then((res)=>{
             this.users = res.json();
+            this.userKeys = Object.keys(this.users)
           })
         }
       })
