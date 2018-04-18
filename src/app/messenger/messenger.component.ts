@@ -12,14 +12,18 @@ import * as $ from "jquery"
 export class MessengerComponent implements OnInit {
   @Input() currentUser : any;
   @Input() currentId : any;
-  @Input() users: any
-  @Input() userKeys : any
+  users: any
+  userKeys : any
   socket: any
   selectedChatroom : any ={};
   groups: any;
   groupKeys: any;
   filesToUpload : File[] =  []
   constructor(private http :AuthHttp, private ioService : UpdateService) {
+    this.http.get("api/users").toPromise().then((res)=>{
+      this.users = res.json();
+      this.userKeys = Object.keys(this.users)
+    })
     this.http.get("api/messages/groups").toPromise().then((res)=>{
       this.groups = res.json();
       this.groupKeys = Object.keys(this.groups)
