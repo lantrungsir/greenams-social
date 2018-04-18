@@ -4,6 +4,7 @@ var database = require("../admin/admin.js").database();
 module.exports ={
     getPost: function(req, res){
         db.getPost().then(function(data){
+            console.log(data);
                 var purifiedPostData = [];
                 for(key in data){
                     if(data.hasOwnProperty(key)){
@@ -13,7 +14,6 @@ module.exports ={
                                     purifiedImageData.push(data[key].images[imageKey])
                                 }
                             }
-                           
                             var purifiedLinkData = []
                             for(linkKey in data[key].links){
                                 if(data[key].links.hasOwnProperty(linkKey)){
