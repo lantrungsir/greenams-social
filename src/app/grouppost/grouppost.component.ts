@@ -160,10 +160,7 @@ export class GrouppostComponent implements OnInit {
       $("#comment-text"+this.post.id).val("");
       this.isComment= true
       var newComment = {
-        author:{
-          name : this.currentUser.name,
-          profile_pic: this.currentUser.profile_pic
-        },
+        author: localStorage.getItem('id'),
         message : msg,
         id: 1
       }

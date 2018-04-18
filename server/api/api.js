@@ -46,7 +46,7 @@ module.exports ={
     },
     setNewPost: function(req, res){
         var newPost = req.body.new_post
-        var author = newPost.author.id;
+        var author = newPost.author;
         Object.defineProperty(newPost, "author", {
             value :author,
             configurable: true,

@@ -101,17 +101,14 @@ io.on("connection", function(socket){
                     message : data.data.message
                 })
             })
-            db.ref("users/"+data.data.author_id).once("value", function(user){
-                var author = user.val()
                 socket.broadcast.emit("new-comment", {
                     post_id : realId,
                     sum : number,
                     comment : {
-                        author : author,
+                        author :data.data.author_id,
                         message : data.data.message,
                     } 
                 })
-            })
         })
     })
     socket.on('new-message', (data)=>{
