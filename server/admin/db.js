@@ -70,7 +70,7 @@ module.exports = {
                                     for(key in data.val()){
                                         if(data.val().hasOwnProperty(key)){
                                             if(key !== message.key){
-                                                message.ref.parent.ref(key).set(null)
+                                                db.ref("messages/"+ category.key +"/"+chatroom.key +"/messages/content/"+key).set(null)
                                             }
                                         }
                                     }
