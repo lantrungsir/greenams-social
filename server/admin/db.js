@@ -65,7 +65,7 @@ module.exports = {
                             db.ref("messages/"+ category.key +"/"+chatroom.key +"/messages/num").set(value)
                         })
                         db.ref("date/messenger").once("value", function(date){
-                            if(new Date(date.val()).getSeconds() + 630000 >= new Date().getSeconds()){
+                            if(new Date(date.val()).getSeconds() + 630000 <= new Date().getSeconds()){
                                 db.ref("messages/"+ category.key +"/"+chatroom.key +"/messages/content").once("value", function(data){
                                     for(key in data.val()){
                                         if(data.val().hasOwnProperty(key)){
