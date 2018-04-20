@@ -99,33 +99,60 @@ export class DashboardComponent implements OnInit {
     var newPost ={
       "author" : this.id,
       "message" : "",
-      "time" :""
+      "time" :"",
+      links :[],
     }
-    Object.defineProperty(newPost, "message", {
-      value : $("#newpost").text(),
-      configurable: true
-    })
-    Object.defineProperty(newPost, "time", {
-      value : new Date().toLocaleDateString(),
-      configurable: true
-    })
-    $("#newpost").text("")
-    this.http.post("api/posts", {
-      new_post : newPost
-    }).toPromise().then((res)=>{
-      console.log(res.text());
-      if(this.FilesToUpload.length !== 0){
-        this.makeFileRequest().then((data)=>{
-          Object.defineProperty(newPost,"links", {
-            value: data.links,
-            configurable: true
+    var msg =   $("#newpost").text();
+    new Promise<any>((resolve, reject)=>{
+      for(var i = 0 ;i< msg.length ;i++){
+        for(var j = i+1; j<=msg.length;j++){
+          var url = msg.substring(i,j);
+          //send request
+          this.http.get(url).toPromise().then((res)=>{
+            if(res.status === 200){
+              newPost.links.push(url);
+            }
+            if(i === msg.length -1){
+              resolve();
+            }
           })
-          Object.defineProperty(newPost, "images", {
-            value: data.images,
-            configurable: true
+        }
+      }
+    }).then(()=>{
+      Object.defineProperty(newPost, "message", {
+        value : $("#newpost").text(),
+        configurable: true
+      })
+      Object.defineProperty(newPost, "time", {
+        value : new Date().toLocaleDateString(),
+        configurable: true
+      })
+      $("#newpost").text("")
+      this.http.post("api/posts", {
+        new_post : newPost
+      }).toPromise().then((res)=>{
+        console.log(res.text());
+        if(this.FilesToUpload.length !== 0){
+          this.makeFileRequest().then((data)=>{
+           newPost.links = newPost.links.concat(data.links);
+            Object.defineProperty(newPost, "images", {
+              value: data.images,
+              configurable: true
+            })
+            this.addPost(newPost)
+            this.socket.emit("new-post", {post: newPost})
+            Object.defineProperty(newPost,"likes", {
+              value: [],
+              configurable: true
+            })
+            Object.defineProperty(newPost, "comments", {
+              value: [],
+              configurable: true
+            })
+            return;
           })
-          this.addPost(newPost)
-          this.socket.emit("new-post", {post: newPost})
+        }
+        else{
           Object.defineProperty(newPost,"likes", {
             value: [],
             configurable: true
@@ -134,21 +161,10 @@ export class DashboardComponent implements OnInit {
             value: [],
             configurable: true
           })
-          return;
-        })
-      }
-      else{
-        Object.defineProperty(newPost,"likes", {
-          value: [],
-          configurable: true
-        })
-        Object.defineProperty(newPost, "comments", {
-          value: [],
-          configurable: true
-        })
-        this.addPost(newPost)
-        this.socket.emit("new-post", {post: newPost})
-      }
+          this.addPost(newPost)
+          this.socket.emit("new-post", {post: newPost})
+        }
+      })
     })
   }
 
