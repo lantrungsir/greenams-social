@@ -102,23 +102,11 @@ export class DashboardComponent implements OnInit {
       "time" :"",
       links :[],
     }
-    var msg =   $("#newpost").text();
-    new Promise<any>((resolve, reject)=>{
-      for(var i = 0 ;i< msg.length ;i++){
-        for(var j = i+1; j<=msg.length;j++){
-          var url = msg.substring(i,j);
-          //send request
-          this.http.get(url).toPromise().then((res)=>{
-            if(res.status === 200){
-              newPost.links.push(url);
-            }
-            if(i === msg.length -1){
-              resolve();
-            }
-          })
-        }
-      }
-    }).then(()=>{
+    var text =   $("#newpost").text();
+	  var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+	  var text1=text.replace(exp, "<a href='$1'>$1</a>");
+    var exp2 =/(^|[^\/])(www\.[\S]+(\b|$))/gim;
+    newPost.message = text1.replace(exp2, '$1<a target="_blank" href="http://$2">$2</a>');
       Object.defineProperty(newPost, "message", {
         value : $("#newpost").text(),
         configurable: true
@@ -165,7 +153,7 @@ export class DashboardComponent implements OnInit {
           this.socket.emit("new-post", {post: newPost})
         }
       })
-    })
+  
   }
 
   fileChangeEvent(fileInput: any){
