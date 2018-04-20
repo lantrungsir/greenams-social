@@ -82,7 +82,12 @@ module.exports = {
                     db.ref("messages/"+ category.key +"/"+chatroom.key +"/messages/content").on("child_removed", function(snapshot){
                         db.ref("messages/"+ category.key +"/"+chatroom.key +"/messages/num").once("value", function(num){
                             var value = num.val()-1;
-                            db.ref("messages/"+ category.key +"/"+chatroom.key +"/messages/num").set(value)
+                            if(value < 0){
+                                db.ref("messages/"+ category.key +"/"+chatroom.key +"/messages/num").set(0)
+                            }
+                            else{
+                                db.ref("messages/"+ category.key +"/"+chatroom.key +"/messages/num").set(value)
+                            }
                         })
                     })  
             })
