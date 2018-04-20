@@ -25,6 +25,7 @@ module.exports = {
                 if(new Date().getSeconds() - new Date(date.val()).getSeconds() >= 32000000){
                     db.ref("posts/content").set(null);
                     db.ref("date/posts").set(new Date().toDateString());
+                    db.ref("posts/num").set(0);
                     db.ref("posts/content/1").set(snapshot.val());
                 }
             })
@@ -52,6 +53,7 @@ module.exports = {
                         db.ref("date/messenger").once("value", function(date){
                             if(new Date(date.val()).getSeconds() + 630000 <= new Date().getSeconds()){
                                 db.ref("messages/"+ category.key +"/"+chatroom.key +"/messages/content").set(null);
+                                db.ref("messages/"+ category.key +"/"+chatroom.key +"/messages/num").set(0);
                                 db.ref("date/messenger").set(new Date().toDateString());
                                 db.ref("messages/"+ category.key +"/"+chatroom.key +"/messages/content/0").set(message.val());
                             }
