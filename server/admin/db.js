@@ -1,5 +1,4 @@
 var db = require("./admin.js").database();
-var st = require("./admin.js").storage().bucket();
 module.exports = {
     saveData: function(path, data){
         db.ref(path).set(data);
@@ -29,7 +28,6 @@ module.exports = {
                     db.ref("posts/content/1").set(snapshot.val());
                 }
             })
-            
             db.ref("posts/num").once("value", function(snap){
                 var value = snap.val() + 1;
                 db.ref("posts/num").set(value);
@@ -61,6 +59,6 @@ module.exports = {
                     })
             })
         })
-    },
+    }
     
 }
