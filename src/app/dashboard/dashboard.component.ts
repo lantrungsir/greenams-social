@@ -23,18 +23,19 @@ export class DashboardComponent implements OnInit {
     this.id = localStorage.getItem('id')
     this.userService.getCurrentUser().then((user)=>{
       this.CurrentUser = user
-      this.getPost()
-      .then((postsData)=>{
-        this.posts = postsData;
-        for(var i = 0;i < this.posts.length ;i++){
-          Object.defineProperty(this.posts[i], "id", {
-            value : i+1,
-            configurable: true
-          })
-          this.http.get("api/users").toPromise().then((res)=>{
-            this.users = res.json();
-          })
-        }
+      this.http.get("api/users").toPromise().then((res)=>{
+        this.users = res.json();
+        this.getPost()
+        .then((postsData)=>{
+          this.posts = postsData;
+          for(var i = 0;i < this.posts.length ;i++){
+            Object.defineProperty(this.posts[i], "id", {
+              value : i+1,
+              configurable: true
+            })
+            
+          }
+        })
       })
     }).catch(()=>{
       this.userService.logout();
