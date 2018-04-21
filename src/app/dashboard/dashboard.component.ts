@@ -95,7 +95,6 @@ export class DashboardComponent implements OnInit {
   }
 
   setNewPost(){
-    
     var newPost ={
       "author" : this.id,
       "message" : "",
@@ -107,10 +106,6 @@ export class DashboardComponent implements OnInit {
 	  var text1=text.replace(exp, "<a href='$1'>$1</a>");
     var exp2 =/(^|[^\/])(www\.[\S]+(\b|$))/gim;
     newPost.message = text1.replace(exp2, '$1<a target="_blank" href="http://$2">$2</a>');
-      Object.defineProperty(newPost, "message", {
-        value : $("#newpost").text(),
-        configurable: true
-      })
       Object.defineProperty(newPost, "time", {
         value : new Date().toLocaleDateString(),
         configurable: true
