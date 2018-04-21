@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit {
   posts = [];
   id : string;
   users: any = {}
+  
   constructor(private userService : UserService, private router: Router, private http :AuthHttp, private ioService : UpdateService) {
     this.id = localStorage.getItem('id')
     this.userService.getCurrentUser().then((user)=>{
@@ -52,6 +53,13 @@ export class DashboardComponent implements OnInit {
       data.post.likes = [];
       data.post.comments = [];
       this.addPost(data.post)
+    })
+    this.socket.on("online", (user)=>{
+      Object.defineProperty(this.users, user.id, {
+        value : user.data,
+        configurable: true,
+        writable: true
+      })
     })
    }
 
