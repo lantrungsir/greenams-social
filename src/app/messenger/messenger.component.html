@@ -57,8 +57,8 @@
 						<ng-template #displaymymessage>
 								<div class="message right">
 									<img src="{{currentUser.profile_pic}}" alt="">
-										<div class="bubble">
-												{{message.data.text}}
+										<div class="bubble" innerHTML = "{{message.data.text}}">
+												
 										</div>
 										<div class = "bubble" *ngFor = "let link of message.data.links" style="width: 100%">
 											<a href = "{{link}}">{{link}}</a>
@@ -69,8 +69,7 @@
 						<ng-template #displayothermessage>
 								<div class="message">
 											<img src= "{{users[message.author].profile_pic}}" alt = "">
-										<div class="bubble">
-												{{message.data.text}}
+											<div class="bubble" innerHTML = "{{message.data.text}}">
 										</div>
 										<div class = "bubble" *ngFor = "let link of message.data.links" style="width: 100%">
 											<a href = "{{link}}">{{link}}</a>
