@@ -61,7 +61,6 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-
   getPost(): Promise<any>{
    return new Promise((resolve, reject)=>{
         this.http.get("api/posts").toPromise().then((res)=>{
