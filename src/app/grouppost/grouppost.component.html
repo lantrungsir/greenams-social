@@ -37,8 +37,8 @@
     <table class="new_comment_table" *ngFor = "let comment of post.comments">
       <tr class="new_comment_row w3-cell-row">
         <td class="new_comment_img" ><img src="{{users[comment.author].profile_pic}}" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:55px"></td>
-        <td class="new_comment_text" innerHTML = "{{comment.message}}"><b>{{users[comment.author].name}}</b>
-        <p>{{comment.message}}</p>
+        <td class="new_comment_text" ><b>{{users[comment.author].name}}</b>
+        <p innerHTML = "{{comment.message}}"></p>
       </tr>
     </table>
   </div> 
