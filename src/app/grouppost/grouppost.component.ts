@@ -149,6 +149,10 @@ export class GrouppostComponent implements OnInit {
   }
   addComment(){
     var msg = $("#comment-text"+this.post.id).val();
+    var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+	  var text1= msg.replace(exp, "<a href='$1'>$1</a>");
+    var exp2 =/(^|[^\/])(www\.[\S]+(\b|$))/gim;
+    var message = text1.replace(exp2, '$1<a target="_blank" href="http://$2">$2</a>');
     if(msg === ""){
       return;
     }
@@ -164,7 +168,7 @@ export class GrouppostComponent implements OnInit {
       this.isComment= true
       var newComment = {
         author: localStorage.getItem('id'),
-        message : msg,
+        message : message,
         id: 1
       }
       this.post.comments.splice(0,0,newComment)
@@ -172,7 +176,7 @@ export class GrouppostComponent implements OnInit {
         post_id: this.post.id,
         data :{
           author_id: localStorage.getItem("id"),
-          message : msg
+          message : message
         }
       })
     }
