@@ -138,7 +138,7 @@ io.on("connection", function(socket){
                     }
                 })
                 .then((response)=>{
-                    console.log(response)
+                    console.log(response[0].intent)
                 })
                 .catch((err)=>{
                     console.log(err)
