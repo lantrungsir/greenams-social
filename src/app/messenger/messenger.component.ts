@@ -107,9 +107,6 @@ export class MessengerComponent implements OnInit {
   }
 
   chooseChatRoom(key: string, type: string){
-    if(type === "admin"){
-      
-    }
     if(type === "group"){
       this.http.get("api/messages/groups?id="+key).toPromise()
         .then((res)=>{

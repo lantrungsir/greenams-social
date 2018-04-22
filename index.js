@@ -5,6 +5,11 @@ var config = require("./server/config.js");
 var database = require("./server/admin/db.js");
 var db = require("./server/admin/admin.js").database()
 
+const dialogflow = require('dialogflow');
+const sessionClient = new dialogflow.SessionsClient();
+
+const sessionPath = sessionClient.sessionPath("free-schedule", "greenams6520");
+
 config.Middleware(app, express);
 config.Route(app)
 
@@ -120,45 +125,62 @@ io.on("connection", function(socket){
         })
         console.log(data);
         if(data.type === "individual"){
-            var option1 =  data.recipient + "*" + data.sender
-            var option2 = data.sender + "*" +data.recipient
-            db.ref("messages/individual/"+ option1).once("value", function(data1){
-                db.ref("messages/individual/"+ option2).once("value", function(data2){
-                    if(data1.exists()){
-                        db.ref("messages/individual/"+ option1 + "/messages/num").once("value", function(number){
-                            var num = parseInt(number.val().toString());
-                            database.saveData("messages/individual/"+option1 +"/messages/content/"+ num, {
-                                "author" : data.sender,
-                                "data" :{
-                                    "text" : data.message.text
-                                }
-                            })
-                        })
-                    }
-                    else {
-                        if(data2.exists()){
-                            db.ref("messages/individual/"+ option2 + "/messages/num").once("value", function(number){
-                                var num = parseInt(number.val().toString());
-                                database.saveData("messages/individual/"+option2 +"/messages/content/"+ num, {
-                                    "author" : data.sender,
-                                    "data" :{
-                                        "text" : data.message.text
-                                    }
-                                })
-                            })
-                        }
-                        else{
-                                database.saveData("messages/individual/"+option1 +"/messages/content/0", {
-                                    "author" : data.sender,
-                                    "data" :{
-                                        "text" : data.message.text
-                                    }
-                                })
-                            
-                        }
+            if(data.recipient === "admin"){
+                sessionClient.detectIntent({
+                    session : sessionPath,
+                    queryInput:{
+                        text: data.message.text,
+                        languageCode :'en-US'
                     }
                 })
-            })
+                .then((response)=>{
+                    console.log(response)
+                })
+                .catch((err)=>{
+                    console.log(err)
+                })
+            }
+            else{
+                var option1 =  data.recipient + "*" + data.sender
+                var option2 = data.sender + "*" +data.recipient
+                db.ref("messages/individual/"+ option1).once("value", function(data1){
+                    db.ref("messages/individual/"+ option2).once("value", function(data2){
+                        if(data1.exists()){
+                            db.ref("messages/individual/"+ option1 + "/messages/num").once("value", function(number){
+                                var num = parseInt(number.val().toString());
+                                database.saveData("messages/individual/"+option1 +"/messages/content/"+ num, {
+                                    "author" : data.sender,
+                                    "data" :{
+                                        "text" : data.message.text
+                                    }
+                                })
+                            })
+                        }
+                        else {
+                            if(data2.exists()){
+                                db.ref("messages/individual/"+ option2 + "/messages/num").once("value", function(number){
+                                    var num = parseInt(number.val().toString());
+                                    database.saveData("messages/individual/"+option2 +"/messages/content/"+ num, {
+                                        "author" : data.sender,
+                                        "data" :{
+                                            "text" : data.message.text
+                                        }
+                                    })
+                                })
+                            }
+                            else{
+                                    database.saveData("messages/individual/"+option1 +"/messages/content/0", {
+                                        "author" : data.sender,
+                                        "data" :{
+                                            "text" : data.message.text
+                                        }
+                                    })
+                                
+                            }
+                        }
+                    })
+                })
+            }
         }
         else{
            if(data.type === "groups"){
@@ -183,6 +205,7 @@ io.on("connection", function(socket){
                 })
             } 
         }
+        
     })
     socket.on("update-message", (data)=>{
         socket.broadcast.emit("update-message", data);
