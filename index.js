@@ -6,7 +6,10 @@ var database = require("./server/admin/db.js");
 var db = require("./server/admin/admin.js").database()
 
 const dialogflow = require('dialogflow');
-const sessionClient = new dialogflow.SessionsClient("./botty-green-seracckey.json");
+
+const sessionClient = new dialogflow.SessionsClient({
+    keyFilename :"./botty-green-seracckey.json"
+});
 
 config.Middleware(app, express);
 config.Route(app)
