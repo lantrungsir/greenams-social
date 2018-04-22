@@ -131,8 +131,10 @@ io.on("connection", function(socket){
                 sessionClient.detectIntent({
                     session : sessionPath,
                     queryInput:{
-                        text: data.message.text,
-                        languageCode :'en-US'
+                        text: {
+                            text : data.message.text,
+                            languageCode :'en-US'
+                        }
                     }
                 })
                 .then((response)=>{
