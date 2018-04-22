@@ -8,8 +8,6 @@ var db = require("./server/admin/admin.js").database()
 const dialogflow = require('dialogflow');
 const sessionClient = new dialogflow.SessionsClient();
 
-const sessionPath = sessionClient.sessionPath("free-schedule", "greenams6520");
-
 config.Middleware(app, express);
 config.Route(app)
 
@@ -126,6 +124,7 @@ io.on("connection", function(socket){
         console.log(data);
         if(data.type === "individual"){
             if(data.recipient === "admin"){
+                var sessionPath = sessionClient.sessionPath("free-schedule", data.sender);
                 sessionClient.detectIntent({
                     session : sessionPath,
                     queryInput:{
