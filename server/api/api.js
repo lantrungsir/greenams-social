@@ -246,3 +246,4 @@ function getZodiacSign(day, month) {
     } else if((month == 11 && day >= 23) || (month == 12 && day <= 21)) {
       return zodiacSigns.sagittarius;
     }
+}
