@@ -141,12 +141,12 @@ io.on("connection", function(socket){
                     var result = response[0].queryResult;
 
                     if(result.webhookPayload !== undefined && result.webhookPayload !== null){
-                        console.log(result.webhookPayload['fields']['web'])
+                        console.log(result.webhookPayload['fields']['web']['structValue']['fields']['content'])
                         io.emit("new-message", {
                             type : data.type,
                             sender : 'admin',
                             recipient: data.sender,
-                            message: result.webhookPayload['fields']['web']['content']
+                            message: result.webhookPayload['fields']['web']['structValue']['fields']['content']
                         })
                     }
                     else{
