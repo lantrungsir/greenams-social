@@ -34,5 +34,6 @@ module.exports = {
         app.post("/api/messages/upload",multer({
             storage : multer.memoryStorage()
         }).array("upload"), TokenManagement.authenticateRequest, ApiResolve.messengerFileUploadHandle)
+        app.post("/webhook", ApiResolve.resolveWebhook);
     } 
 }
