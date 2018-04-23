@@ -138,7 +138,8 @@ io.on("connection", function(socket){
                     }
                 })
                 .then((response)=> {
-                    console.log(response[0].queryResult.fulfillmentText);
+                    var result = response[0].queryResult;
+                    
                 })
                 .catch((err)=>{
                     console.log(err)

@@ -236,9 +236,9 @@ module.exports ={
                             res.send(JSON.stringify({
                                 'payload':{
                                     'web': {
-                                        'type' : text,
+                                        'type' : 'text',
                                         'content' : {
-                                            'text' : output.name
+                                            'text' : output
                                         }
                                     }
                                 }
