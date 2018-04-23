@@ -138,9 +138,9 @@ io.on("connection", function(socket){
                     }
                 })
                 .then((response)=> {
-                    
                     var result = response[0].queryResult;
-                    if(result.webhookPayload !==  undefined){
+                    console.log(result)
+                    if(result.webhookPayload !==  undefined && result.webhookPayload){
                         socket.broadcast.emit("new-message", {
                             type : data.type,
                             sender : 'admin',
