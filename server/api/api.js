@@ -236,7 +236,9 @@ module.exports ={
                                 'payload':{
                                     'web': {
                                         'content' : {
-                                            'text' : output
+                                            'text' : output,
+                                            'images' : [],
+                                            "links" :[]
                                         }
                                     }
                                 }
