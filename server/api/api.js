@@ -185,7 +185,7 @@ module.exports ={
     resolveWebhook(req,res){
         if(req.body.queryResult.action === "input.asking_for_sunsign"){
             if(req.body.queryResult.allRequiredParamsPresent === true){
-                var date = req.body.result.parameters.date;
+                var date = req.body.queryResult.parameters.date;
                 var month = parseInt(date.substring(5,7));
                 var day = parseInt(date.substring(8,10));
                 var output = getZodiacSign(day,month);
