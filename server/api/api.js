@@ -257,9 +257,9 @@ module.exports ={
                 }
           
                 db.pushData("meets", {
-                    "content" :  req.body.result.parameters.any,
-                    "time" : req.body.result.parameters.time,
-                    "day" :req.body.result.parameters.date,
+                    "content" :  req.body.queryResult.parameters.any,
+                    "time" : req.body.queryResult.parameters.time,
+                    "day" :req.body.queryResult.parameters.date,
                     "to" : to 
                  }, true).then(()=>{
                     res.send('nothing');
