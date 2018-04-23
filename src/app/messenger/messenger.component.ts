@@ -260,6 +260,7 @@ export class MessengerComponent implements OnInit {
         var id = $(this).id;
         console.log(id)
         var bool = (this.users[id].name.indexOf(searchVal) !== -1 || this.groups[id].name.indexOf(searchVal) !== -1)
+        console.log(bool)
         $(this).toggle(bool)
       })
     }
