@@ -145,7 +145,7 @@ io.on("connection", function(socket){
                             type : data.type,
                             sender : 'admin',
                             recipient: data.sender,
-                            message: result.webhookPayload['web']['content']
+                            message: result.webhookPayload['fields']['web']['content']
                         })
                     }
                     else{
