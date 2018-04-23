@@ -59,9 +59,7 @@ export class MessengerComponent implements OnInit {
           if(this.currentId === data.recipient){
             this.selectedChatroom.messages.push({
               "author" : data.sender,
-              "data" : {
-                "text" : data.message.text
-              }
+              "data" : data.message
             })
           }
         }
@@ -71,9 +69,7 @@ export class MessengerComponent implements OnInit {
           if(data.recipient === "main" || this.groups[data.recipient].members[this.currentId]=== true){
             this.selectedChatroom.messages.push({
               "author" : data.sender,
-              "data" : {
-                "text" : data.message.text
-              }
+              "data" : data.message
             })
           }
         }
