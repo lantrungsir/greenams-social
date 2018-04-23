@@ -255,14 +255,12 @@ export class MessengerComponent implements OnInit {
   }
   searchContact(){
     var searchVal = $("#searchfield").val();
-    for(var i = 0;i< this.groupKeys.length; i++){
-      $(".friend").filter(function(){
+    $(".friend").filter(function(){
         var id = $(this).id;
         console.log(id)
         var bool = (this.users[id].name.indexOf(searchVal) !== -1 || this.groups[id].name.indexOf(searchVal) !== -1)
         console.log(bool)
         $(this).toggle(bool)
       })
-    }
   }
 }
