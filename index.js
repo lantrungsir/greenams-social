@@ -141,7 +141,7 @@ io.on("connection", function(socket){
                     var result = response[0].queryResult;
                     console.log(result)
                     if(result.webhookPayload !== undefined && result.webhookPayload !== null){
-                        socket.broadcast.emit("new-message", {
+                        io.emit("new-message", {
                             type : data.type,
                             sender : 'admin',
                             recipient: data.sender,
@@ -149,7 +149,7 @@ io.on("connection", function(socket){
                         })
                     }
                     else{
-                        socket.broadcast.emit("new-message", {
+                       io.emit("new-message", {
                             type : data.type,
                             sender : 'admin',
                             recipient: data.sender,
