@@ -104,7 +104,7 @@ export class MessengerComponent implements OnInit {
         }
       }
       $("#chat-messages").animate({
-        scrollTop: $('#chat-messages').scrollHeight
+        scrollTop: $('#chat-messages').get(0).scrollHeight
       }, 500)
     })
   }
@@ -214,7 +214,7 @@ export class MessengerComponent implements OnInit {
           }
         })
         $("#chat-messages").animate({
-          scrollTop: $('#chat-messages').scrollHeight
+          scrollTop: $('#chat-messages').get(0).scrollHeight
         }, 500)
         this.socket.emit("update-message", {
           "type" : this.selectedChatroom.type,
