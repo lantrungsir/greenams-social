@@ -190,9 +190,8 @@ module.exports ={
                 var day = parseInt(date.substring(8,10));
                 var output = getZodiacSign(day,month);
                 res.send(JSON.stringify({ 
-                            'speech': output.name,
-                            'displayText': output.name,
-                            'data' :{
+                            'fulfillmentText': output.name,
+                            'payload' :{
                                 'web' : output
                             }
                         }
