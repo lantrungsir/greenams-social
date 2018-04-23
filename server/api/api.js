@@ -192,7 +192,6 @@ module.exports ={
                 res.send(JSON.stringify({ 
                             'payload' :{
                                 'web' : {
-                                    'type' : 'card',
                                     'content' :{
                                         'text' : output.name,
                                         'images' : [output.image],
@@ -236,7 +235,6 @@ module.exports ={
                             res.send(JSON.stringify({
                                 'payload':{
                                     'web': {
-                                        'type' : 'text',
                                         'content' : {
                                             'text' : output
                                         }

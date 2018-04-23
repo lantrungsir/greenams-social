@@ -139,7 +139,24 @@ io.on("connection", function(socket){
                 })
                 .then((response)=> {
                     var result = response[0].queryResult;
-                    
+                    if(result.webhookPayload !==  null){
+                        socket.broadcast.emit("new-message", {
+                            type : data.type,
+                            sender : 'admin',
+                            recipient: data.sender,
+                            message: result.webhookPayload['web']['content']
+                        })
+                    }
+                    else{
+                        socket.broadcast.emit("new-message", {
+                            type : data.type,
+                            sender : 'admin',
+                            recipient: data.sender,
+                            message: {
+                                'text' : result.fulfillmentText
+                            }
+                        })
+                    }
                 })
                 .catch((err)=>{
                     console.log(err)
