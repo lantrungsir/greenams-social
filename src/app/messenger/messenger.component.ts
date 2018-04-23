@@ -254,9 +254,9 @@ export class MessengerComponent implements OnInit {
     })
   }
   searchContact(){
-    var searchVal = $("#searchfield").val();
+    var searchVal = $("#searchfield").val().toLowerCase();
     $(".friend").filter(function(){
         $(this).toggle($(this).text().toLowerCase().indexOf(searchVal) > -1)
-      })
+    })
   }
 }
