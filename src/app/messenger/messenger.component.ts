@@ -78,6 +78,9 @@ export class MessengerComponent implements OnInit {
           }
         }
       }
+      $("#chat-messages").animate({
+        scrollTop: $('#chat-messages').scrollHeight
+      }, 500)
     })
     this.socket.on("update-message", (data)=>{
       if(this.selectedChatroom.type === data.type && data.type === "individual"){
@@ -100,6 +103,9 @@ export class MessengerComponent implements OnInit {
           }
         }
       }
+      $("#chat-messages").animate({
+        scrollTop: $('#chat-messages').scrollHeight
+      }, 500)
     })
   }
   ngAfterViewInit(){
@@ -198,6 +204,7 @@ export class MessengerComponent implements OnInit {
       'message' : data
     })
     this.makesFileRequest(this.selectedChatroom.messages.length).then((result)=>{
+
         this.selectedChatroom.messages.push({
           "author" : this.currentId,
           "data": {
@@ -206,6 +213,9 @@ export class MessengerComponent implements OnInit {
             links: result.links
           }
         })
+        $("#chat-messages").animate({
+          scrollTop: $('#chat-messages').scrollHeight
+        }, 500)
         this.socket.emit("update-message", {
           "type" : this.selectedChatroom.type,
           "from": this.currentId,
