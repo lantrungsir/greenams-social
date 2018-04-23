@@ -137,8 +137,7 @@ io.on("connection", function(socket){
                         }
                     }
                 })
-                .then((response)=>{
-                
+                .then((response)=> {
                     console.log(response[0].queryResult.fulfillmentText);
                 })
                 .catch((err)=>{
@@ -180,7 +179,6 @@ io.on("connection", function(socket){
                                             "text" : data.message.text
                                         }
                                     })
-                                
                             }
                         }
                     })
