@@ -190,13 +190,80 @@ module.exports ={
                 var day = parseInt(date.substring(8,10));
                 var output = getZodiacSign(day,month);
                 res.send(JSON.stringify({ 
-                            'fulfillmentText': output.name,
                             'payload' :{
-                                'web' : output
+                                'web' : {
+                                    'type' : 'card',
+                                    'content' :{
+                                        'text' : output.name,
+                                        'images' : [output.image],
+                                        'links' :[]
+                                    }
+                                }
                             }
                         }
                     )
                 ); 
+            }
+        }
+        if(req.body.queryResult.action === "input.asking_for_horoscope"){
+            if(req.body.queryResult.allRequiredParamsPresent === true){
+                var date = req.body.queryResult.parameters.date;
+                var sign = req.body.queryResult.parameters.sunsign.toLowerCase();
+                var querydate = "";
+                var today = new Date()
+                var tomorrow = new Date(new Date().getTime()+ 86400000);
+                if(new Date(date).toDateString() === today.toDateString()){
+                    querydate = "today"
+                } 
+                if(new Date(date).toDateString() === tomorrow.toDateString()){
+                    querydate = "tomorrow"
+                }
+                    console.log(querydate);
+                    request({
+                        uri:"http://theastrologer-api.herokuapp.com/api/horoscope/"+sign+"/"+querydate,
+                        method : "GET",
+                        json:true
+                    },(err,response,body)=>{
+                        console.log(err);
+                        if(response.body.error) {
+                            console.log(response.body.error)
+                            res.send(JSON.stringify({ 'fulfillmentText': response.body.error}));  
+                        }
+                        else{
+                            var data = body;
+                            console.log(data);
+                            var output = "you're " + data.meta.keywords+ ' ' + querydate +". Also there is something you must note here:\n " +data.horoscope+ "\n"+ data.meta.mood+ " mood today. G'day mate :)";
+                            res.send(JSON.stringify({
+                                'payload':{
+                                    'web': {
+                                        'type' : text,
+                                        'content' : {
+                                            'text' : output.name
+                                        }
+                                    }
+                                }
+                            }));  
+                        }
+                    });
+            }
+        }
+        if(req.body.queryResult.action === "input.event_create"){
+            if(req.body.queryResult.allRequiredParamsPresent === true){
+                var sect = req.body.queryResult.parameters["Sect"]
+                var to = "";
+                for(var i = 0;i < sect.length;i++){
+                  sect[i] = (sect[i][2] === " " ? sect[i].substring(0,2).toLowerCase():sect[i].substring(0,3).toLowerCase())
+                  to += sect[i]+ (i === sect.length - 1 ? "" : " ");
+                }
+          
+                db.pushData("meets", {
+                    "content" :  req.body.result.parameters.any,
+                    "time" : req.body.result.parameters.time,
+                    "day" :req.body.result.parameters.date,
+                    "to" : to 
+                 }, true).then(()=>{
+                    res.send('nothing');
+                 })
             }
         }
     }
