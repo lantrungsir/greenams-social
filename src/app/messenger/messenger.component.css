@@ -61,6 +61,10 @@ overflow-y: scroll;
 overflow-x: hidden;
 }
 
+#friends{
+    overflow-y: scroll;  
+    overflow-x: hidden;
+}
 #topmenu {
 height: 50px;
 width: 290px;
