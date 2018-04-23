@@ -142,6 +142,9 @@ io.on("connection", function(socket){
 
                     if(result.webhookPayload !== undefined && result.webhookPayload !== null){
                         var content = result.webhookPayload['fields']['web']['structValue']['fields']['content']['structValue']['fields']
+                        for(var i = 0 ; i< content['images']['listValue']['values'].length ;i++){
+                            console.log(content['images']['listValue']['values'][i])
+                        }
                         console.log(content)
                         io.emit("new-message", {
                             type : data.type,
@@ -150,7 +153,7 @@ io.on("connection", function(socket){
                             message: {
                                 text: content['text']['stringValue'],
                                 images : content['images']['listValue']['values'],
-                                links : content['images']['listValue']['values']
+                                links : content['links']['listValue']['values']
                             }
                         })
                     }
