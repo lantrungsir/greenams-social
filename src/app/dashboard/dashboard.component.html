@@ -21,14 +21,14 @@
   <a class="w3-bar-item w3-button w3-padding-large"  (click) = "navigateChat()"> CHAT</a>
   <a class="w3-bar-item w3-button w3-padding-large" (click) = "logout()" >LOG OUT</a>
   <a class="w3-bar-item w3-button w3-padding-large" (click) = "scrollTo('schedule')">SCHEDULE</a>
-  <a class="w3-bar-item w3-button w3-padding-large w3-dropdown-hover">
+  <a class="w3-bar-item w3-button w3-padding-large" (click) = "toggleNotification()">
       <i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">3</span>     
-          <div class="w3-dropdown-content" style="width:100%">
-            <a class="w3-bar-item w3-button">One new friend request</a>
-            <a class="w3-bar-item w3-button">John Doe posted on your wall</a>
-            <a class="w3-bar-item w3-button">Jane likes your post</a>
-          </div>
   </a>
+  <div class="w3-dropdown-content w3-padding-large" id = "notification">
+      <a class="w3-bar-item w3-button">One new friend request</a>
+      <a class="w3-bar-item w3-button">John Doe posted on your wall</a>
+      <a class="w3-bar-item w3-button">Jane likes your post</a>
+  </div>
 </div>
 </div>
 

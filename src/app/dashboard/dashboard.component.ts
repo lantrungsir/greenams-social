@@ -203,4 +203,7 @@ export class DashboardComponent implements OnInit {
   scrollTo(key: string){
     $('html').scrollTop($("#"+ key).offset().top)
   }
+  toggleNotification(){
+    $("#notification").slideToggle(500);
+  }
 }
