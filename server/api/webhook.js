@@ -78,8 +78,8 @@ module.exports ={
           
                 db.pushData("meets", {
                     "content" :  req.body.queryResult.parameters.any,
-                    "time" : new Date(req.body.queryResult.parameters.time).toLocaleTimeString(),
-                    "day" :new Date(req.body.queryResult.parameters.date).toLocaleDateString(),
+                    "time" : new Date(req.body.queryResult.parameters.time).toTimeString(),
+                    "day" :new Date(req.body.queryResult.parameters.date).toDateString(),
                     "to" : to 
                  }, true).then(()=>{
                     res.send('nothing');
