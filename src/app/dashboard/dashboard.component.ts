@@ -68,9 +68,6 @@ export class DashboardComponent implements OnInit {
     $(".close").click(()=>{
       $("#myModal").hide();
     })
-    setInterval(()=>{
-      this.getEvent()
-    }, 43200000)
   }
 
   getEvent(){
