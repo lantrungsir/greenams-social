@@ -186,7 +186,7 @@ export class DashboardComponent implements OnInit {
     this.userService.logout();
     this.router.navigate(['login'])
   }
-  scrollToSchedule(){
-    $('html').scrollTop($("#schedule").offset().top)
+  scrollTo(key: string){
+    $('html').scrollTop($("#"+key).offset().top)
   }
 }

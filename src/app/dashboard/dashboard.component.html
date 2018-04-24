@@ -2,7 +2,7 @@
 <div class="w3-top">
  <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
   <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2"  (click)="openNav()"><i class="fa fa-bars"></i></a>
-  <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>GROUP</a>
+  <a class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right" (click) = "scrollTo('mainpage')"></i>GROUP</a>
   <a class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages" (click) = "navigateChat()"><i class="fa fa-envelope"></i></a>
   <a class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages" (click) = "logout()"><i class="fa fa-sign-out" style="font-size:24px"></i></a>
   <div class="w3-dropdown-hover w3-hide-small">
@@ -20,12 +20,12 @@
  <div class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large" #navDemo>
   <a class="w3-bar-item w3-button w3-padding-large"  (click) = "navigateChat()"> CHAT</a>
   <a class="w3-bar-item w3-button w3-padding-large" (click) = "logout()" >LOG OUT</a>
-  <a class="w3-bar-item w3-button w3-padding-large" (click) = "scrollToSchedule()">SCHEDULE</a>
+  <a class="w3-bar-item w3-button w3-padding-large" (click) = "scrollTo('schedule')">SCHEDULE</a>
 </div>
 </div>
 
 <!-- Page Container -->
-<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">    
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px" id = "mainpage">    
   <!-- The Grid -->
   <div class="w3-row">
     <!-- Left Column -->
