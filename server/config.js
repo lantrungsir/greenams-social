@@ -6,6 +6,7 @@ var multer = require("multer")
 var FBStragety = require("./auth/fb-stragety.js");
 var TokenManagement = require("./auth/token-resolver.js");
 var ApiResolve = require("./api/api.js")
+var webhook = require("./api/webhook.js")
 module.exports = {
     Middleware : function(app, express){
         app.use(bodyParser.json())
@@ -34,6 +35,7 @@ module.exports = {
         app.post("/api/messages/upload",multer({
             storage : multer.memoryStorage()
         }).array("upload"), TokenManagement.authenticateRequest, ApiResolve.messengerFileUploadHandle)
-        app.post("/webhook", ApiResolve.resolveWebhook);
+        app.post("/webhook", webhook.resolveWebhook);
+        app.get("/api/events", TokenManagement.authenticateRequest, ApiResolve.getEvent)
     } 
 }

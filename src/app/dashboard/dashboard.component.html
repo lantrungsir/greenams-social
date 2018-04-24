@@ -2,7 +2,7 @@
 <div class="w3-top">
  <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
   <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2"  (click)="openNav()"><i class="fa fa-bars"></i></a>
-  <a class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right" (click) = "scrollTo('mainpage')"></i>GROUP</a>
+  <a class="w3-bar-item w3-button w3-padding-large w3-theme-d4" (click) = "scrollTo('mainpage')"><i class="fa fa-home w3-margin-right" ></i>GROUP</a>
   <a class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages" (click) = "navigateChat()"><i class="fa fa-envelope"></i></a>
   <a class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages" (click) = "logout()"><i class="fa fa-sign-out" style="font-size:24px"></i></a>
   <div class="w3-dropdown-hover w3-hide-small">
@@ -84,43 +84,18 @@
     
     <!-- Right Column -->
     <div class="w3-col m2" id = "schedule">
-      <div class="w3-card w3-round w3-white w3-center">
+      <h3>SCHEDULE AND EVENT</h3>
+      <p>Chat with Admin Botty Green to set a schedule for your team</p>
+      <div class="w3-card w3-round w3-white w3-center" *ngFor = "let event of events">
         <div class="w3-container">
           <p>Upcoming Events:</p>
-          <img src="/w3images/forest.jpg" alt="Forest" style="width:100%;">
-          <p><strong>Holiday</strong></p>
-          <p>Friday 15:00</p>
-          <p><button class="w3-button w3-block w3-theme-l4">Info</button></p>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSulb8A25pOE1MaCO-owqBNtUA5Ywe6hBhQivTPCPXPQgHNltEF" alt="Forest" style="width:100%;">
+          <p><strong>{{event.content}}</strong></p>
+          <p>{{event.day}}</p>
+          <p>{{event.time}}</p>
         </div>
       </div>
-      <br>
-      
-      <div class="w3-card w3-round w3-white w3-center">
-        <div class="w3-container">
-          <p>Friend Request</p>
-          <img src="/w3images/avatar6.png" alt="Avatar" style="width:50%"><br>
-          <span>Jane Doe</span>
-          <div class="w3-row w3-opacity">
-            <div class="w3-half">
-              <button class="w3-button w3-block w3-green w3-section" title="Accept"><i class="fa fa-check"></i></button>
-            </div>
-            <div class="w3-half">
-              <button class="w3-button w3-block w3-red w3-section" title="Decline"><i class="fa fa-remove"></i></button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <br>
-      
-      <div class="w3-card w3-round w3-white w3-padding-16 w3-center">
-        <p>ADS</p>
-      </div>
-      <br>
-      
-      <div class="w3-card w3-round w3-white w3-padding-32 w3-center">
-        <p><i class="fa fa-bug w3-xxlarge"></i></p>
-      </div>
-      
+      <br>  
     <!-- End Right Column -->
     </div>
     

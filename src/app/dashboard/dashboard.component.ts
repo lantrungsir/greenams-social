@@ -5,6 +5,7 @@ import { AuthHttp } from 'angular2-jwt';
 import { ViewChild } from '@angular/core';
 import * as $ from "jquery"
 import { UpdateService } from '../update.service';
+import { setInterval } from 'timers';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,9 +20,12 @@ export class DashboardComponent implements OnInit {
   posts = [];
   id : string;
   users: any = {}
-  
+  events : any =[]
   constructor(private userService : UserService, private router: Router, private http :AuthHttp, private ioService : UpdateService) {
     this.id = localStorage.getItem('id')
+    this.http.get("api/events").toPromise().then((res)=>{
+      this.events = res.json();
+    })
     this.userService.getCurrentUser().then((user)=>{
       this.CurrentUser = user
       this.http.get("api/users").toPromise().then((res)=>{
@@ -34,7 +38,6 @@ export class DashboardComponent implements OnInit {
               value : i+1,
               configurable: true
             })
-            
           }
         })
       })
@@ -68,6 +71,11 @@ export class DashboardComponent implements OnInit {
     $(".close").click(()=>{
       $("#myModal").hide();
     })
+    setInterval(()=>{
+      this.http.get("api/events").toPromise().then((res)=>{
+        this.events = res.json();
+      })
+    }, 86400000)
   }
 
   getPost(): Promise<any>{
@@ -187,6 +195,6 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['login'])
   }
   scrollTo(key: string){
-    $('html').scrollTop($("#"+key).offset().top)
+    $('html').scrollTop($("#"+ key).offset().top)
   }
 }

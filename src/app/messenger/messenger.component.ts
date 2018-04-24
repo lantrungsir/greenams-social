@@ -158,10 +158,8 @@ export class MessengerComponent implements OnInit {
       'top':'20px'
     }, 200);
     
-    var name = $("#"+key).find("p strong").html();
-    var email = $("#"+key).find("p span").html();														
-    $("#profile p").html(name);
-    $("#profile span").html(email);												
+    var name = $("#"+key).find("p strong").html();													
+    $("#profile p").html(name);											
     $('#friendslist').fadeOut();
     $('#chatview').fadeIn();
   
