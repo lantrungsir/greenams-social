@@ -22,9 +22,7 @@ export class DashboardComponent implements OnInit {
   events : any =[]
   constructor(private userService : UserService, private router: Router, private http :AuthHttp, private ioService : UpdateService) {
     this.id = localStorage.getItem('id')
-    this.http.get("api/events").toPromise().then((res)=>{
-      this.events = res.json();
-    })
+    this.getEvent()
     this.userService.getCurrentUser().then((user)=>{
       this.CurrentUser = user
       this.http.get("api/users").toPromise().then((res)=>{
@@ -71,12 +69,21 @@ export class DashboardComponent implements OnInit {
       $("#myModal").hide();
     })
     setInterval(()=>{
-      this.http.get("api/events").toPromise().then((res)=>{
-        this.events = res.json();
-      })
-    }, 86400000)
+      this.getEvent()
+    }, 43200000)
   }
 
+  getEvent(){
+    this.http.get("api/events").toPromise().then((res)=>{
+      this.events = res.json();
+      for(var i = 0; i<this.events.length ;i++){
+        var time = this.events[i].time
+        var date =this.events[i].day
+        this.events[i].time = new Date(time).toLocaleTimeString();
+        this.events[i].day = new Date(date).toLocaleDateString();
+      }
+    })
+  }
   getPost(): Promise<any>{
    return new Promise((resolve, reject)=>{
         this.http.get("api/posts").toPromise().then((res)=>{

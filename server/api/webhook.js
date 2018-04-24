@@ -69,18 +69,10 @@ module.exports ={
         }
         if(req.body.queryResult.action === "input.event_create"){
             if(req.body.queryResult.allRequiredParamsPresent === true){
-                var sect = req.body.queryResult.parameters["Sect"]
-                var to = "";
-                for(var i = 0;i < sect.length;i++){
-                  sect[i] = (sect[i][2] === " " ? sect[i].substring(0,2).toLowerCase():sect[i].substring(0,3).toLowerCase())
-                  to += sect[i]+ (i === sect.length - 1 ? "" : " ");
-                }
-          
                 db.pushData("meets", {
                     "content" :  req.body.queryResult.parameters.any,
-                    "time" : new Date(req.body.queryResult.parameters.time).toTimeString(),
-                    "day" :new Date(req.body.queryResult.parameters.date).toDateString(),
-                    "to" : to 
+                    "time" : req.body.queryResult.parameters.time,
+                    "day": req.body.queryResult.parameters.date,
                  }, true).then(()=>{
                     res.send('nothing');
                  })
