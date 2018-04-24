@@ -61,7 +61,7 @@
 												
 										</div>
 										<div class = "bubble" *ngFor = "let link of message.data.links" style="width: 100%">
-											<a href = "{{link}}">{{link}}</a>
+											<a href = "{{link}}" style = "word-wrap :break-word">{{link}}</a>
 										</div>
 										<img *ngFor ="let image of message.data.images" src = "{{image}}" style="width:100%; height: 200px">
 								</div>
@@ -72,7 +72,7 @@
 											<div class="bubble" innerHTML = "{{message.data.text}}">
 										</div>
 										<div class = "bubble" *ngFor = "let link of message.data.links" style="width: 100%">
-											<a href = "{{link}}">{{link}}</a>
+											<a href = "{{link}}" style = "word-wrap :break-word">{{link}}</a>
 										</div>
 										<img *ngFor ="let image of message.data.images" src = "{{image}}" style="width:100%; height: 200px">
 								</div>
