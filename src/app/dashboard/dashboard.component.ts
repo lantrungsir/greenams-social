@@ -5,7 +5,6 @@ import { AuthHttp } from 'angular2-jwt';
 import { ViewChild } from '@angular/core';
 import * as $ from "jquery"
 import { UpdateService } from '../update.service';
-import { setInterval } from 'timers';
 
 @Component({
   selector: 'app-dashboard',
