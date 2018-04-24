@@ -15,7 +15,6 @@
 							<img src="{{users[userkey].profile_pic}}">
 							<p>
 								<strong>{{users[userkey].name}}</strong>
-								<span>{{users[userkey].realtime}}</span>
 							</p>
 							<div class="status {{users[userkey].realtime}}"></div>
 						</div>		
@@ -39,7 +38,6 @@
 			</div>
 
 			<div id="chatview" class="p1">
-
 				<div id="profile">
 					<div id="close">
 						<div class="cy"></div>
@@ -50,7 +48,7 @@
 				</div>
 
 				<div id="chat-messages">
-
+					
 					<div *ngFor = "let message of selectedChatroom['messages']">
 						<div *ngIf= "message.author === currentId; then displaymymessage else displayothermessage">
 						</div>
