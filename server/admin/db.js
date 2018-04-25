@@ -82,7 +82,7 @@ module.exports = {
             db.ref("users").once("value", function(users){
                 users.forEach(function(user){
                     if(user.child("fcm-token").exists()){
-                        messaging.sendToDevice(user.user.child("fcm-token").val(), payload);
+                        messaging.sendToDevice(user.child("fcm-token").val(), payload);
                     }
                 })
             })
