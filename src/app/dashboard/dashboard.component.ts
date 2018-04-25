@@ -12,6 +12,7 @@ import {MessagingService} from '../messaging.service'
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  private Notifications :any[] = []
   private FilesToUpload: File[] = []
   private currentMessage = null;
   @ViewChild("navDemo") nav ;
@@ -72,6 +73,7 @@ export class DashboardComponent implements OnInit {
     })
     this.msgService.messaging.onMessage((payload)=>{
       console.log(payload);
+      this.Notifications.splice(0,0, payload);
     })
   }
 

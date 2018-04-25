@@ -35,7 +35,7 @@ input[type="file"] {
 
 /* The Close Button */
 .close {
-    color: #aaaaaa;
+    color: #e01616;
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -43,7 +43,29 @@ input[type="file"] {
 
 .close:hover,
 .close:focus {
-    color: #000;
+    color: rgb(34, 196, 155);
     text-decoration: none;
     cursor: pointer;
+}
+new_noti_table
+{
+clear:left;
+float:none;
+overflow:hidden;
+padding:5px 0 4px 5px;
+width:90%;
+max-width :700px;
+font: size 13;
+margin:1px 0 0 25px;
+}
+.new_noti_row
+{
+background-color:rgb(18, 231, 46);
+}
+.new_noti_text
+{
+max-width : 600px;
+width:85%;
+margin-top:2px;
+vertical-align:top;
 }

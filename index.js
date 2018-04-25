@@ -64,6 +64,7 @@ io.on("connection", function(socket){
         })
     })
     socket.on("new-post", function(data){
+        socket.broadcast.emit("new-post", {post : data.post})
         var payload = {
             notification:{
                 title : "New post",
@@ -83,7 +84,7 @@ io.on("connection", function(socket){
                 }
             }
         })
-        socket.broadcast.emit("new-post", {post : data.post})
+        
     })
     socket.on("like", function(data){
         console.log(data.post_id)
@@ -117,6 +118,9 @@ io.on("connection", function(socket){
     socket.on("new-comment", function(data){
         console.log(data.post_id);
         var payload = {
+            data:{
+                post_id : data.post_id
+            },
             notification:{
                 title : "New comment",
                 body : "",
