@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AuthHttp } from 'angular2-jwt';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 declare const firebase:any
 @Injectable()
 export class MessagingService {
-  currentMessage = new BehaviorSubject(null);
+  messaging
   constructor(private http: AuthHttp) {
     firebase.initializeApp({
       apiKey: "AIzaSyBN5ZiNdP6gnGqT5zFu61Tm7WUImMpFXHo",
@@ -14,12 +13,13 @@ export class MessagingService {
       storageBucket: "free-schedule.appspot.com",
       messagingSenderId: "410685537662"
     })
+    this.messaging = firebase.messaging()
    }
   getPermission(){
-    firebase.messaging().requestPermission()
+    this.messaging.requestPermission()
     .then(() => {
       console.log('Notification permission granted.');
-      return firebase.messaging().getToken()
+      return this.messaging.getToken()
     })
     .then(token => {
       console.log(token)
@@ -35,12 +35,6 @@ export class MessagingService {
     }).toPromise()
     .then((res)=>{
       console.log("awesome")
-    })
-  }
-  receiveMessage(){
-    firebase.messaging().onMessage((payload)=>{
-      console.log(payload)
-      this.currentMessage.next(payload);
     })
   }
 }

@@ -24,7 +24,6 @@ export class DashboardComponent implements OnInit {
   constructor(private userService : UserService, private router: Router, private http :AuthHttp, private ioService : UpdateService, private msgService : MessagingService) {
     this.id = localStorage.getItem('id')
     this.msgService.getPermission();
-    this.msgService.receiveMessage();
     this.getEvent()
     this.userService.getCurrentUser().then((user)=>{
       this.CurrentUser = user
@@ -71,12 +70,9 @@ export class DashboardComponent implements OnInit {
     $(".close").click(()=>{
       $("#myModal").hide();
     })
-    setInterval(()=>{
-      if(this.msgService.currentMessage.getValue() !== this.currentMessage){
-        this.currentMessage = this.msgService.currentMessage;
-        console.log(this.currentMessage)
-      }
-    }, 2000)
+    this.msgService.messaging.onMessage((payload)=>{
+      console.log(payload);
+    })
   }
 
   getEvent(){
