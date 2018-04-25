@@ -3,7 +3,7 @@ import { AuthHttp } from 'angular2-jwt';
 declare const firebase:any
 @Injectable()
 export class MessagingService {
-  messaging
+  public messaging: any
   constructor(private http: AuthHttp) {
     firebase.initializeApp({
       apiKey: "AIzaSyBN5ZiNdP6gnGqT5zFu61Tm7WUImMpFXHo",
