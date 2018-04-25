@@ -69,10 +69,7 @@ module.exports = {
         })
         db.ref("meets").on("child_added", function(event, prevKey){
             var payload = {
-                data: {
-                    isEvent : "yes",
-                    content : event.val()
-                },
+                data: event.val(),
                 notification :{
                     title : "New event",
                     body :"A new event was created for our team. Click to check",
