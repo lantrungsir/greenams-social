@@ -37,7 +37,7 @@ io.on("connection", function(socket){
                 var time = new Date(event.day).getTime() - new Date().getTime()
                 console.log(time)
                 if(time > 0 && time < 86400000){
-                    eventPayload.notification.body = "Tomorrow at "+ event.time.substring(11,16) +", you have an appointment with GreenAms team. Please come :)"
+                    eventPayload.notification.body = "Tomorrow at "+ event.time.substring(11,16) +", you have an appointment with GreenAms team with content "+event.content+". Please come :)"
                     database.getData("users").then((users)=>{
                         for(userkey in users){
                             if(users.hasOwnProperty(userkey)){
@@ -47,6 +47,9 @@ io.on("connection", function(socket){
                             }
                         }
                     })
+                }
+                if(time <0){
+                    database.saveData("meets/"+key, null);
                 }
             }
         }
