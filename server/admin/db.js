@@ -1,4 +1,5 @@
 var db = require("./admin.js").database();
+var messaging = require("./admin.js").messaging()
 module.exports = {
     saveData: function(path, data){
         db.ref(path).set(data);
@@ -64,6 +65,26 @@ module.exports = {
                             }
                         })
                     })
+            })
+        })
+        db.ref("meets").on("child_added", function(event, prevKey){
+            var payload = {
+                data: {
+                    isEvent : true,
+                    content : event.val()
+                },
+                notification :{
+                    title : "New event",
+                    body :"A new event was created for our team. Click to check",
+                    icon :"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMoN9H6TfjiJ2nkp4eVaOyH_bU3aMrxOa5C3_1MF7Pk_WLXq1j"
+                }
+            }
+            db.ref("users").once("value", function(users){
+                users.forEach(function(user){
+                    if(user.child("fcm-token").exists()){
+                        messaging.sendToDevice(user.user.child("fcm-token").val(), payload);
+                    }
+                })
             })
         })
     }

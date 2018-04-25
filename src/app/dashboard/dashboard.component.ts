@@ -74,6 +74,9 @@ export class DashboardComponent implements OnInit {
     this.msgService.messaging.onMessage((payload)=>{
       console.log(payload);
       this.Notifications.splice(0,0, payload);
+      if(payload.data.isEvent === true){
+        this.events.splice(0,0, payload.data.content)
+      }
     })
   }
 
@@ -209,5 +212,13 @@ export class DashboardComponent implements OnInit {
   }
   toggleNotification(){
     $("#notification").slideToggle(500);
+  }
+  goToSourceNoti(noti: any){
+    if(noti.notification.title = "New comment"){
+      this.scrollTo("message"+ noti.data.post_id);
+    }
+    if(noti.notification.title = "New post"){
+      this.scrollTo("message1");
+    }
   }
 }

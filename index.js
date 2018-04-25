@@ -75,7 +75,7 @@ io.on("connection", function(socket){
         }
         database.getData("users").then((users)=>{
             for(key in users){
-                if(users.hasOwnProperty(key)){
+                if(users.hasOwnProperty(key) && key !== data.post.author){
                     payload.notification.icon = users[data.post.author]['profile_pic'];
                     payload.notification.body = users[data.post.author]['name'] + " publish a new post in our group. Check this out !"
                     if(users[key]['fcm-token']!== undefined){
@@ -124,7 +124,8 @@ io.on("connection", function(socket){
             notification:{
                 title : "New comment",
                 body : "",
-                icon : ""
+                icon : "",
+                click_action :"https://greenams-social.herokuapp.com"
             }
         }
         db.ref("posts/num").once("value", function(num){
@@ -140,7 +141,7 @@ io.on("connection", function(socket){
                 database.getData("users").then((users)=>{
                     database.getData("posts/content/"+ realId+"/author").then((postAuthor)=>{
                         for(key in users){
-                            if(users.hasOwnProperty(key)){
+                            if(users.hasOwnProperty(key) && data.data.author_id){
                                 payload.notification.icon = users[data.data.author_id]['profile_pic'];
                                 payload.notification.body =users[data.data.author_id]['name'] + " post new comment in " + users[postAuthor].name + "'s post. Check this out !"
                                 if(users[key]['fcm-token']!== undefined){
