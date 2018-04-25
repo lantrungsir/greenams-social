@@ -16,6 +16,7 @@ export class DashboardComponent implements OnInit {
   private FilesToUpload: File[] = []
   private currentMessage = null;
   @ViewChild("navDemo") nav ;
+  @ViewChild("notidiv") noti ;
   private socket;
   CurrentUser : any
   posts = [];
@@ -211,7 +212,12 @@ export class DashboardComponent implements OnInit {
     $('html').scrollTop($("#"+ key).offset().top)
   }
   toggleNotification(){
-    $("#notification").slideToggle(500);
+    var x = this.noti.nativeElement;
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else { 
+        x.className = x.className.replace(" w3-show", "");
+    }
   }
   goToSourceNoti(noti: any){
     if(noti.notification.title === "New comment"){
