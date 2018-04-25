@@ -17,13 +17,14 @@
       </table>
     </div>
   </div>
-  <button class="w3-button w3-hide-medium w3-hide-large" title="Notifications" (click)="toggleNotification()">
-    <i class="fa fa-bell"></i>
-    <span class="w3-badge w3-right w3-small w3-green" *ngIf = "Notifications.length > 0">
-      {{Notifications.length}}
-    </span>
-  </button>
-
+  <a class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages" (click)="toggleNotification()">
+      <button class="w3-button w3-hide-medium w3-hide-large" title="Notifications" >
+          <i class="fa fa-bell"></i>
+          <span class="w3-badge w3-right w3-small w3-green" *ngIf = "Notifications.length > 0">
+            {{Notifications.length}}
+          </span>
+        </button>
+  </a>
   <a class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
     <img src='{{CurrentUser.profile_pic}}' class="w3-circle" style="height:30px;width:30px" alt="Avatar">
   </a>
