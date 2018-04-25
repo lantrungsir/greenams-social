@@ -23,6 +23,34 @@ var http = require("http").createServer(app)
 var io = require("socket.io")(http)
 //get socket io
 io.on("connection", function(socket){
+    var eventPayload= {
+        notification:{
+            title :"Reminder",
+            body :"",
+            icon :"https://blog.socedo.com/wp-content/uploads/2016/09/Events.jpg"
+        }
+    }
+    database.getData("meets").then((events)=>{
+        for(key in events){
+            if(events.hasOwnProperty(key)){
+                var event = events[key];
+                var time = new Date(event.day).getTime() - new Date().getTime()
+                if(time >0 && time < 43200000){
+                    eventPayload.notification.body = "Tomorrow at "+ event.time.substring(11,16) +", you have an appointment with GreenAms team. Please come :)"
+                    database.getData("users").then((users)=>{
+                        for(userkey in users){
+                            if(users.hasOwnProperty(userkey)){
+                                if(users[userkey]['fcm-token']!== undefined){
+                                    msg.sendToDevice(users[userkey]['fcm-token'], eventPayload)
+                                }
+                            }
+                        }
+                    })
+                }
+            }
+        }
+    })
+    
     console.log("user connected " + socket);
     socket.on("post-on", function(data){
         database.saveData("users/"+data.uid +"/realtime", socket.id);

@@ -1,6 +1,6 @@
 var request = require('request');
 var db = require("../admin/db.js")
-
+var messaging = require("../admin/admin.js").messaging()
 module.exports ={
     resolveWebhook(req,res){
         if(req.body.queryResult.action === "input.asking_for_sunsign"){
@@ -68,12 +68,31 @@ module.exports ={
             }
         }
         if(req.body.queryResult.action === "input.event_create"){
+            var event = {
+                "content" :  req.body.queryResult.parameters.any.toString(),
+                "time" : req.body.queryResult.parameters.time.toString(),
+                "day": req.body.queryResult.parameters.date.toString()
+            }
             if(req.body.queryResult.allRequiredParamsPresent === true){
-                db.pushData("meets", {
-                    "content" :  req.body.queryResult.parameters.any,
-                    "time" : req.body.queryResult.parameters.time,
-                    "day": req.body.queryResult.parameters.date,
-                 }, true).then(()=>{
+                var payload = {
+                    data: event,
+                    notification :{
+                        title : "New event",
+                        body :"A new event was created for our team. Click to check",
+                        icon :"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMoN9H6TfjiJ2nkp4eVaOyH_bU3aMrxOa5C3_1MF7Pk_WLXq1j",
+                        click_action : "https://greenams-social.herokuapp.com"
+                    }
+                }
+                db.getData("users").then(function(users){
+                    for(key in users){
+                        if(users.hasOwnProperty(key)){
+                            if(user[key]['fcm-token']!==undefined){
+                                messaging.sendToDevice(user.child("fcm-token").val(), payload);
+                            }
+                        }
+                    }
+                })
+                db.pushData("meets", event).then(()=>{
                     res.send('nothing');
                  })
             }

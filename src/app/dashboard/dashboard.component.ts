@@ -226,18 +226,18 @@ export class DashboardComponent implements OnInit {
     } else { 
         x.className = x.className.replace(" w3-show", "");
     }
-    this.configNoti()
   }
   goToSourceNoti(noti: any){
+    let newPos = this.Notifications.indexOf(noti)
+    if( newPos >-1){
+      this.Notifications.splice(newPos,1);
+      this.oldNoti.splice(0,0, noti);
+    }
     if(noti.notification.title === "New comment"){
       this.scrollTo("message"+ noti.data.post_id);
     }
     if(noti.notification.title === "New post"){
       this.scrollTo("mainpage");
     }
-  }
-  configNoti(){
-    this.oldNoti = this.Notifications.concat(this.oldNoti);
-    this.Notifications = [];
   }
 }

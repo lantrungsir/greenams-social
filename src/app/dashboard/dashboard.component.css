@@ -60,7 +60,7 @@ margin:1px 0 0 25px;
 }
 .new_noti_row
 {
-background-color:rgb(18, 231, 46);
+background-color: rgb(18, 231, 46);
 }
 .new_noti_text
 {
@@ -71,5 +71,5 @@ vertical-align:top;
 }
 .new_noti_row_old
 {
-background-color:rgb(5, 121, 20);
+background-color:rgb(3, 141, 21);
 }
