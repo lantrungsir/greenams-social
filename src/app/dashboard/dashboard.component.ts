@@ -76,7 +76,7 @@ export class DashboardComponent implements OnInit {
       console.log(payload);
       this.Notifications.splice(0,0, payload);
       if(payload.notification.title === "New event"){
-        this.events.splice(0,0, payload.data)
+        this.addEvent(payload.data)
       }
     })
   }
@@ -91,6 +91,13 @@ export class DashboardComponent implements OnInit {
         this.events[i].day = new Date(date).toLocaleDateString();
       }
     })
+  }
+  addEvent(event){
+    var time =event.time
+    var date =event.day
+    event.time = new Date(time).toLocaleTimeString();
+    event.day = new Date(date).toLocaleDateString();
+    this.events.splice(0,0,event)
   }
   getPost(): Promise<any>{
    return new Promise((resolve, reject)=>{
