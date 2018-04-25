@@ -33,7 +33,9 @@ var self = module.exports = {
                     if(users.hasOwnProperty(key)){
                         payload.icon = users[snapshot.val().author]['profile_pic'];
                         payload.body =users[snapshot.val().author]['name'] + " publish a new post in our group. Check this out !"
-                        msg.sendToDevice(users[key]['fcm-token'], payload)
+                        if(users[key]['fcm-token']!== undefined){
+                            msg.sendToDevice(users[key]['fcm-token'], payload)
+                        }
                     }
                 }
             })
@@ -68,7 +70,9 @@ var self = module.exports = {
                         if(users.hasOwnProperty(key)){
                             payload.icon = users[snap.val().author]['profile_pic'];
                             payload.body =users[snap.val().author]['name'] + " post new comment in " + users[postval.author].name + "'s post. Check this out !"
-                            msg.sendToDevice(users[key]['fcm-token'], payload)
+                            if(users[key]['fcm-token']!== undefined){
+                                msg.sendToDevice(users[key]['fcm-token'], payload)
+                            }
                         }
                     }
                 })
