@@ -1,6 +1,6 @@
 var db = require("./admin.js").database();
 var msg = require("./admin.js").messaging()
-var self = module.exports = {
+module.exports = {
     saveData: function(path, data){
         db.ref(path).set(data);
     },
@@ -21,24 +21,6 @@ var self = module.exports = {
     listener : function(){
         db.ref("posts/num").set(0);
         db.ref("posts/content").on("child_added", function(snapshot, prevKey){
-            var payload = {
-                notification:{
-                    title : "New post",
-                    body : "",
-                    icon :""
-                }
-            }
-            self.getData("users").then((users)=>{
-                for(key in users){
-                    if(users.hasOwnProperty(key)){
-                        payload.notification.icon = users[snapshot.val().author]['profile_pic'];
-                        payload.notification.body =users[snapshot.val().author]['name'] + " publish a new post in our group. Check this out !"
-                        if(users[key]['fcm-token']!== undefined){
-                            msg.sendToDevice(users[key]['fcm-token'], payload)
-                        }
-                    }
-                }
-            })
             db.ref("date/posts").once("value", function(date){
                 console.log(new Date(date.val()))
                 if(new Date().getSeconds() - new Date(date.val()).getSeconds() >= 32000000){
@@ -57,25 +39,6 @@ var self = module.exports = {
                 db.ref("posts/content/"+snapshot.key+"/comments/num").set(0)
             })
             db.ref("posts/content/"+snapshot.key +"/comments/content").on("child_added", (snap,preK)=>{
-                var postval = snapshot.val()
-                var payload = {
-                    notification:{
-                        title : "New comment",
-                        body : "",
-                        icon : ""
-                    }
-                }
-                self.getData("users").then((users)=>{
-                    for(key in users){
-                        if(users.hasOwnProperty(key)){
-                            payload.notification.icon = users[snap.val().author]['profile_pic'];
-                            payload.notification.body =users[snap.val().author]['name'] + " post new comment in " + users[postval.author].name + "'s post. Check this out !"
-                            if(users[key]['fcm-token']!== undefined){
-                                msg.sendToDevice(users[key]['fcm-token'], payload)
-                            }
-                        }
-                    }
-                })
                 db.ref("posts/content/"+snapshot.key+"/comments/num").once("value", function(num){
                     var value = num.val() + 1;
                     db.ref("posts/content/"+snapshot.key+"/comments/num").set(value);

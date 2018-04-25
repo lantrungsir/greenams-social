@@ -5,6 +5,7 @@ var config = require("./server/config.js");
 var database = require("./server/admin/db.js");
 var db = require("./server/admin/admin.js").database()
 
+var msg = require("./server/admin/admin.js").messaging();
 const dialogflow = require('dialogflow');
 
 const sessionClient = new dialogflow.SessionsClient({
@@ -63,6 +64,25 @@ io.on("connection", function(socket){
         })
     })
     socket.on("new-post", function(data){
+        var payload = {
+            notification:{
+                title : "New post",
+                body : "",
+                icon :"",
+                click_action :"https://greenams-social.herokuapp.com"
+            }
+        }
+        database.getData("users").then((users)=>{
+            for(key in users){
+                if(users.hasOwnProperty(key)){
+                    payload.notification.icon = users[data.post.author]['profile_pic'];
+                    payload.notification.body = users[data.post.author]['name'] + " publish a new post in our group. Check this out !"
+                    if(users[key]['fcm-token']!== undefined){
+                        msg.sendToDevice(users[key]['fcm-token'], payload)
+                    }
+                }
+            }
+        })
         socket.broadcast.emit("new-post", {post : data.post})
     })
     socket.on("like", function(data){
@@ -96,6 +116,13 @@ io.on("connection", function(socket){
     })
     socket.on("new-comment", function(data){
         console.log(data.post_id);
+        var payload = {
+            notification:{
+                title : "New comment",
+                body : "",
+                icon : ""
+            }
+        }
         db.ref("posts/num").once("value", function(num){
             var number = parseInt(num.val())
             var realId = number - parseInt(data.post_id)+1;
@@ -106,15 +133,28 @@ io.on("connection", function(socket){
                     author : data.data.author_id,
                     message : data.data.message
                 })
-            })
-                socket.broadcast.emit("new-comment", {
-                    post_id : realId,
-                    sum : number,
-                    comment : {
-                        author :data.data.author_id,
-                        message : data.data.message,
-                    } 
+                database.getData("users").then((users)=>{
+                    database.getData("posts/content/"+ realId+"/author").then((postAuthor)=>{
+                        for(key in users){
+                            if(users.hasOwnProperty(key)){
+                                payload.notification.icon = users[data.data.author_id]['profile_pic'];
+                                payload.notification.body =users[data.data.author_id]['name'] + " post new comment in " + users[postAuthor].name + "'s post. Check this out !"
+                                if(users[key]['fcm-token']!== undefined){
+                                    msg.sendToDevice(users[key]['fcm-token'], payload)
+                                }
+                            }
+                        }
+                    })
                 })
+            })
+            socket.broadcast.emit("new-comment", {
+                post_id : realId,
+                sum : number,
+                comment : {
+                    author :data.data.author_id,
+                    message : data.data.message,
+                } 
+            })
         })
     })
     socket.on('new-message', (data)=>{
