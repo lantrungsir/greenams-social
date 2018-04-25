@@ -139,7 +139,7 @@ export class DashboardComponent implements OnInit {
       "time" :"",
       links :[],
     }
-    var text =   $("#newpost").text();
+    var text =   $("#newpost").html();
 	  var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
 	  var text1=text.replace(exp, "<a href='$1'>$1</a>");
     var exp2 =/(^|[^\/])(www\.[\S]+(\b|$))/gim;

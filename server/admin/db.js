@@ -23,7 +23,6 @@ module.exports = {
             db.ref("date/posts").once("value", function(date){
                 console.log(new Date(date.val()))
                 if(new Date().getTime() - new Date(date.val()).getTime() >= 32000000000){
-                    
                     db.ref("date/posts").set(new Date().toDateString());
                     db.ref("posts/content").set(null).then(()=>{
                         db.ref("posts/num").set(0).then(()=>{
@@ -39,8 +38,8 @@ module.exports = {
             })
             db.ref("posts/content/"+snapshot.key +"/comments/content").on("child_added", (snap,preK)=>{
                 db.ref("posts/content/"+snapshot.key+"/comments/num").once("value", function(num){
-                    var value = num.val() + 1;
-                    db.ref("posts/content/"+snapshot.key+"/comments/num").set(value);
+                    var val = num.val() + 1;
+                    db.ref("posts/content/"+snapshot.key+"/comments/num").set(val);
                 })
             })
         })
