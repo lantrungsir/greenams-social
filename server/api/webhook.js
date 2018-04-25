@@ -86,8 +86,8 @@ module.exports ={
                 db.getData("users").then(function(users){
                     for(key in users){
                         if(users.hasOwnProperty(key)){
-                            if(user[key]['fcm-token']!==undefined){
-                                messaging.sendToDevice(user.child("fcm-token").val(), payload);
+                            if(users[key]['fcm-token']!==undefined){
+                                messaging.sendToDevice(users[key]['fcm-token'], payload);
                             }
                         }
                     }
