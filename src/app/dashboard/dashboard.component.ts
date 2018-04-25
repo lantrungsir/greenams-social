@@ -72,7 +72,7 @@ export class DashboardComponent implements OnInit {
       $("#myModal").hide();
     })
     setInterval(()=>{
-      if(this.msgService.currentMessage !== this.currentMessage){
+      if(this.msgService.currentMessage.getValue() !== this.currentMessage){
         this.currentMessage = this.msgService.currentMessage;
         console.log(this.currentMessage)
       }

@@ -39,6 +39,7 @@ export class MessagingService {
   }
   receiveMessage(){
     firebase.messaging().onMessage((payload)=>{
+      console.log(payload)
       this.currentMessage.next(payload);
     })
   }
