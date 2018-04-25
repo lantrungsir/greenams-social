@@ -7,7 +7,7 @@
   <a class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages" (click) = "logout()"><i class="fa fa-sign-out" style="font-size:24px"></i></a>
   <div class="w3-dropdown-hover w3-hide-small">
     <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green" *ngIf = "Notifications.length > 0">{{Notifications.length}}</span></button>     
-    <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:600px; overflow: auto; max-width: 500px" *ngIf = "Notifications.length > 0">
+    <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:600px; overflow: auto; max-height: 500px" *ngIf = "Notifications.length > 0">
       <table class="new_noti_table" *ngFor = "let noti of Notifications" (click)= "goToSourceNoti(noti)">
         <tr class="new_noti_row w3-cell-row">
           <td class="new_noti_img"><img src="{{noti.notification.icon}}" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:45px"></td>
@@ -27,7 +27,7 @@
   <a class="w3-bar-item w3-button w3-padding-large" (click) = "scrollTo('schedule')">SCHEDULE</a>
   <a class="w3-bar-item w3-button w3-padding-large" (click) = "toggleNotification()">
       <i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green" *ngIf = "Notifications.length > 0">{{Notifications.length}}</span>
-      <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:600px; overflow: auto;max-width: 500px" *ngIf = "Notifications.length > 0" id= "notification">
+      <div class="w3-dropdown-content w3-padding-large" style="width:100%; overflow: auto; max-height: 100%" *ngIf = "Notifications.length > 0" id= "notification">
         <table class="new_noti_table" *ngFor = "let noti of Notifications" (click)= "goToSourceNoti(noti)">
           <tr class="new_noti_row w3-cell-row">
             <td class="new_noti_img"><img src="{{noti.notification.icon}}" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:45px"></td>
@@ -39,7 +39,15 @@
   </a>
 </div>
 </div>
-
+<button id="myBtn" title="Go to top"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green" *ngIf = "Notifications.length > 0">{{Notifications.length}}</span></button>
+<div class="dropup">
+  <button id="myBtn" title="Go to top"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green" *ngIf = "Notifications.length > 0">{{Notifications.length}}</span></button>
+  <div class="dropup-content">
+    <a href="#">Link 1</a>
+    <a href="#">Link 2</a>
+    <a href="#">Link 3</a>
+  </div>
+</div>
 <!-- Page Container -->
 <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px" id = "mainpage">    
   <!-- The Grid -->
