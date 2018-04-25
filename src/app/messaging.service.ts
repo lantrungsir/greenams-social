@@ -6,6 +6,14 @@ declare const firebase:any
 export class MessagingService {
   currentMessage = new BehaviorSubject(null);
   constructor(private http: AuthHttp) {
+    firebase.initializeApp({
+      apiKey: "AIzaSyBN5ZiNdP6gnGqT5zFu61Tm7WUImMpFXHo",
+      authDomain: "free-schedule.firebaseapp.com",
+      databaseURL: "https://free-schedule.firebaseio.com",
+      projectId: "free-schedule",
+      storageBucket: "free-schedule.appspot.com",
+      messagingSenderId: "410685537662"
+    })
    }
   getPermission(){
     firebase.messaging().requestPermission()
