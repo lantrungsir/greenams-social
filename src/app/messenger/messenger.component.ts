@@ -54,7 +54,7 @@ export class MessengerComponent implements OnInit {
       })
     })
   	this.socket.on("new-message", (data)=>{
-      $(".friend #"+ data.sender + ">p>span").html("new !!")
+      $("#"+data.sender).find("p").find("span").html("new !!")
       if(this.selectedChatroom.type === data.type && data.type === "individual"){
         if(this.selectedChatroom.to === data.sender){
           if(this.currentId === data.recipient){
@@ -110,7 +110,7 @@ export class MessengerComponent implements OnInit {
   }
 
   chooseChatRoom(key: string, type: string){
-    $("#"+key+">p>span").html("");
+    $("#"+key).find("p").find("span").html("");
     if(type === "group"){
       this.http.get("api/messages/groups?id="+key).toPromise()
         .then((res)=>{
