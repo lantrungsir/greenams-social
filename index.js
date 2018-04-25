@@ -36,7 +36,7 @@ io.on("connection", function(socket){
                 var event = events[key];
                 var time = new Date(event.day).getTime() - new Date().getTime()
                 console.log(time)
-                if(time > 0 && time < 43200000){
+                if(time > 0 && time < 86400000){
                     eventPayload.notification.body = "Tomorrow at "+ event.time.substring(11,16) +", you have an appointment with GreenAms team. Please come :)"
                     database.getData("users").then((users)=>{
                         for(userkey in users){
