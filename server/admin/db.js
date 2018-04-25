@@ -70,7 +70,7 @@ module.exports = {
         db.ref("meets").on("child_added", function(event, prevKey){
             var payload = {
                 data: {
-                    isEvent : true,
+                    isEvent : "yes",
                     content : event.val()
                 },
                 notification :{
