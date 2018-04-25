@@ -221,4 +221,7 @@ export class DashboardComponent implements OnInit {
       this.scrollTo("message1");
     }
   }
+  open(){
+    $(".dropup-content").slideToggle(500)
+  }
 }

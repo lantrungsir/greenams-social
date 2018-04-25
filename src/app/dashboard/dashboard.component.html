@@ -40,7 +40,7 @@
 </div>
 </div>
 <div class="dropup">
-  <button id="myBtn" title="Go to top"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green" *ngIf = "Notifications.length > 0">{{Notifications.length}}</span></button>
+  <button id="myBtn" (click) = "open()"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green" *ngIf = "Notifications.length > 0">{{Notifications.length}}</span></button>
   <div class="dropup-content">
     <a href="#">Link 1</a>
     <a href="#">Link 2</a>
