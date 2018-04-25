@@ -1,5 +1,4 @@
 var db = require("./admin.js").database();
-var msg = require("./admin.js").messaging()
 module.exports = {
     saveData: function(path, data){
         db.ref(path).set(data);
