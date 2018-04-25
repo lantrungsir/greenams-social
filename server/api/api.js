@@ -190,5 +190,11 @@ module.exports ={
             }
             res.status(200).send(JSON.stringify(events));
         })
+    },
+    saveFCMToken: function(req,res){
+        var token = req.body.token;
+        console.log(token);
+        db.saveData("users/fcm-token", token);
+        res.send("tks for using fcm");
     }
 }

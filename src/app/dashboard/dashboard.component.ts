@@ -5,7 +5,7 @@ import { AuthHttp } from 'angular2-jwt';
 import { ViewChild } from '@angular/core';
 import * as $ from "jquery"
 import { UpdateService } from '../update.service';
-
+import {MessagingService} from '../messaging.service'
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -13,6 +13,7 @@ import { UpdateService } from '../update.service';
 })
 export class DashboardComponent implements OnInit {
   private FilesToUpload: File[] = []
+  private currentMessage = null;
   @ViewChild("navDemo") nav ;
   private socket;
   CurrentUser : any
@@ -20,8 +21,10 @@ export class DashboardComponent implements OnInit {
   id : string;
   users: any = {}
   events : any =[]
-  constructor(private userService : UserService, private router: Router, private http :AuthHttp, private ioService : UpdateService) {
+  constructor(private userService : UserService, private router: Router, private http :AuthHttp, private ioService : UpdateService, private msgService : MessagingService) {
     this.id = localStorage.getItem('id')
+    this.msgService.getPermission();
+    this.msgService.receiveMessage();
     this.getEvent()
     this.userService.getCurrentUser().then((user)=>{
       this.CurrentUser = user
@@ -68,6 +71,12 @@ export class DashboardComponent implements OnInit {
     $(".close").click(()=>{
       $("#myModal").hide();
     })
+    setInterval(()=>{
+      if(this.msgService.currentMessage !== this.currentMessage){
+        this.currentMessage = this.msgService.currentMessage;
+        console.log(this.currentMessage)
+      }
+    }, 2000)
   }
 
   getEvent(){

@@ -37,5 +37,6 @@ module.exports = {
         }).array("upload"), TokenManagement.authenticateRequest, ApiResolve.messengerFileUploadHandle)
         app.post("/webhook", webhook.resolveWebhook);
         app.get("/api/events", TokenManagement.authenticateRequest, ApiResolve.getEvent)
+        app.post("/api/users/fcm-token", TokenManagement.authenticateRequest, ApiResolve.saveFCMToken)
     } 
 }

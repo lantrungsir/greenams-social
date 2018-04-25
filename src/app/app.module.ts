@@ -14,6 +14,7 @@ import { GrouppostComponent } from './grouppost/grouppost.component';
 
 import { UpdateService } from './update.service';
 import { MessengerComponent } from './messenger/messenger.component';
+import { MessagingService } from './messaging.service';
 export function getAuthHttp(http: Http) {
   return new AuthHttp(new AuthConfig({
     headerName: 'x-auth-token',
@@ -44,7 +45,8 @@ export function getAuthHttp(http: Http) {
       useFactory: getAuthHttp,
       deps: [Http]
     },
-    UpdateService 
+    UpdateService,
+    MessagingService
   ],
   bootstrap: [AppComponent]
 })
