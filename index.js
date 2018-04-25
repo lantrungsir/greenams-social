@@ -119,7 +119,7 @@ io.on("connection", function(socket){
         console.log(data.post_id);
         var payload = {
             data:{
-                post_id : data.post_id
+                post_id : data.post_id.toString()
             },
             notification:{
                 title : "New comment",
