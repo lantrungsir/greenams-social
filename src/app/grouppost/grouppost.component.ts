@@ -103,6 +103,7 @@ export class GrouppostComponent implements OnInit {
   }
   //add likes
   addLike(data){
+    this.isLike= true;
     this.post.likes.push(data)
   }
   deleteLike(i){
