@@ -31,8 +31,8 @@ var self = module.exports = {
             self.getData("users").then((users)=>{
                 for(key in users){
                     if(users.hasOwnProperty(key)){
-                        payload.icon = users[snapshot.val().author]['profile_pic'];
-                        payload.body =users[snapshot.val().author]['name'] + " publish a new post in our group. Check this out !"
+                        payload.notification.icon = users[snapshot.val().author]['profile_pic'];
+                        payload.notification.body =users[snapshot.val().author]['name'] + " publish a new post in our group. Check this out !"
                         if(users[key]['fcm-token']!== undefined){
                             msg.sendToDevice(users[key]['fcm-token'], payload)
                         }
@@ -68,8 +68,8 @@ var self = module.exports = {
                 self.getData("users").then((users)=>{
                     for(key in users){
                         if(users.hasOwnProperty(key)){
-                            payload.icon = users[snap.val().author]['profile_pic'];
-                            payload.body =users[snap.val().author]['name'] + " post new comment in " + users[postval.author].name + "'s post. Check this out !"
+                            payload.notification.icon = users[snap.val().author]['profile_pic'];
+                            payload.notification.body =users[snap.val().author]['name'] + " post new comment in " + users[postval.author].name + "'s post. Check this out !"
                             if(users[key]['fcm-token']!== undefined){
                                 msg.sendToDevice(users[key]['fcm-token'], payload)
                             }
