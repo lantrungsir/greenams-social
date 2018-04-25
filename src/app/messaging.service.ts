@@ -14,15 +14,6 @@ export class MessagingService {
       storageBucket: "free-schedule.appspot.com",
       messagingSenderId: "410685537662"
     })
-     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/noti-sw.js').then(function(registration) {
-        // Registration was successful
-        console.log('ServiceWorker registration successful with scope: ', registration.scope);
-      }).catch(function(err) {
-        // registration failed :(
-        console.log('ServiceWorker registration failed: ', err);
-      });
-    }
    }
   getPermission(){
     firebase.messaging().requestPermission()
