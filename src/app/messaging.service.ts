@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import * as firebase from "firebase"
+import * as firebase from "firebase/app"
 import { AuthHttp } from 'angular2-jwt';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'firebase/messaging';
