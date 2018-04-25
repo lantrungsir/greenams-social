@@ -222,6 +222,6 @@ export class DashboardComponent implements OnInit {
     }
   }
   open(){
-    $(".dropup-content").slideToggle(500)
+    $(".dropup-content").toggle(500)
   }
 }
