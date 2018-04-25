@@ -224,7 +224,7 @@ export class DashboardComponent implements OnInit {
       this.scrollTo("message"+ noti.data.post_id);
     }
     if(noti.notification.title === "New post"){
-      this.scrollTo("message1");
+      this.scrollTo("mainpage");
     }
   }
 }
