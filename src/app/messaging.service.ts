@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import * as firebase from "firebase"
 import { AuthHttp } from 'angular2-jwt';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import 'firebase/messaging';
 @Injectable()
 export class MessagingService {
   currentMessage = new BehaviorSubject(null);
