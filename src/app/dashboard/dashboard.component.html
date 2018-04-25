@@ -17,6 +17,18 @@
       </table>
     </div>
   </div>
+  <div class="w3-dropdown-hover w3-hide-medium w3-hide-large">
+    <button class="w3-button w3-padding-large " title="Notifications" (click)= "toggleNotification()"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green" *ngIf = "Notifications.length > 0">{{Notifications.length}}</span></button>
+    <div class="w3-dropdown-content w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large" style="width:100%; overflow: auto; max-height: 500px" *ngIf = "Notifications.length > 0" id = "notification">
+        <table class="new_noti_table" *ngFor = "let noti of Notifications" (click)= "goToSourceNoti(noti)">
+          <tr class="new_noti_row w3-cell-row">
+            <td class="new_noti_img"><img src="{{noti.notification.icon}}" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:45px"></td>
+            <td class="new_noti_text"><b>{{noti.notification.title}}</b>
+            <p innerHTML = "{{noti.notification.body}}"></p>
+          </tr>
+        </table>
+      </div>
+  </div>
   <a class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
     <img src='{{CurrentUser.profile_pic}}' class="w3-circle" style="height:30px;width:30px" alt="Avatar">
   </a>
@@ -25,27 +37,7 @@
   <a class="w3-bar-item w3-button w3-padding-large"  (click) = "navigateChat()"> CHAT</a>
   <a class="w3-bar-item w3-button w3-padding-large" (click) = "logout()" >LOG OUT</a>
   <a class="w3-bar-item w3-button w3-padding-large" (click) = "scrollTo('schedule')">SCHEDULE</a>
-  <a class="w3-bar-item w3-button w3-padding-large" (click) = "toggleNotification()">
-      <i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green" *ngIf = "Notifications.length > 0">{{Notifications.length}}</span>
-      <div class="w3-dropdown-content w3-padding-large" style="width:100%; overflow: auto; max-height: 100%" *ngIf = "Notifications.length > 0" id= "notification">
-        <table class="new_noti_table" *ngFor = "let noti of Notifications" (click)= "goToSourceNoti(noti)">
-          <tr class="new_noti_row w3-cell-row">
-            <td class="new_noti_img"><img src="{{noti.notification.icon}}" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:45px"></td>
-            <td class="new_noti_text"><b>{{noti.notification.title}}</b>
-            <p innerHTML = "{{noti.notification.body}}"></p>
-          </tr>
-        </table>
-      </div>     
-  </a>
 </div>
-</div>
-<div class="dropup">
-  <button id="myBtn" (click) = "open()"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green" *ngIf = "Notifications.length > 0">{{Notifications.length}}</span></button>
-  <div class="dropup-content">
-    <a href="#">Link 1</a>
-    <a href="#">Link 2</a>
-    <a href="#">Link 3</a>
-  </div>
 </div>
 <!-- Page Container -->
 <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px" id = "mainpage">    
