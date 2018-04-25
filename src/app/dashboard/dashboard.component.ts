@@ -13,6 +13,7 @@ import {MessagingService} from '../messaging.service'
 })
 export class DashboardComponent implements OnInit {
   private Notifications :any[] = []
+  private oldNoti: any[]= []
   private FilesToUpload: File[] = []
   private currentMessage = null;
   @ViewChild("navDemo") nav ;
@@ -225,6 +226,8 @@ export class DashboardComponent implements OnInit {
     } else { 
         x.className = x.className.replace(" w3-show", "");
     }
+    this.oldNoti = this.Notifications.concat(this.oldNoti);
+    this.Notifications = [];
   }
   goToSourceNoti(noti: any){
     if(noti.notification.title === "New comment"){

@@ -15,6 +15,14 @@
           <p innerHTML = "{{noti.notification.body}}"></p>
         </tr>
       </table>
+      <table class="new_noti_table" *ngFor = "let noti of oldNoti" (click)= "goToSourceNoti(noti)">
+          <tr class="new_noti_row_old w3-cell-row">
+            <td class="new_noti_img"><img src="{{noti.notification.icon}}" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:45px"></td>
+            <td class="new_noti_text"><b>{{noti.notification.title}}</b>
+            <p innerHTML = "{{noti.notification.body}}"></p>
+          </tr>
+        </table>
+
     </div>
   </div>
   <a class="w3-bar-item w3-button w3-padding-large w3-hover-white" title="Messages" (click)="toggleNotification()">
