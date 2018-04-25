@@ -30,7 +30,7 @@ export class MessagingService {
     });
   }
   updateToken(token){
-    this.http.post("api/users/fcm-token",{
+    this.http.post("api/users/fcm-token?id="+localStorage.getItem('id'),{
       token : token
     }).toPromise()
     .then((res)=>{

@@ -193,8 +193,9 @@ module.exports ={
     },
     saveFCMToken: function(req,res){
         var token = req.body.token;
+        var id = req.query.id;
         console.log(token);
-        db.saveData("users/fcm-token", token);
+        db.saveData("users/"+id+"/fcm-token", token);
         res.send("tks for using fcm");
     }
 }
