@@ -26,20 +26,10 @@ module.exports ={
         }
         if(req.body.queryResult.action === "input.asking_for_horoscope"){
             if(req.body.queryResult.allRequiredParamsPresent === true){
-                var date = req.body.queryResult.parameters.date;
+                var type = req.body.queryResult.parameters['horotype'];
                 var sign = req.body.queryResult.parameters.sunsign.toLowerCase();
-                var querydate = "";
-                var today = new Date()
-                var tomorrow = new Date(new Date().getTime()+ 86400000);
-                if(new Date(date).toDateString() === today.toDateString()){
-                    querydate = "today"
-                } 
-                if(new Date(date).toDateString() === tomorrow.toDateString()){
-                    querydate = "tomorrow"
-                }
-                    console.log(querydate);
                     request({
-                        uri:"http://theastrologer-api.herokuapp.com/api/horoscope/"+sign+"/"+querydate,
+                        uri:"https://horoscope-api.herokuapp.com/horoscope/"+type+"/"+sign,
                         method : "GET",
                         json:true
                     },(err,response,body)=>{
@@ -51,7 +41,7 @@ module.exports ={
                         else{
                             var data = body;
                             console.log(data);
-                            var output = "you're " + data.meta.keywords+ ' ' + querydate +". Also there is something you must note here:\n " +data.horoscope+ "\n"+ data.meta.mood+ " mood today. G'day mate :)";
+                            var output = data.horoscope.substring(1, data.horoscope.length-1);
                             res.send(JSON.stringify({
                                 'payload':{
                                     'web': {
