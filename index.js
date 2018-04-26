@@ -35,7 +35,6 @@ io.on("connection", function(socket){
             if(events.hasOwnProperty(key)){
                 var event = events[key];
                 var time = new Date(event.day).getTime() - new Date().getTime()
-                console.log(time)
                 if(time > 0 && time < 86400000){
                     eventPayload.notification.body = "Tomorrow at "+ event.time.substring(11,16) +", you have an appointment with GreenAms team with content "+event.content+". Please come :)"
                     database.getData("users").then((users)=>{
@@ -54,8 +53,6 @@ io.on("connection", function(socket){
             }
         }
     })
-    
-    console.log("user connected " + socket);
     socket.on("post-on", function(data){
         database.saveData("users/"+data.uid +"/realtime", socket.id);
         database.getData("users/"+data.uid).then((user)=>{
@@ -79,7 +76,6 @@ io.on("connection", function(socket){
                 configurable: true,
                 writable: true
             })
-            console.log(result)
             socket.broadcast.emit("online", result)
         })
        
@@ -119,8 +115,6 @@ io.on("connection", function(socket){
         
     })
     socket.on("like", function(data){
-        console.log(data.post_id)
-        console.log(data.id +"likes")
         db.ref("posts/num").once("value", function(num){
             var number = parseInt(num.val())
             var realId = number - parseInt(data.post_id)+1;
@@ -134,8 +128,6 @@ io.on("connection", function(socket){
         
     })
     socket.on("unlike", function(data){
-        console.log(data.post_id)
-        console.log(data.id +"unlikes")
         db.ref("posts/num").once("value", function(num){
             var number = parseInt(num.val())
             var realId = number - parseInt(data.post_id)+1;
@@ -148,7 +140,6 @@ io.on("connection", function(socket){
         })
     })
     socket.on("new-comment", function(data){
-        console.log(data.post_id);
         var payload = {
             data:{
                 post_id : data.post_id.toString()
@@ -201,7 +192,6 @@ io.on("connection", function(socket){
             recipient: data.recipient,
             message: data.message
         })
-        console.log(data);
         if(data.type === "individual"){
             if(data.recipient === "admin"){
                 var sessionPath = sessionClient.sessionPath("free-schedule", data.sender);
@@ -227,7 +217,6 @@ io.on("connection", function(socket){
                         for(var i = 0 ; i< content['links']['listValue']['values'].length ;i++){
                             links.push(content['links']['listValue']['values'][i]['stringValue'])
                          }
-                        console.log(content)
                         io.emit("new-message", {
                             type : data.type,
                             sender : 'admin',
@@ -328,4 +317,3 @@ database.listener();
 http.listen(app.get('port'), function(){
     console.log("we are on " + app.get('port') + " again, GART" )
 })
-console.log("test")

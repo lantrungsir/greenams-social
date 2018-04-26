@@ -191,7 +191,6 @@ export class MessengerComponent implements OnInit {
 	  var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
 	  var text1= text.replace(exp, "<a href='$1'>$1</a>");
     var exp2 =/(^|[^\/])(www\.[\S]+(\b|$))/gim;
-    console.log("convert!!")
     data.text = text1.replace(exp2, '$1<a target="_blank" href="http://$2">$2</a>');
     this.socket.emit("new-message", {
       'type' : type,

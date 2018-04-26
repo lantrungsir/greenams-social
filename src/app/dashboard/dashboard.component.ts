@@ -74,7 +74,6 @@ export class DashboardComponent implements OnInit {
       $("#myModal").hide();
     })
     this.msgService.messaging.onMessage((payload)=>{
-      console.log(payload);
       this.Notifications.splice(0,0, payload);
       if(payload.notification.title === "New event"){
         this.addEvent(payload.data)
@@ -113,13 +112,11 @@ export class DashboardComponent implements OnInit {
       value : 1,
       configurable: true
     })
-    console.log("good "+0);
     for(var i = 0;i < this.posts.length ;i++){
       Object.defineProperty(this.posts[i], "id", {
         value : i+2,
         configurable: true
       })
-      console.log(this.posts[i].id)
     }
     this.posts.splice(0,0, post);
   }
@@ -152,7 +149,6 @@ export class DashboardComponent implements OnInit {
       this.http.post("api/posts", {
         new_post : newPost
       }).toPromise().then((res)=>{
-        console.log(res.text());
         if(this.FilesToUpload.length !== 0){
           this.makeFileRequest().then((data)=>{
            newPost.links = newPost.links.concat(data.links);

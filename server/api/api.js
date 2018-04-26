@@ -4,7 +4,6 @@ var database = require("../admin/admin.js").database();
 module.exports ={
     getPost: function(req, res){
         db.getData("posts/content").then(function(data){
-            console.log(data);
                 var purifiedPostData = [];
                 for(key in data){
                     if(data.hasOwnProperty(key)){
@@ -29,7 +28,6 @@ module.exports ={
                             var purifiedComments= []
                             for(commentKey in data[key].comments["content"]){
                                 if(data[key].comments["content"].hasOwnProperty(commentKey)){
-                                    console.log(data[key].comments["content"][commentKey])
                                     purifiedComments.splice(0,0, data[key].comments["content"][commentKey]);
                                 }
                             }
@@ -40,7 +38,6 @@ module.exports ={
                             purifiedPostData.splice(0,0, data[key]);      
                     }
                 }
-                console.log(purifiedPostData)
                 res.status(200).send(JSON.stringify(purifiedPostData)); 
             })
     },
@@ -65,7 +62,6 @@ module.exports ={
         var postNum = req.query.post_id;
         //upload to firebase cloud storage
         storage.uploadFiles(postNum, files).then((data)=>{
-            console.log(data);
             res.status(200).send(JSON.stringify({
                 id: postNum,
                 data : data
@@ -86,7 +82,6 @@ module.exports ={
                     }
                 }
             }
-            console.log(data)
             res.status(200).send(JSON.stringify(data))
         })
     },
@@ -123,7 +118,6 @@ module.exports ={
                     }
                 }
             }
-            console.log(purifiedData);
             res.status(200).send(JSON.stringify(purifiedData))
         })
     },
@@ -155,7 +149,6 @@ module.exports ={
                     }
                 }
                 data['messages'] =  messages;
-                console.log(data);
                 res.status(200).send(JSON.stringify(data))
             })
         }
@@ -166,7 +159,6 @@ module.exports ={
                         data[key]['messages'] = null;
                     }
                 }
-                console.log(data);
                 res.status(200).send(JSON.stringify(data));
             })
         }
@@ -176,7 +168,6 @@ module.exports ={
         var from = req.query['from']
         var to = req.query['to']
         storage.messengerUploadFiles(req.files, type, from, to, req.query['mid']).then((data)=>{
-            console.log(data);
             res.status(200).send(JSON.stringify(data));
         });
     },
@@ -194,7 +185,6 @@ module.exports ={
     saveFCMToken: function(req,res){
         var token = req.body.token;
         var id = req.query.id;
-        console.log(token);
         db.saveData("users/"+id+"/fcm-token", token);
         res.send("tks for using fcm");
     }

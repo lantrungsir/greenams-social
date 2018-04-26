@@ -28,14 +28,12 @@ export class GrouppostComponent implements OnInit {
     this.socket.on("like", (data)=>{
       $("#button-like").css("color" , "red");
       if(parseInt(thisId)+parseInt(data.post_id)-1 === parseInt(data.sum)){
-        console.log(data.id)
         this.addLike(data.id)
       }
     })
     this.socket.on("unlike", (data)=>{
       $("#button-like").css("color" , "black");
       if(parseInt(thisId)+parseInt(data.post_id)-1 === parseInt(data.sum)){
-        console.log(data.id)
         this.deleteLike(this.getLikeOrd(data.id))
       }
     })
@@ -88,7 +86,6 @@ export class GrouppostComponent implements OnInit {
   if (n > x.length) {this.slideIndex = 1}    
   if (n < 1) {this.slideIndex = x.length}
   var id = this.slideIndex-1;
-  console.log(id)
     $(".mySlides"+ourPostId).each(function(index){
       if(index === id){
        $(this).show();
