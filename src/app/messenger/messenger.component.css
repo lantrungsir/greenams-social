@@ -347,10 +347,12 @@ right: 10px;
 width: 20px;
 height: 20px;
 cursor: pointer;
+background-color: rgb(55, 189, 59)
 }
 
 #close:hover {
 opacity: 1;
+background-color: red;
 }
 
 .cx, .cy {

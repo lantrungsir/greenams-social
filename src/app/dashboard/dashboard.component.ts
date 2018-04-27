@@ -15,7 +15,6 @@ export class DashboardComponent implements OnInit {
   Notifications :any[] = []
   oldNoti: any[]= []
   FilesToUpload: File[] = []
-  currentMessage = null;
   @ViewChild("navDemo") nav ;
   @ViewChild("notidiv") noti ;
   private socket;
