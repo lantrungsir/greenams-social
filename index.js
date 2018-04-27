@@ -17,6 +17,12 @@ config.Route(app)
 
 
 app.use(express.static(__dirname + "/dist/"))
+var path = require('path')
+
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname + '/dist/index.html'));
+});
+
 app.set('port', process.env.PORT || 6520);
 
 var http = require("http").createServer(app)
