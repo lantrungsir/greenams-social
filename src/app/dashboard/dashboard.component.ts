@@ -50,10 +50,6 @@ export class DashboardComponent implements OnInit {
 
     this.socket = this.ioService.socket;
     this.socket.emit("post-on", {uid : localStorage.getItem('id')})
-    this.socket.on("online", function(data){
-      //add to array
-
-    })
     this.socket.on("new-post",(data)=>{
       data.post.likes = [];
       data.post.comments = [];
