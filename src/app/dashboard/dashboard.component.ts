@@ -12,10 +12,10 @@ import {MessagingService} from '../messaging.service'
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  private Notifications :any[] = []
-  private oldNoti: any[]= []
-  private FilesToUpload: File[] = []
-  private currentMessage = null;
+  Notifications :any[] = []
+  oldNoti: any[]= []
+  FilesToUpload: File[] = []
+  currentMessage = null;
   @ViewChild("navDemo") nav ;
   @ViewChild("notidiv") noti ;
   private socket;
