@@ -15,7 +15,6 @@ const sessionClient = new dialogflow.SessionsClient({
 config.Middleware(app, express);
 config.Route(app)
 
-
 app.use(express.static(__dirname + "/dist/"))
 var path = require('path')
 
