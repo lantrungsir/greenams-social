@@ -43,7 +43,7 @@ color: #FFF;
 #chatbox {
 width: 290px;
 background: #000;
-overflow: hidden;
+overflow: auto;
 height: 484px;
 position: absolute;
 top: 175px;
