@@ -31,9 +31,7 @@
   <a class="w3-bar-item w3-button w3-padding-large w3-hover-white" title="Messages" (click)="toggleNotification()">
       <button class="w3-button w3-hide-medium w3-hide-large" title="Notifications" >
           <i class="fa fa-bell"></i>
-          <span class="w3-badge w3-right w3-small w3-green" *ngIf = "Notifications.length > 0">
-            {{Notifications.length}}
-          </span>
+          <span class="w3-badge w3-right w3-small w3-green" *ngIf = "newNotiNum >0" >{{newNotiNum}}</span>
         </button>
   </a>
   <a class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
@@ -42,18 +40,22 @@
  </div>
  <div class="w3-bar-block w3-hide w3-hide-large w3-hide-medium w3-large" style="width:100%; overflow: auto; max-height: 500px" #notidiv>
     <table class="new_noti_table" *ngFor = "let noti of Notifications" (click)= "goToSourceNoti(noti)">
-      <tr class="new_noti_row w3-cell-row">
-        <td class="new_noti_img"><img src="{{noti.notification.icon}}" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:45px"></td>
-        <td class="new_noti_text"><b>{{noti.notification.title}}</b>
-        <p innerHTML = "{{noti.notification.body}}"></p>
-      </tr>
-    </table>
-    <table class="new_noti_table" *ngFor = "let noti of oldNoti" (click)= "goToSourceNoti(noti)">
-        <tr class="new_noti_row_old w3-cell-row">
-          <td class="new_noti_img"><img src="{{noti.notification.icon}}" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:45px"></td>
-          <td class="new_noti_text"><b>{{noti.notification.title}}</b>
-          <p innerHTML = "{{noti.notification.body}}"></p>
-        </tr>
+        <div *ngIf = "noti.notification.isSeen === 'old'; then displayoldnoti else displaynewnoti">
+        </div>
+        <ng-template #displayoldnoti>
+            <tr class="new_noti_row_old w3-cell-row">
+                <td class="new_noti_img"><img src="{{noti.notification.icon}}" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:45px"></td>
+                <td class="new_noti_text"><b>{{noti.notification.title}}</b>
+                <p innerHTML = "{{noti.notification.body}}"></p>
+            </tr>
+        </ng-template>
+        <ng-template #displaynewnoti>
+            <tr class="new_noti_row_new w3-cell-row" >
+                <td class="new_noti_img"><img src="{{noti.notification.icon}}" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:45px"></td>
+                <td class="new_noti_text"><b>{{noti.notification.title}}</b>
+                <p innerHTML = "{{noti.notification.body}}"></p>
+              </tr>
+        </ng-template>
       </table>
 </div>
  <div class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large" #navDemo>
