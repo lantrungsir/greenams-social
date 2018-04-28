@@ -64,6 +64,7 @@ export class DashboardComponent implements OnInit {
    }
 
   ngOnInit() {
+    $("#numofmessage").hide();
     $("#myModal").hide();
     $(".close").click(()=>{
       $("#myModal").hide();

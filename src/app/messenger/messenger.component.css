@@ -57,10 +57,9 @@ top: 0;
 left: 0;
 width: 290px;
 height: 484px;
+overflow: auto;
 }
-#friends{
-    overflow: auto;
-}
+
 #topmenu {
 height: 50px;
 width: 290px;
