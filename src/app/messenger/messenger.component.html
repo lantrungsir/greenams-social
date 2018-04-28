@@ -48,7 +48,6 @@
 				</div>
 
 				<div id="chat-messages">
-
 					<div *ngFor = "let message of selectedChatroom['messages']">
 						<div *ngIf= "message.author === currentId; then displaymymessage else displayothermessage">
 						</div>

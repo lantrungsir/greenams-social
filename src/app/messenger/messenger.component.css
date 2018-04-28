@@ -58,7 +58,9 @@ left: 0;
 width: 290px;
 height: 484px;
 }
-
+#friends{
+    overflow: auto;
+}
 #topmenu {
 height: 50px;
 width: 290px;
@@ -436,7 +438,6 @@ transition: all 100ms ease-out;
 #chatview, #sendmessage {
 overflow: hidden;
 }
-
 .footer {
 position: relative;
 text-align: center;

@@ -3,25 +3,29 @@
  <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
   <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2"  (click)="openNav()"><i class="fa fa-bars"></i></a>
   <a class="w3-bar-item w3-button w3-padding-large w3-theme-d4" (click) = "scrollTo('mainpage')"><i class="fa fa-home w3-margin-right" ></i>GROUP</a>
-  <a class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages" (click) = "navigateChat()"><i class="fa fa-envelope"></i></a>
-  <a class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages" (click) = "logout()"><i class="fa fa-sign-out" style="font-size:24px"></i></a>
+  <a class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"  (click) = "navigateChat()"><i class="fa fa-envelope"></i><span class="w3-badge w3-right w3-small w3-red" id = "numofmessage"></span></a>
+  <a class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"  (click) = "logout()"><i class="fa fa-sign-out" style="font-size:24px"></i></a>
   <div class="w3-dropdown-hover w3-hide-small">
-    <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green" *ngIf = "Notifications.length > 0" >{{Notifications.length}}</span></button>     
-    <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:600px; overflow: auto; max-height: 500px" >
+    <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green" *ngIf = "newNotiNum >0" >{{newNotiNum}}</span></button>     
+    <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:600px; overflow: auto; max-height: 500px">
       <table class="new_noti_table" *ngFor = "let noti of Notifications" (click)= "goToSourceNoti(noti)">
-        <tr class="new_noti_row w3-cell-row">
-          <td class="new_noti_img"><img src="{{noti.notification.icon}}" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:45px"></td>
-          <td class="new_noti_text"><b>{{noti.notification.title}}</b>
-          <p innerHTML = "{{noti.notification.body}}"></p>
-        </tr>
+        <div *ngIf = "noti.notification.isSeen === 'old'; then displayoldnoti else displaynewnoti">
+        </div>
+        <ng-template #displayoldnoti>
+            <tr class="new_noti_row_old w3-cell-row">
+                <td class="new_noti_img"><img src="{{noti.notification.icon}}" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:45px"></td>
+                <td class="new_noti_text"><b>{{noti.notification.title}}</b>
+                <p innerHTML = "{{noti.notification.body}}"></p>
+            </tr>
+        </ng-template>
+        <ng-template #displaynewnoti>
+            <tr class="new_noti_row_new w3-cell-row" >
+                <td class="new_noti_img"><img src="{{noti.notification.icon}}" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:45px"></td>
+                <td class="new_noti_text"><b>{{noti.notification.title}}</b>
+                <p innerHTML = "{{noti.notification.body}}"></p>
+              </tr>
+        </ng-template>
       </table>
-      <table class="new_noti_table" *ngFor = "let noti of oldNoti" (click)= "goToSourceNoti(noti)">
-          <tr class="new_noti_row_old w3-cell-row">
-            <td class="new_noti_img"><img src="{{noti.notification.icon}}" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:45px"></td>
-            <td class="new_noti_text"><b>{{noti.notification.title}}</b>
-            <p innerHTML = "{{noti.notification.body}}"></p>
-          </tr>
-        </table>
     </div>
   </div>
   <a class="w3-bar-item w3-button w3-padding-large w3-hover-white" title="Messages" (click)="toggleNotification()">

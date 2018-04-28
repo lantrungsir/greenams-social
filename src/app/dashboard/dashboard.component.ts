@@ -12,8 +12,8 @@ import {MessagingService} from '../messaging.service'
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  newNotiNum : number = 0;
   Notifications :any[] = []
-  oldNoti: any[]= []
   FilesToUpload: File[] = []
   @ViewChild("navDemo") nav ;
   @ViewChild("notidiv") noti ;
@@ -69,7 +69,13 @@ export class DashboardComponent implements OnInit {
       $("#myModal").hide();
     })
     this.msgService.messaging.onMessage((payload)=>{
-      this.Notifications.splice(0,0, payload);
+      this.newNotiNum++;
+      Object.defineProperty(payload.notification, "isSeen",{
+        value: "new",
+        configurable: true,
+        writable: true
+      })
+      this.Notifications.splice(0,0,payload);
       if(payload.notification.title === "New event"){
         this.addEvent(payload.data)
       }
@@ -201,6 +207,7 @@ export class DashboardComponent implements OnInit {
   }
 
   navigateChat(){
+    $("#numofmessage").hide();
     $("#myModal").show();
   }
   logout(){
@@ -219,11 +226,8 @@ export class DashboardComponent implements OnInit {
     }
   }
   goToSourceNoti(noti: any){
-    let newPos = this.Notifications.indexOf(noti)
-    if( newPos >-1){
-      this.Notifications.splice(newPos,1);
-      this.oldNoti.splice(0,0, noti);
-    }
+    this.newNotiNum--;
+    noti.notification['isSeen']= "old";
     if(noti.notification.title === "New comment"){
       this.scrollTo("message"+ noti.data.post_id);
     }

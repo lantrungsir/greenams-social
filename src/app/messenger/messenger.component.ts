@@ -54,10 +54,12 @@ export class MessengerComponent implements OnInit {
       })
     })
   	this.socket.on("new-message", (data)=>{
-      $("#"+data.sender).find("p").find("span").html("new !!")
+      
       if(this.selectedChatroom.type === data.type && data.type === "individual"){
         if(this.selectedChatroom.to === data.sender){
           if(this.currentId === data.recipient){
+            $("#numofmessage").show();
+            $("#"+data.sender).find("p").find("span").html("new !!");
             this.selectedChatroom.messages.push({
               "author" : data.sender,
               "data" : data.message
@@ -68,6 +70,8 @@ export class MessengerComponent implements OnInit {
       if(this.selectedChatroom.type === data.type && data.type === "groups"){
         if(this.selectedChatroom.to === data.recipient){
           if(data.recipient === "main" || this.groups[data.recipient].members[this.currentId]=== true){
+            $("#"+data.recipient).find("p").find("span").html("new !!")
+            $("#numofmessage").show();
             this.selectedChatroom.messages.push({
               "author" : data.sender,
               "data" : data.message
