@@ -120,13 +120,13 @@ color: #888;
 }
 
 .friend .status {
-background: #4CAF50;
+background: #EDF8ED;
 border-radius: 50%;
 width: 9px;
 height: 9px;
 position: absolute;
 top: 31px;
-right: 17px;
+right: 20px;
 }
 
 .friend .status.offline  {
