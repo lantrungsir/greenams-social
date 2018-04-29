@@ -142,6 +142,7 @@ export class MessengerComponent implements OnInit {
     }
   }
   renderChatroom(key: string){
+    $("#search").hide();
     var childOffset = $("#"+ key).offset();
     var parentOffset = $("#"+ key).parent().parent().offset();
     var childTop = childOffset.top - parentOffset.top;
@@ -180,6 +181,7 @@ export class MessengerComponent implements OnInit {
       }, 200, function(){$('.floatingImg').remove()});				
       
       setTimeout(function(){
+        $("#search").show();
         $('#chatview').fadeOut();
         $('#friendslist').fadeIn();				
       }, 50);
