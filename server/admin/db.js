@@ -1,4 +1,6 @@
 var db = require("./admin.js").database();
+var storage = require("./storage.js");
+
 const self = module.exports = {
     saveData: function(path, data){
         db.ref(path).set(data);
@@ -36,7 +38,7 @@ const self = module.exports = {
                         db.ref("posts/num").set(value);
                         db.ref("posts/content/"+snapshot.key+"/comments/num").set(0)
                     }) 
-                    db.ref("posts/content/"+snapshot.key +"/comments/content").on("child_added", (snap,preK)=>{
+                    db.ref("posts/content/"+ snapshot.key +"/comments/content").on("child_added", (snap,preK)=>{
                         db.ref("posts/content/"+snapshot.key+"/comments/num").once("value", function(num){
                             var val = num.val() + 1;
                             db.ref("posts/content/"+snapshot.key+"/comments/num").set(val);
@@ -50,6 +52,7 @@ const self = module.exports = {
                 var imgNames = imageurl.split("/")
                 var imgName = imgNames[imgNames.length-1];
                 console.log(imgName)
+                storage.deleteFile(imgName);
             })
         })
         db.ref("messages").on("child_added", function(category, nextkey){
