@@ -120,7 +120,7 @@ color: #888;
 }
 
 .friend .status {
-background: #EDF8ED;
+background: rgb(13, 212, 13);
 border-radius: 50%;
 width: 9px;
 height: 9px;
