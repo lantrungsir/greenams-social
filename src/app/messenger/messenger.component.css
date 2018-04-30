@@ -56,11 +56,10 @@ top: 0;
 left: 0;
 width: 290px;
 height: 484px;
+overflow-y: auto;
+overflow-x: hidden;
 }
-#friends{
-    overflow-y: auto;
-    overflow-x: hidden;
-}
+
 #topmenu {
 height: 50px;
 width: 290px;
