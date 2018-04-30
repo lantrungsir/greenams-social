@@ -95,9 +95,6 @@ export class GrouppostComponent implements OnInit {
       }
     })
   }
-  ngAfterViewInit(){
-    $("#message"+ this.post.id).html(this.post.message);
-  }
   //add likes
   addLike(data){
     this.isLike= true;

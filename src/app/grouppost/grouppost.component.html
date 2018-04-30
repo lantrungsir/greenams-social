@@ -3,7 +3,7 @@
   <span class="w3-right w3-opacity">{{post.time}}</span>
   <h4>{{users[post.author].name}}</h4><br>
   <hr class="w3-clear">
-  <p id = "message{{post.id}}"></p>
+  <p id = "message{{post.id}}" innerHTML = "{{post.message}}"></p>
   <!-- list of links-->
   <div class="w3-content w3-display-container">
     <ul>
