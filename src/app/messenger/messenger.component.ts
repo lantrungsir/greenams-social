@@ -205,7 +205,7 @@ export class MessengerComponent implements OnInit {
       'message' : data
     })
     this.makesFileRequest(this.selectedChatroom.messages.length).then((result)=>{
-        alert("files, images uploading")
+        
         this.selectedChatroom.messages.push({
           "author" : this.currentId,
           "data": {
@@ -242,6 +242,7 @@ export class MessengerComponent implements OnInit {
         formData.append("upload", this.filesToUpload[i], this.filesToUpload[i].name);
       }
       if(this.filesToUpload.length >0){
+        alert("files, images uploading")
         var type = this.selectedChatroom.type;
         this.filesToUpload = [];
         this.http.post(
