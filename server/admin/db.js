@@ -31,7 +31,6 @@ const self = module.exports = {
                         })
                     })
                 }
-                else{
                     db.ref("posts/num").once("value", function(snap){
                         var value = snap.val() + 1;
                         db.ref("posts/num").set(value);
@@ -43,7 +42,6 @@ const self = module.exports = {
                             db.ref("posts/content/"+snapshot.key+"/comments/num").set(val);
                         })
                     })
-                }
             })   
         })
         db.ref("posts/content").on("child_removed", function(snapshot){
@@ -51,7 +49,7 @@ const self = module.exports = {
                 var imageurl = image.val()
                 var imgNames = imageurl.split("/")
                 var imgName = imgNames[imgNames.length-1];
-                
+                console.log(imgName)
             })
         })
         db.ref("messages").on("child_added", function(category, nextkey){
