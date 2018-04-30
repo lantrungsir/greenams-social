@@ -55,6 +55,15 @@ const self = module.exports = {
                 console.log(imgName)
                 storage.deleteFile(imgName);
             })
+            snapshot.child("files").forEach(function(image){
+                snapshot.child("images").forEach(function(image){
+                    var imageurl = image.val()
+                    var imgNames = imageurl.split("/")
+                    var imgName = imgNames[imgNames.length-1];
+                    console.log(imgName)
+                    storage.deleteFile(imgName);
+                })
+            })
         })
         db.ref("messages").on("child_added", function(category, nextkey){
             db.ref("messages/"+category.key).on("child_added",function(chatroom, nextkey){
@@ -73,6 +82,22 @@ const self = module.exports = {
                                 })
                                 db.ref("date/messenger").set(new Date().toDateString());
                             }
+                        })
+                    })
+                    db.ref("messages/"+ category.key +"/"+chatroom.key +"/messages/content").on("child_removed", function(message){
+                        message.child("images").forEach(function(image){
+                            var imageurl = image.val()
+                            var imgNames = imageurl.split("/")
+                            var imgName = imgNames[imgNames.length-1];
+                            console.log(imgName)
+                            storage.deleteFile(imgName);
+                        })
+                        message.child("files").forEach(function(image){
+                            var imageurl = image.val()
+                            var imgNames = imageurl.split("/")
+                            var imgName = imgNames[imgNames.length-1];
+                            console.log(imgName)
+                            storage.deleteFile(imgName);
                         })
                     })
             })
