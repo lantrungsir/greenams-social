@@ -44,6 +44,8 @@ color: #FFF;
 width: 290px;
 background: #000;
 height: 484px;
+overflow-y: auto;
+overflow-x: hidden;
 position: absolute;
 top: 175px;
 left: 50%;
@@ -56,8 +58,6 @@ top: 0;
 left: 0;
 width: 290px;
 height: 484px;
-overflow-y: auto;
-overflow-x: hidden;
 }
 
 #topmenu {
