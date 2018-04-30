@@ -1,5 +1,5 @@
 var db = require("./admin.js").database();
-module.exports = {
+const self = module.exports = {
     saveData: function(path, data){
         db.ref(path).set(data);
     },
@@ -19,28 +19,39 @@ module.exports = {
     },
     listener : function(){
         db.ref("posts/num").set(0);
-        db.ref("posts/content").on("child_added", function(snapshot, prevKey){
+        db.ref("posts/content").on("child_added", (snapshot, prevKey)=>{
             db.ref("date/posts").once("value", function(date){
                 console.log(new Date(date.val()))
                 if(new Date().getTime() - new Date(date.val()).getTime() >= 32000000000){
-                    db.ref("date/posts").set(new Date().toDateString());
-                    db.ref("posts/content").set(null).then(()=>{
-                        db.ref("posts/num").set(0).then(()=>{
-                            db.ref("posts/content/1").set(snapshot.val());
+                    db.ref("date/posts").set(new Date().toDateString()).then(()=>{
+                        db.ref("posts/content").set(null).then(()=>{
+                            db.ref("posts/num").set(0).then(()=>{
+                                db.ref("posts/content/1").set(snapshot.val());
+                            })
                         })
                     })
                 }
-            })
-            db.ref("posts/num").once("value", function(snap){
-                var value = snap.val() + 1;
-                db.ref("posts/num").set(value);
-                db.ref("posts/content/"+snapshot.key+"/comments/num").set(0)
-            })
-            db.ref("posts/content/"+snapshot.key +"/comments/content").on("child_added", (snap,preK)=>{
-                db.ref("posts/content/"+snapshot.key+"/comments/num").once("value", function(num){
-                    var val = num.val() + 1;
-                    db.ref("posts/content/"+snapshot.key+"/comments/num").set(val);
-                })
+                else{
+                    db.ref("posts/num").once("value", function(snap){
+                        var value = snap.val() + 1;
+                        db.ref("posts/num").set(value);
+                        db.ref("posts/content/"+snapshot.key+"/comments/num").set(0)
+                    }) 
+                    db.ref("posts/content/"+snapshot.key +"/comments/content").on("child_added", (snap,preK)=>{
+                        db.ref("posts/content/"+snapshot.key+"/comments/num").once("value", function(num){
+                            var val = num.val() + 1;
+                            db.ref("posts/content/"+snapshot.key+"/comments/num").set(val);
+                        })
+                    })
+                }
+            })   
+        })
+        db.ref("posts/content").on("child_removed", function(snapshot){
+            snapshot.child("images").forEach(function(image){
+                var imageurl = image.val()
+                var imgNames = imageurl.split("/")
+                var imgName = imgNames[imgNames.length-1];
+                
             })
         })
         db.ref("messages").on("child_added", function(category, nextkey){

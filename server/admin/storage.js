@@ -169,6 +169,11 @@ module.exports = {
                 })
             }
         })
+    },
+    deleteFile: function(filename){
+        bucket.file(filename).delete().then(()=>{
+            console.log("damn");
+        })
     }
 }
 function getPublicUrl (filename) {
