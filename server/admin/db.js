@@ -36,14 +36,15 @@ const self = module.exports = {
                     db.ref("posts/num").once("value", function(snap){
                         var value = snap.val() + 1;
                         db.ref("posts/num").set(value);
-                        db.ref("posts/content/"+snapshot.key+"/comments/num").set(0)
-                    }) 
-                    db.ref("posts/content/"+ snapshot.key +"/comments/content").on("child_added", (snap,preK)=>{
-                        db.ref("posts/content/"+snapshot.key+"/comments/num").once("value", function(num){
-                            var val = num.val() + 1;
-                            db.ref("posts/content/"+snapshot.key+"/comments/num").set(val);
+                        db.ref("posts/content/"+snapshot.key+"/comments/num").set(0).then(()=>{
+                            db.ref("posts/content/"+ snapshot.key +"/comments/content").on("child_added", (snap,preK)=>{
+                                db.ref("posts/content/"+snapshot.key+"/comments/num").once("value", function(num){
+                                    var val = num.val() + 1;
+                                    db.ref("posts/content/"+snapshot.key+"/comments/num").set(val);
+                                })
+                            })
                         })
-                    })
+                    })   
             })   
         })
         db.ref("posts/content").on("child_removed", function(snapshot){
