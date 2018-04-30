@@ -152,6 +152,7 @@ export class DashboardComponent implements OnInit {
         new_post : newPost
       }).toPromise().then((res)=>{
         if(this.FilesToUpload.length !== 0){
+          alert("files, images uploading");
           this.makeFileRequest().then((data)=>{
            newPost.links = newPost.links.concat(data.links);
             Object.defineProperty(newPost, "images", {

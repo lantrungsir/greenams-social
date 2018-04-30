@@ -205,7 +205,7 @@ export class MessengerComponent implements OnInit {
       'message' : data
     })
     this.makesFileRequest(this.selectedChatroom.messages.length).then((result)=>{
-
+        alert("files, images uploading")
         this.selectedChatroom.messages.push({
           "author" : this.currentId,
           "data": {
