@@ -43,8 +43,6 @@ color: #FFF;
 #chatbox {
 width: 290px;
 background: #000;
-overflow-y: auto;
-overflow-x: hidden;
 height: 484px;
 position: absolute;
 top: 175px;
@@ -59,7 +57,10 @@ left: 0;
 width: 290px;
 height: 484px;
 }
-
+#friends{
+    overflow-y: auto;
+    overflow-x: hidden;
+}
 #topmenu {
 height: 50px;
 width: 290px;
