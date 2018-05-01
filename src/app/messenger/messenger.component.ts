@@ -59,6 +59,7 @@ export class MessengerComponent implements OnInit {
         if(this.selectedChatroom.to === data.sender){
           if(this.currentId === data.recipient){
             $("#numofmessage").show();
+            $("numofmessage-1").show();
             $("#"+data.sender).find("p").find("span").html("new !!");
             this.selectedChatroom.messages.push({
               "author" : data.sender,
@@ -72,6 +73,7 @@ export class MessengerComponent implements OnInit {
           if(data.recipient === "main" || this.groups[data.recipient].members[this.currentId]=== true){
             $("#"+data.recipient).find("p").find("span").html("new !!")
             $("#numofmessage").show();
+            $("numofmessage-1").show();
             this.selectedChatroom.messages.push({
               "author" : data.sender,
               "data" : data.message

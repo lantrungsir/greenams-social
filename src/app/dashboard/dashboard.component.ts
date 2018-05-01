@@ -64,7 +64,8 @@ export class DashboardComponent implements OnInit {
    }
 
   ngOnInit() {
-    $("#numofmessage").hide();
+    $("#numofmessage").show();
+    $("#numofmessage-1").show();
     $("#myModal").hide();
     $(".close").click(()=>{
       $("#myModal").hide();
@@ -210,6 +211,7 @@ export class DashboardComponent implements OnInit {
 
   navigateChat(){
     $("#numofmessage").hide();
+    $("#numofmessage-1").hide();
     $("#myModal").show();
   }
   logout(){

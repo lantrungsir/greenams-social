@@ -50,7 +50,6 @@ io.on("connection", function(socket){
                                 }
                             }
                         }
-                        database.saveData("meets/"+key, null);
                     })
                 }
                 if(time <0){
@@ -250,6 +249,23 @@ io.on("connection", function(socket){
                 })
             }
             else{
+                db.ref("users/"+data.recipient).once("value", function(snapshot){
+                    if(!snapshot.child("realtime").exist()){
+                        if(snapshot.child("fcm-token").exist()){
+                            var tok = snapshot.child("fcm-token").val();
+                            database.getData("users/"+ data.sender).then((userData)=>{
+                                msg.sendToDevice(tok, {
+                                    notification : {
+                                        title :"New message",
+                                        icon :"https://thumbs.dreamstime.com/z/smartphone-new-message-icon-short-communication-sent-one-person-to-another-central-theme-idea-64865893.jpg",
+                                        body :userData.name +" is waiting for you to reply",
+                                        click_action: "https://greenams-social.herokuapp.com"
+                                    }
+                                })
+                            })
+                        }
+                    }
+                })
                 var option1 =  data.recipient + "*" + data.sender
                 var option2 = data.sender + "*" +data.recipient
                 db.ref("messages/individual/"+ option1).once("value", function(data1){
@@ -292,6 +308,24 @@ io.on("connection", function(socket){
         }
         else{
            if(data.type === "groups"){
+                if(data.recipient === "main"){
+                    database.getData("users").then((users)=>{
+                        for(key in users){
+                            if(users.hasOwnProperty(key) && key !== data.data.author_id){
+                                if(users[key]['fcm-token']!== undefined && users[key]['realtime'] === undefined){
+                                    msg.sendToDevice(users[key]['fcm-token'], {
+                                        notification :{
+                                            title:"New message",
+                                            body : users[data.sender].name + " send a message to our main group. Check this out !",
+                                            icon :users[data.sender].profile_pic,
+                                            click_action:"https://greenams-social.herokuapp.com/dashboard"
+                                        }
+                                    })
+                                }
+                            }
+                        }
+                    })
+                }
                 db.ref("messages/groups/"+data.recipient +"/messages/num").once("value", function(number){
                     if(number.val() === null){
                         database.saveData("messages/groups/"+ data.recipient +"/messages/content/0", {
