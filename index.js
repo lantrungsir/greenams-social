@@ -50,6 +50,7 @@ io.on("connection", function(socket){
                                 }
                             }
                         }
+                        database.saveData("meets/"+key, null);
                     })
                 }
                 if(time <0){
