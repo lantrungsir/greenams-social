@@ -250,8 +250,8 @@ io.on("connection", function(socket){
             }
             else{
                 db.ref("users/"+data.recipient).once("value", function(snapshot){
-                    if(!snapshot.child("realtime").existed()){
-                        if(snapshot.child("fcm-token").existed()){
+                    if(!snapshot.child("realtime").exists()){
+                        if(snapshot.child("fcm-token").exists()){
                             var tok = snapshot.child("fcm-token").val();
                             database.getData("users/"+ data.sender).then((userData)=>{
                                 msg.sendToDevice(tok, {
