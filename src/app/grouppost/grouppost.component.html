@@ -3,7 +3,7 @@
   <span class="w3-right w3-opacity">{{post.time}}</span>
   <h4>{{users[post.author].name}}</h4><br>
   <hr class="w3-clear">
-  <p id = "message{{post.id}}" innerHTML = "{{post.message}}"></p>
+  <p id = "message{{post.id}}" innerHTML = "{{post.message}}" style = "word-wrap :break-word"></p>
   <!-- list of links-->
   <div class="w3-content w3-display-container">
     <ul>
@@ -39,7 +39,7 @@
       <tr class="new_comment_row w3-cell-row">
         <td class="new_comment_img" ><img src="{{users[comment.author].profile_pic}}" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:55px"></td>
         <td class="new_comment_text" ><b>{{users[comment.author].name}}</b>
-        <p innerHTML = "{{comment.message}}"></p></td>
+        <p innerHTML = "{{comment.message}}" style = "word-wrap :break-word"></p></td>
       </tr>
     </table>
   </div> 
