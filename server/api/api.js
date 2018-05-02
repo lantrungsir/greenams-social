@@ -26,9 +26,11 @@ module.exports ={
                                 }
                             }
                             var purifiedComments= []
-                            for(commentKey in data[key].comments["content"]){
-                                if(data[key].comments["content"].hasOwnProperty(commentKey)){
-                                    purifiedComments.splice(0,0, data[key].comments["content"][commentKey]);
+                            if(data[key].commments !== undefined){
+                                for(commentKey in data[key].comments["content"]){
+                                    if(data[key].comments["content"].hasOwnProperty(commentKey)){
+                                        purifiedComments.splice(0,0, data[key].comments["content"][commentKey]);
+                                    }
                                 }
                             }
                             data[key].likes = purifiedLikes
