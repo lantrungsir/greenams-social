@@ -26,7 +26,7 @@ module.exports ={
                                 }
                             }
                             var purifiedComments= []
-                            if(data[key].commments !== undefined){
+                            if(data[key].comments !== undefined){
                                 for(commentKey in data[key].comments["content"]){
                                     if(data[key].comments["content"].hasOwnProperty(commentKey)){
                                         purifiedComments.splice(0,0, data[key].comments["content"][commentKey]);
